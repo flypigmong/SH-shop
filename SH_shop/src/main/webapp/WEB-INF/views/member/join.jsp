@@ -110,7 +110,17 @@ $('.id_input').on("propertychange change keyup paste input", function(){
 	$.ajax({
 		type : "post",
 		url : "/member/memberIdChk",
-		data : data
+		data : data,
+		success : function(result){
+			//console.log("성공 여부" + result);
+			if(result != 'fail'){
+				$('.id_input_re_1').css("display","inline-block");
+				$('.id_input_re_2').css("display", "none");				
+			} else {
+				$('.id_input_re_2').css("display","inline-block");
+				$('.id_input_re_1').css("display", "none");				
+			}				
+		} // success 종료
 	}); // ajax 종료	
 	
 });// function 종료
