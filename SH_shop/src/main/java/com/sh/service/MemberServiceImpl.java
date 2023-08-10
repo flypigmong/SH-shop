@@ -24,6 +24,13 @@ public class MemberServiceImpl implements MemberService{
 		
 		logger.info("join success : "+ member);
 	}
+
+	@Override
+	public int idCheck(String memberId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 	
 	
