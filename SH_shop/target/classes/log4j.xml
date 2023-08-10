@@ -11,10 +11,23 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.sh.shop">
+	<logger name="com.sh.controller">
 		<level value="info" />
 	</logger>
 	
+	<logger name="com.sh.mapper">
+		<level value="info" />
+	</logger>
+	
+	<logger name="com.sh.model">
+		<level value="info" />
+	</logger>
+		
+	<logger name="com.sh.servoce">
+		<level value="info" />
+	</logger>
+	
+			
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />

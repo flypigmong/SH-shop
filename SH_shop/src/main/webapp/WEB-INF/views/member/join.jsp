@@ -28,7 +28,7 @@
 			<div class="pw_wrap">
 				<div class="pw_name">비밀번호</div>
 				<div class="pw_input_box">
-					<input class="pw_input">
+					<input class="pw_input" name="memberPw">
 				</div>
 			</div>
 			<div class="pwck_wrap">
@@ -40,13 +40,13 @@
 			<div class="user_wrap">
 				<div class="user_name">이름</div>
 				<div class="user_input_box">
-					<input class="user_input">
+					<input class="user_input" name="memberName">
 				</div>
 			</div>
 			<div class="mail_wrap">
 				<div class="mail_name">이메일</div> 
 				<div class="mail_input_box">
-					<input class="mail_input">
+					<input class="mail_input" name="memberMail">
 				</div>
 				<div class="mail_check_wrap">
 					<div class="mail_check_input_box">
@@ -62,21 +62,21 @@
 				<div class="address_name">주소</div>
 				<div class="address_input_1_wrap">
 					<div class="address_input_1_box">
-						<input class="address_input_1">
+						<input class="address_input_1" name="memberAddr1">
 					</div>
-					<div class="address_button">
+					<div class="address_button" >
 						<span>주소 찾기</span>
 					</div>
 					<div class="clearfix"></div>
 				</div>
 				<div class ="address_input_2_wrap">
 					<div class="address_input_2_box">
-						<input class="address_input_2">
+						<input class="address_input_2"  name="memberAddr2">
 					</div>
 				</div>
 				<div class ="address_input_3_wrap">
 					<div class="address_input_3_box">
-						<input class="address_input_3">
+						<input class="address_input_3" name="memberAddr3">
 					</div>
 				</div>
 			</div>
