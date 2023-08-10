@@ -21,7 +21,7 @@ public class JDBCTest {
 		
 		try(Connection con = 
 				DriverManager.getConnection(
-						"jdbc:mysql://127.0.0.1:3307/springbasic?serverTimezone=Asia/Seoul",
+						"jdbc:mysql://127.0.0.1:3307/book?serverTimezone=Asia/Seoul",
 						"castello",
 						"0000")){
 			System.out.println(con);
