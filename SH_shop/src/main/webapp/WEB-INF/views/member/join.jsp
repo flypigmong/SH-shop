@@ -6,11 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/member/join.css">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 </head>
 <body>
 
 <div class="wrapper">
-	<form action="">
+	<form action="join_form" method="post">
 	<div class="wrap">
 			<div class="subjecet">
 				<span>회원가입</span>
@@ -18,7 +22,7 @@
 			<div class="id_wrap">
 				<div class="id_name">아이디</div>
 				<div class="id_input_box">
-					<input class="id_input">
+					<input class="id_input" name="memberId">
 				</div>
 			</div>
 			<div class="pw_wrap">
@@ -82,6 +86,16 @@
 		</div>
 	</form>
 </div>
+<script>
 
+$(document).ready(function(){
+	//회원가입 버튼(회원가입 기능 작동)
+	$(".join_button").click(function(){
+		$("#join_form").attr("action", "/member/join");
+		$("#join_form").submit();
+	});
+});
+
+</script>
 </body>
 </html>
