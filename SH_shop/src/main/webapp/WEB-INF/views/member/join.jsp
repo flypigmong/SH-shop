@@ -14,7 +14,7 @@
 <body>
 
 <div class="wrapper">
-	<form action="join_form" method="post">
+	<form id="join_form" method="post">
 	<div class="wrap">
 			<div class="subjecet">
 				<span>회원가입</span>
