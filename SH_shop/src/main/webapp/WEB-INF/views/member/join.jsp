@@ -153,8 +153,43 @@ $(document).ready(function(){
 	            pwckCheck = true;
 	        }	   
 	        
-	        //$("#join_form").attr("action", "/member/join");
-	        //$("#join_form").submit();
+	        /* 이름 유효성 검사 */
+	        if(name == ""){
+	            $('.final_name_ck').css('display','block');
+	            nameCheck = false;
+	        }else{
+	            $('.final_name_ck').css('display', 'none');
+	            nameCheck = true;
+	        }	        
+	        
+	        /* 이메일 유효성 검사 */
+	        if(mail == ""){
+	            $('.final_mail_ck').css('display','block');
+	            mailCheck = false;
+	        }else{
+	            $('.final_mail_ck').css('display', 'none');
+	            mailCheck = true;
+	        }	        
+
+	        /* 주소 유효성 검사 */
+	        if(addr == ""){
+	            $('.final_addr_ck').css('display','block');
+	            addressCheck = false;
+	        }else{
+	            $('.final_addr_ck').css('display', 'none');
+	            addressCheck = true;
+	        }	       
+
+	        /* 최종 유효성 검사 */
+	        if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&mailCheck&&mailnumCheck&&addressCheck ){
+		       
+	        	$("#join_form").attr("action", "/member/join");
+		        $("#join_form").submit();
+	 
+	        } 	        
+	        
+	        return false;
+	        
 	   }); 
 });
 
@@ -210,8 +245,8 @@ $(".mail_check_button").click(function(){
     });
 });
 
+
 /* 인증번호 비교 */
- 
  
 $(".mail_check_input").blur(function(){
     
@@ -220,10 +255,12 @@ $(".mail_check_input").blur(function(){
         
     if(inputCode == code){                            // 일치할 경우
         checkResult.html("인증번호가 일치합니다.");
-        checkResult.attr("class", "correct");        
+        checkResult.attr("class", "correct");       
+        mailnumCheck = true;
     } else {                                            // 일치하지 않을 경우
         checkResult.html("인증번호를 다시 확인해주세요.");
         checkResult.attr("class", "incorrect");
+        mailnumCheck = false;
     }        
     
 });
