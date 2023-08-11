@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +32,9 @@ public class MemberController {
 	
 	@Autowired
 	private JavaMailSender mailSender;
+
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
 	
 	//회원가입 페이지 이동
 	@RequestMapping(value = "join", method = RequestMethod.GET)
