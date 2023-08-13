@@ -32,33 +32,18 @@
 					<input class="pw_iput" name="memberPw">
 				</div>
 			</div>
-			
-			<c:if test = "${result == 0 }">
-				<div class = "login_warn">사용자 ID 또는 비밀번호를 잘못 입력하셨습니다.</div>
-			</c:if>
-			
 			<div class="login_button_wrap">
-				<input type="button" class="login_button" value="로그인">
+				<input type="submit" class="login_button" value="로그인">
 			</div>			
+			<p>${msg}</p> <!-- 메시지 출력 -->
 		</div>
 	</form>
-
 	</div>
-
 </div>
+	
 
 <script>
 
-	/* 로그인 버튼 클릭 메서드 */
-	$(".login_button").click(function(){
-	    
-	    alert("로그인 버튼 작동");
-	    
-	    $("#login_form").attr("action", "/member/login");
-        $("#login_form").submit();
-    
-	});
-	
 </script>
 
 </body>
