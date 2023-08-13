@@ -35,8 +35,10 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;
 
+	
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
+	
 	
 	//회원가입 페이지 이동
 	@GetMapping(value = "join")
@@ -45,6 +47,41 @@ public class MemberController {
 		logger.info("회원가입 페이지 진입");
 	}		
 
+	//로그인 페이지 이동
+	@GetMapping(value = "login")
+	public void loginGET() {
+		
+		logger.info("로그인 페이지 진입");
+		
+	}		
+
+	
+	@PostMapping(value="join") 
+	public String joinPOST(MemberVO member) throws Exception{ 
+		memberservice.memberJoin(member); // 서비스에게 회원가입 요청 전달 return “redirect:/main”; // 메인페이지로 리다이렉트 }
+		return "redirect:/main";
+	}
+	
+	 @PostMapping(value="login") 
+	 public String loginPOST(MemberVO member, HttpSession session) throws Exception{ 
+		 MemberVO login = memberservice.memberLogin(member); // 서비스에게 로그인 요청 전달 
+		 if(login != null) {    // 로그인 성공 시
+			 session.setAttribute("member", login);  // 세션에 로그인 정보 저장 
+			 logger.info("login success");
+			 return "redirect:/main"; // 메인페이지로 리다이렉트 
+
+			 
+		 	} else {		 // 로그인 실패 시 
+		 		logger.info("login fail");
+				 return "redirect:/login"; // 로그인페이지로 리다이렉트 
+		 	} 
+	 }
+
+	
+	
+	
+	
+	/*
 	//회원가입
 	@PostMapping(value="join")
 	public String joinPOST(MemberVO member) throws Exception{
@@ -56,24 +93,19 @@ public class MemberController {
         encodePw = pwEncoder.encode(rawPw);        // 비밀번호 인코딩
         member.setMemberPw(encodePw);            // 인코딩된 비밀번호 member객체에 다시 저장
         
-        /* 회원가입 쿼리 실행 */
+        /* 회원가입 쿼리 실행 
         memberservice.memberJoin(member);		
 		
         return "redirect:/main";
         
-	}	
+	}	**/
 	
 
-	//로그인 페이지 이동
-	@GetMapping(value = "login")
-	public void loginGET() {
-			
-		logger.info("로그인 페이지 진입");
-			
-	}		
+	
+	
 
 
-	   /* 로그인 */
+	   /* 로그인 
     @PostMapping(value="login")
     public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
        
@@ -109,6 +141,7 @@ public class MemberController {
             
         }
     }
+    */
     
 	// 아이디 중복 검사
 	@PostMapping(value = "/memberIdChk")
@@ -179,11 +212,7 @@ public class MemberController {
         
 		return num;        
     }
-	
 
-    
-
-    
 }
 	
 
