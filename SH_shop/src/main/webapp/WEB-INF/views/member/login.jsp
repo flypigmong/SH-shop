@@ -35,15 +35,15 @@
 			<div class="login_button_wrap">
 				<input type="submit" class="login_button" value="로그인">
 			</div>			
-			<p>${msg}</p> <!-- 메시지 출력 -->
 		</div>
 	</form>
 	</div>
 </div>
-	
-
+ <!-- msg 값을 EL 표현식으로 받아서 alert 창으로 띄움-->
 <script>
-
+    <c:if test="${not empty msg}">
+        alert("${msg}");
+    </c:if>
 </script>
 
 </body>

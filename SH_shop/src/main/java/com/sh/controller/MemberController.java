@@ -46,8 +46,7 @@ public class MemberController {
 	@GetMapping(value = "login")
 	public void loginGET() {
 		
-		logger.info("로그인 페이지 진입");
-		
+		logger.info("로그인 페이지 진입");	
 	}		
 
 	
@@ -56,7 +55,24 @@ public class MemberController {
 		memberservice.memberJoin(member); // 서비스에게 회원가입 요청 전달 return “redirect:/main”; // 메인페이지로 리다이렉트 }
 		return "redirect:/main";
 	}
+
+	@PostMapping(value="login")
+	public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
+	  HttpSession session = request.getSession();
+	  MemberVO lvo = memberservice.memberLogin(member); // Service를 호출하여 로그인 로직 수행
+	  if(lvo != null) { // 로그인 성공 시
+	    session.setAttribute("member", lvo); // session에 사용자의 정보 저장
+	    logger.info("login success");
+	    return "redirect:/main"; // 메인페이지로 리다이렉트
+	  } else { // 로그인 실패 시
+	    rttr.addFlashAttribute("msg", "아이디나 비밀번호를 다시 확인하세요!"); // 로그인 실패 메시지 전달
+	    session.removeAttribute("msg"); // 세션에서 로그인 실패 메시지 삭제
+	    return "redirect:/member/login"; // 로그인페이지로 리다이렉트
+	  }
+	}	
 	
+	
+	/*
 	 @PostMapping(value="login") 
 	 public String loginPOST(MemberVO member, HttpSession session, RedirectAttributes rttr) throws Exception{ 
 		 MemberVO login = memberservice.memberLogin(member); // 서비스에게 로그인 요청 전달 
@@ -70,12 +86,12 @@ public class MemberController {
 			 
 		 	} else {		 // 로그인 실패 시 
 		 		logger.info("login fail");
-		 		 rttr.addFlashAttribute("msg", "아이디나 비밀번호가 틀렸습니다."); // 로그인 실패 메시지 전달
+		 		 rttr.addFlashAttribute("msg", "아이디나 비밀번호가 틀렸어요."); // 로그인 실패 메시지 전달
 				 return "redirect:/member/login"; // 로그인페이지로 리다이렉트 
 		 	} 
 	 }
 
-	
+	*/
 	
 	
 	
@@ -98,11 +114,6 @@ public class MemberController {
         
 	}	**/
 	
-
-	
-	
-
-
 	   /* 로그인 
     @PostMapping(value="login")
     public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
