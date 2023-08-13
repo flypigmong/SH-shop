@@ -23,7 +23,10 @@
                     <a href="/member/join">회원가입</a>
                 </li>
                 </c:if>
-                 <c:if test="${member != null }">                    
+                 <c:if test="${member != null }">   
+                     <c:if test="${member.adminCk == 1 }">
+                        <li><a href="/admin/main">관리자 페이지</a></li>
+                    </c:if>                                 
                     <li>
                         로그아웃
                     </li>
