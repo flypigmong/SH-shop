@@ -20,4 +20,29 @@ public class AdminController {
         
     }
     
+    /* 상품 등록 페이지 접속 */
+    @GetMapping(value = "goodsManage")
+    public void goodsManageGET() throws Exception{
+        logger.info("상품 등록 페이지 접속");
+    }
+    
+    /* 상품 등록 페이지 접속 */
+    @GetMapping(value = "goodsEnroll")
+    public void goodsEnrollGET() throws Exception{
+        logger.info("상품 등록 페이지 접속");
+    }
+    
+    /* 작가 등록 페이지 접속 */
+    @GetMapping(value = "authorEnroll")
+    public void authorEnrollGET() throws Exception{
+        logger.info("작가 등록 페이지 접속");
+    }
+    
+    /* 작가 관리 페이지 접속 */
+    @GetMapping(value = "authorManage")
+    public void authorManageGET() throws Exception{
+        logger.info("작가 관리 페이지 접속");
+    }     
+    
+    
 }
