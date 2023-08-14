@@ -7,7 +7,7 @@
       <!-- 작가 등록 -->
       <insert id="authorEnroll">
       
-          insert into hoon_author(authorName, nationId, authorIntro) values(#{authorName}, #{nationId}, #{authorIntro} )
+          insert into hoon_author(authorName, nationId, authorIntro) values(#{authorName}, #{nationId}, #{authorIntro})
  
       </insert>    
       
