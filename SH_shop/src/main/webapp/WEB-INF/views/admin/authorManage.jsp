@@ -108,8 +108,9 @@
 	
 	let moveForm = $('#moveForm');
 	 
-	/* 페이지 이동 버튼 */
-	$(".pageMaker_btn a").on("click", function(e){
+	
+/* 페이지 이동 버튼 */
+$(".pageMaker_btn a").on("click", function(e){
 	    
 	    e.preventDefault();
 	    
@@ -117,5 +118,7 @@
 	    
 	    moveForm.submit();
 	    
+	});
+	
 </script>
 </html>
