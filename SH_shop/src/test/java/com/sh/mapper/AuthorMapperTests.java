@@ -35,8 +35,8 @@ public class AuthorMapperTests {
     }  
     */
     
-    
-    /* 작가 목록 테스트 */
+    /*
+    // 작가 목록 테스트 
     @Test
     public void authorGetListTest() throws Exception{
         
@@ -50,4 +50,19 @@ public class AuthorMapperTests {
         }
         
     }   
+    
+    */
+    
+    
+	//작가 총 수//
+	@Test
+	public void authorGetTotalTest() throws Exception{
+		
+		Criteria cri = new Criteria();
+		cri.setKeyword("유홍준");
+		
+		int total = mapper.authorGetTotal(cri);
+		
+		System.out.println("total............." + total);
+	}
 }

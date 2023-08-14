@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sh.model.AuthorVO;
 import com.sh.model.Criteria;
+import com.sh.model.PageDTO;
 import com.sh.service.AuthorService;
 
 @Controller
@@ -62,6 +63,18 @@ public class AdminController {
         
         model.addAttribute("list", list);
     	
+        
+        /* 페이지 이동 인터페이스 데이터 */
+        int total = authorService.authorGetTotal(cri);
+        
+        PageDTO pageMaker = new PageDTO(cri, total);
+        
+        model.addAttribute("pageMaker", pageMaker);
+        
+        /* 페이지 이동 인터페이스 데이터  코드 한 줄로 표현...
+        model.addAttribute("pageMaker", new PageDTO(cri, authorService.authorGetTotal(cri)));
+    	*/
+        
     	logger.info("작가 관리 페이지 접속");
     }     
     
