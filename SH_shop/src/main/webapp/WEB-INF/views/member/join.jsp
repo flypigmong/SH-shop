@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>가입 페이지</title>
 <link rel="stylesheet" href="/resources/css/member/join.css">
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
