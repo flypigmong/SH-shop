@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.sh.model.AuthorVO;
 
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class AuthorServiceTests {
@@ -16,6 +17,7 @@ public class AuthorServiceTests {
     @Autowired
     private AuthorService service;
     
+    /*
     @Test
     public void authorEnrollTest() throws Exception {
  
@@ -30,4 +32,16 @@ public class AuthorServiceTests {
         service.authorEnroll(author);
         
     }
+    */
+
+	// 작가 상세 페이지
+	@Test
+	public void authorGetDetailTest() throws Exception{
+		
+		int authorId = 20;
+		
+		System.out.println("author....." + service.authorGetDetail(authorId));
+	}
+	
+	
 }

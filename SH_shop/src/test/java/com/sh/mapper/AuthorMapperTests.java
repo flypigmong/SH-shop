@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.sh.model.AuthorVO;
 import com.sh.model.Criteria;
 
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 
@@ -53,7 +54,7 @@ public class AuthorMapperTests {
     
     */
     
-    
+    /*
 	//작가 총 수//
 	@Test
 	public void authorGetTotalTest() throws Exception{
@@ -65,4 +66,21 @@ public class AuthorMapperTests {
 		
 		System.out.println("total............." + total);
 	}
+	*/
+	
+	/*
+	// 작가 목록 구현 
+	@Test
+	public void authorGetDetailTest() {
+		
+		int authorId = 30;
+		
+		AuthorVO author = mapper.authorGetDetail(authorId);
+		
+		System.out.println("author......." + author);
+		
+	}	
+	*/
+	
+
 }

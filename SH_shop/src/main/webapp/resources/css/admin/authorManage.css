@@ -142,6 +142,11 @@ ul{
     color: white;    
 }
 
+/*  작가 상세 페이지 이동 태그 */
+.author_table a{
+	color:#1088ed;
+	font-weight: 500;
+}
 
 /* 검색 영역 */
 .search_wrap{

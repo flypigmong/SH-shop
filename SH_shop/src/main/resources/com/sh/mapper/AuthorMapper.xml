@@ -22,9 +22,7 @@
         order by authorid desc 
         limit #{skip}, #{amount}    
     
-    </select>
-            
-            
+    </select> 
       <!-- 작가 수 -->
       <select id="authorGetTotal" resultType="int">
       
@@ -34,8 +32,14 @@
           
               where authorname like concat('%', #{keyword}, '%');
           
-          </if>
-                   
+          </if>               
        </select>     
-            
+ 
+ 
+   	<!-- 작가 디테일 페이지 -->
+  	<select id="authorGetDetail" resultType="com.sh.model.AuthorVO">
+  	
+  		select * from hoon_author where authorid = #{authorId}
+  	
+  	</select>           
   </mapper>
