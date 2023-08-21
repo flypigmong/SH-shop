@@ -82,5 +82,22 @@ public class AuthorMapperTests {
 	}	
 	*/
 	
-
+	// 작가 정보 수정 
+	@Test
+	public void authorModifyTest() {
+		
+		AuthorVO author = new AuthorVO();
+				
+		author.setAuthorId(1);
+		System.out.println("수정 전...................." + mapper.authorGetDetail(author.getAuthorId()));
+		
+		author.setAuthorName("수정");
+		author.setNationId("01");
+		author.setAuthorIntro("소개 수정수정수정수정수정수정 하였습니다.!!!");
+		
+		mapper.authorModify(author);
+		System.out.println("수정 후...................." + mapper.authorGetDetail(author.getAuthorId()));
+		
+	}
+    
 }

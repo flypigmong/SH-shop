@@ -109,4 +109,18 @@ public class AdminController {
 		
 	}
     
+	
+	/* 작가 정보 수정 */
+	@PostMapping("/authorModify")
+	public String authorModifyPOST(AuthorVO author, RedirectAttributes rttr) throws Exception{ //뷰에서 전달받은 데이터를 전달받기 위해 AuthorVO를 파라미터로 부여 
+		
+		logger.info("authorModifyPOST......." + author);
+		
+		int result = authorService.authorModify(author);
+		
+		rttr.addFlashAttribute("modify_result", result);
+		
+		return "redirect:/admin/authorManage";
+		
+	}
 }

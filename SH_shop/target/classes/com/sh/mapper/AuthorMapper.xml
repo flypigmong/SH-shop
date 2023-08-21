@@ -41,5 +41,14 @@
   	
   		select * from hoon_author where authorid = #{authorId}
   	
-  	</select>           
+  	</select>  
+  	
+  	
+  	<!-- 작가 내용 수정 -->
+	<update id="authorModify">
+	
+		update hoon_author set authorName=#{authorName}, nationId=#{nationId}, authorIntro=#{authorIntro}, updatedate=now() where authorId = #{authorId}
+	
+	</update>
+	         
   </mapper>
