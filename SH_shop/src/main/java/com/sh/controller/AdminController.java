@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sh.model.AuthorVO;
+import com.sh.model.BookVO;
 import com.sh.model.Criteria;
 import com.sh.model.PageDTO;
+import com.sh.service.AdminService;
 import com.sh.service.AuthorService;
 
 @Controller
@@ -25,6 +27,9 @@ public class AdminController {
     
     @Autowired 
     private AuthorService authorService;
+    
+    @Autowired
+    private AdminService adminService;
     
     /* 관리자 메인 페이지 이동 */
     @GetMapping(value="main")
@@ -123,4 +128,16 @@ public class AdminController {
 		return "redirect:/admin/authorManage";
 		
 	}
+	
+	/* 상품 등록 */
+	@PostMapping("/goodsEnroll")
+	public String goodsEnrollPOST(BookVO book, RedirectAttributes rttr) {
+		
+		logger.info("goodsEnrollPOST......" + book);
+		adminService.bookEnroll(book);
+		rttr.addFlashAttribute("enroll_result", book.getBookName());
+		
+		return "redirect:/admin/goodsManage";
+	}
+	
 }
