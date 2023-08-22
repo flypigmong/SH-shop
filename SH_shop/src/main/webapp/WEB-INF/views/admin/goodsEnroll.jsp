@@ -64,7 +64,24 @@
                     				<label>책 카테고리</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input name="cateCode">
+									<div class="cate_wrap">
+										<span>대분류</span>
+										<select class="cate1">
+											<option selected value="none">선택</option>
+										</select>
+									</div>
+									<div class="cate_wrap">
+										<span>중분류</span>
+										<select class="cate2">
+											<option selected value="none">선택</option>
+										</select>
+									</div>
+									<div class="cate_wrap">
+										<span>소분류</span>
+										<select class="cate3" name="cateCode">
+											<option selected value="none">선택</option>
+										</select>
+									</div>                     				
                     			</div>
                     		</div>          
                     		<div class="form_section">
