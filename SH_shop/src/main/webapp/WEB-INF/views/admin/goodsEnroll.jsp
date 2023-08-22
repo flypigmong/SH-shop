@@ -283,9 +283,12 @@
 	$(cateSelect1).on("change", function() {
 		
 		let selectVal1 = $(this).find("option:selected").val(); //대분류 선택값 가져오기
-		cateSelect2.children().remove(); //option태그 모두 지우기 ( 다시 대분류 선택하는 경우 기존의 option태그 없애기 위함)
+		cateSelect2.children().remove(); //option태그(중분류) 모두 지우기 ( 다시 대분류 선택하는 경우 기존의 option태그 없애기 위함)
+		cateSelect3.children().remove(); //소분류도 지우기
+		
 		cateSelect2.append("<option value='none'>선택</option>")
-	
+		cateSelect3.append("<option value='none'>선택</option>");
+		
 		for(let i = 0; i < cate2Array.length; i++){
 			if(selectVal1 === cate2Array[i].cateParent){
 				cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");	
