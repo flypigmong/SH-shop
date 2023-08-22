@@ -254,6 +254,7 @@
 		console.log(cate2Array);
 		console.log(cate3Array);
 	});	
+	
 	/*
 	for(let i = 0; i < cateList.length; i++){
 		if(cateList[i].tier === 1){    //tier=1
@@ -272,6 +273,41 @@
 		console.log(cate1Array);
 	});
 	*/
+	
+	/* 대분류 <option> 태그 */
+	for(let i = 0; i < cate1Array.length; i++){
+		cateSelect1.append("<option value='"+cate1Array[i].cateCode+"'>" + cate1Array[i].cateName + "</option>"); // <select> 
+	}        
+	
+	/* 중분류 <option> 태그 */
+	$(cateSelect1).on("change", function() {
+		
+		let selectVal1 = $(this).find("option:selected").val(); //대분류 선택값 가져오기
+		cateSelect2.children().remove(); //option태그 모두 지우기 ( 다시 대분류 선택하는 경우 기존의 option태그 없애기 위함)
+		cateSelect2.append("<option value='none'>선택</option>")
+	
+		for(let i = 0; i < cate2Array.length; i++){
+			if(selectVal1 === cate2Array[i].cateParent){
+				cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");	
+			}  //대분류 선택값과 일치하는 'cateParent' 값을 가진 중분류 option태그 출력
+		}
+		
+		
+		/* 소분류 <option>태그 */
+		$(cateSelect2).on("change",function(){
+			
+			let selectVal2 = $(this).find("option:selected").val(); //중분류 선택값 가져오기
+			cateSelect3.children().remove();  // 소분류 option 태그 지우기
+			cateSelect3.append("<option value='none'>선택</option>"); // 기본 option 태그 추가
+	
+			for(let i = 0; i < cate3Array.length; i++){
+				if(selectVal2 === cate3Array[i].cateParent){
+					cateSelect3.append("<option value='"+cate3Array[i].cateCode+"'>" + cate3Array[i].cateName + "</option>");	
+				}
+			}
+		});		
+		
+	});
  </script>
  
 </body>
