@@ -12,4 +12,11 @@
 
   	</insert>
 
+	<!--  카테고리 리스트 -->
+	<select id="cateList" resultType="com.sh.model.CateVO">
+	
+		select * from sh_bcate order by catecode
+	
+	</select>
+
   </mapper>

@@ -49,6 +49,8 @@ public class AdminController {
     @GetMapping(value = "goodsEnroll")
     public void goodsEnrollGET() throws Exception{
         logger.info("상품 등록 페이지 접속");
+        
+        List list = adminService.cateList();
     }
     
     /* 작가 등록 페이지 접속 */
@@ -139,6 +141,9 @@ public class AdminController {
 		
 		return "redirect:/admin/goodsManage";
 	}
+	
+	
+	
 	
 	
 	/* 작가 검색 팝업창 */
