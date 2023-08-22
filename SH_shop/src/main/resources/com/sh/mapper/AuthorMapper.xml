@@ -7,7 +7,7 @@
       <!-- 작가 등록 -->
       <insert id="authorEnroll">
       
-          insert into hoon_author(authorName, nationId, authorIntro) values(#{authorName}, #{nationId}, #{authorIntro})
+          insert into sh_author(authorName, nationId, authorIntro) values(#{authorName}, #{nationId}, #{authorIntro})
  
       </insert>    
       
@@ -15,7 +15,7 @@
     <select id="authorGetList" resultType="com.sh.model.AuthorVO">
     
         select  authorid, authorname, nationid, regdate, updatedate
-        from hoon_author 
+        from sh_author 
         <if test="keyword != null">
             where authorname like concat('%',#{keyword}, '%')
         </if>
@@ -26,7 +26,7 @@
       <!-- 작가 수 -->
       <select id="authorGetTotal" resultType="int">
       
-          select count(*) from hoon_author
+          select count(*) from sh_author
           
           <if test="keyword != null">
           
@@ -39,7 +39,7 @@
    	<!-- 작가 디테일 페이지 -->
   	<select id="authorGetDetail" resultType="com.sh.model.AuthorVO">
   	
-  		select * from hoon_author where authorid = #{authorId}
+  		select * from sh_author where authorid = #{authorId}
   	
   	</select>  
   	
@@ -47,7 +47,7 @@
   	<!-- 작가 내용 수정 -->
 	<update id="authorModify">
 	
-		update hoon_author set authorName=#{authorName}, nationId=#{nationId}, authorIntro=#{authorIntro}, updatedate=now() where authorId = #{authorId}
+		update sh_author set authorName=#{authorName}, nationId=#{nationId}, authorIntro=#{authorIntro}, updatedate=now() where authorId = #{authorId}
 	
 	</update>
 	         
