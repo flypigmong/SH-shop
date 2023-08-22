@@ -42,8 +42,22 @@ public class AdminController {
     
     /* 상품 등록 페이지 접속 */
     @GetMapping(value = "goodsManage")
-    public void goodsManageGET() throws Exception{
-        logger.info("상품 등록 페이지 접속");
+    public void goodsManageGET(Criteria cri, Model model) throws Exception{
+        
+    	logger.info("상품 목록 페이지 접속");
+    	
+		/* 상품 리스트 데이터 */
+		List list = adminService.goodsGetList(cri);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+		} else {
+			model.addAttribute("listCheck", "empty");
+			return;
+		}
+		
+		/* 페이지 인터페이스 데이터 */
+		model.addAttribute("pageMaker", new PageDTO(cri, adminService.goodsGetTotal(cri)));
     }
     
     /* 상품 등록 페이지 접속 */
@@ -155,9 +169,7 @@ public class AdminController {
 	}
 	
 	
-	
-	
-	
+
 	/* 작가 검색 팝업창 */
 	@GetMapping("/authorPop")
 	public void authorPopGET(Criteria cri, Model model) throws Exception {
