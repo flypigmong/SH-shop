@@ -189,8 +189,12 @@
 		window.open(popUrl,"작가 찾기",popOption);	
 	
 	});
+	
+	$(document).ready(function(){
+		console.log('${cateList}');
+	});
+	
  </script>
- 
  
 </body>
 </html>

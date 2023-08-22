@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sh.model.AuthorVO;
 import com.sh.model.BookVO;
 import com.sh.model.Criteria;
@@ -47,11 +48,22 @@ public class AdminController {
     
     /* 상품 등록 페이지 접속 */
     @GetMapping(value = "goodsEnroll")
-    public void goodsEnrollGET() throws Exception{
+    public void goodsEnrollGET(Model model) throws Exception{
         logger.info("상품 등록 페이지 접속");
         
+        ObjectMapper objm = new ObjectMapper(); //jackson 사용하기 위해 ObjectMapper클래스를 인스턴스화
+        
         List list = adminService.cateList();
+        
+        String cateList = objm.writeValueAsString(list);
+        
+        model.addAttribute("cateList", cateList);
+        
+        logger.info("변경 전............" + list);
+        logger.info("변경 후............" + cateList);
+        
     }
+    
     
     /* 작가 등록 페이지 접속 */
     @GetMapping(value = "authorEnroll")
