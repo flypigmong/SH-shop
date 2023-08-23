@@ -12,6 +12,7 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
+ <script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
 	<%@include file="../includes/admin/header.jsp" %>
@@ -153,4 +154,29 @@
  				
  				<%@include file="../includes/admin/footer.jsp" %>	
 </body>
+<script>
+
+		$(document).ready(function(){
+			
+			/* 할인율 값 삽입 */
+			let bookDiscount = '<c:out value="${goodsInfo.bookDiscount}"/>' * 100;
+			$("#discount_interface").attr("value", bookDiscount);
+		});
+		
+		
+		/* 책 소개 */
+		ClassicEditor
+			.create(document.querySelector('#bookIntro_textarea'))
+			.catch(error=>{
+				console.error(error);
+			});
+			
+		/* 책 목차 */	
+		ClassicEditor
+		.create(document.querySelector('#bookContents_textarea'))
+		.catch(error=>{
+			console.error(error);
+		});	
+		
+</script>
 </html>
