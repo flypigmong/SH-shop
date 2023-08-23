@@ -139,15 +139,15 @@
                    		
                    			<div class="btn_section">
                    				<button id="cancelBtn" class="btn">상품 목록</button>
-	                    		<button id="enrollBtn" class="btn enroll_btn">수정 </button>
+	                    		<button id="modifyBtn" class="btn enroll_btn">수정 </button>
 	                    	</div> 
                     </div>      
 
                 	
                 	<form id="moveForm" action="/admin/goodsManage" method="get" >
- 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-						<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+ 						<input type="hidden" name="pageNum" value="${cri.pageNum}">
+						<input type="hidden" name="amount" value="${cri.amount}">
+						<input type="hidden" name="keyword" value="${cri.keyword}">
                 	</form>
                 	
                 </div>
@@ -161,6 +161,104 @@
 			/* 할인율 값 삽입 */
 			let bookDiscount = '<c:out value="${goodsInfo.bookDiscount}"/>' * 100;
 			$("#discount_interface").attr("value", bookDiscount);
+		
+			/* 카테고리 */
+			let cateList = JSON.parse('${cateList}');
+
+			let cate1Array = new Array();
+			let cate2Array = new Array();
+			let cate3Array = new Array();
+			let cate1Obj = new Object();
+			let cate2Obj = new Object();
+			let cate3Obj = new Object();
+			
+			let cateSelect1 = $(".cate1");		
+			let cateSelect2 = $(".cate2");
+			let cateSelect3 = $(".cate3");
+			
+			/* 카테고리 배열 초기화 메서드 */
+			function makeCateArray(obj,array,cateList, tier){
+				for(let i = 0; i < cateList.length; i++){
+					if(cateList[i].tier === tier){
+						obj = new Object();
+						
+						obj.cateName = cateList[i].cateName;
+						obj.cateCode = cateList[i].cateCode;
+						obj.cateParent = cateList[i].cateParent;
+						
+						array.push(obj);				
+						
+					}
+				}
+			}	
+			
+			/* 배열 초기화 */
+			makeCateArray(cate1Obj,cate1Array,cateList,1);
+			makeCateArray(cate2Obj,cate2Array,cateList,2);
+			makeCateArray(cate3Obj,cate3Array,cateList,3);		
+		
+			let targetCate2 = '';
+			let targetCate3 = '${goodsInfo.cateCode}';
+			
+			//소분류
+			//cateParent, cateName 값도 포함된 객체를 저장되도록
+			for(let i = 0; i < cate3Array.length; i++){  
+				if(targetCate3 === cate3Array[i].cateCode){
+					targetCate3 = cate3Array[i];
+				}
+			}		
+			
+			//cate3Array에 담긴 소분류 데이터를 모두 비교하여  targetCate3의 cateParent와 동일한 값을 가지는 데이터들 소분류 <select> 항목에 추가
+			for(let i = 0; i < cate3Array.length; i++){  
+				if(targetCate3.cateParent === cate3Array[i].cateParent){
+					cateSelect3.append("<option value='"+cate3Array[i].cateCode+"'>" + cate3Array[i].cateName + "</option>");
+				}
+			}
+			
+			//DB에 저장된 값에 해당하는 카테고리 <option> 태그에 selected 속성이 추가되도록
+			$(".cate3 option").each(function(i,obj){
+				if(targetCate3.cateCode === obj.value){
+					$(obj).attr("selected", "selected");
+				}
+			});
+			
+			//중분류
+			for(let i = 0; i < cate2Array.length; i++){
+				if(targetCate3.cateParent === cate2Array[i].cateCode){
+					targetCate2 = cate2Array[i];	
+				}
+			}
+			
+			for(let i = 0; i < cate2Array.length; i++){
+				if(targetCate2.cateParent === cate2Array[i].cateParent){
+					cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");
+				}
+			}		
+			
+			$(".cate2 option").each(function(i,obj){
+				if(targetCate2.cateCode === obj.value){
+					$(obj).attr("selected", "selected");
+				}
+			});
+			
+			//대분류
+			for(let i = 0; i < cate1Array.length; i++){
+				cateSelect1.append("<option value='"+cate1Array[i].cateCode+"'>" + cate1Array[i].cateName + "</option>");
+			}
+			
+			$(".cate1 option").each(function(i,obj){
+				if(targetCate2.cateParent === obj.value){
+					$(obj).attr("selected", "selected");
+				}
+			});
+			
+			/*
+			console.log('targetCate3 : ' + targetCate3);
+			console.log('targetCate3.cateName : ' + targetCate3.cateName);
+			console.log('targetCate3.cateCode : ' + targetCate3.cateCode);
+			console.log('tartgetCate3.cateParent :' + targetCate3.cateParent);
+			*/
+			
 		});
 		
 		
@@ -186,6 +284,22 @@
 		.catch(error=>{
 			console.error(error);
 		});	  
+		
+		
+		/* 목록 이동 버튼 */
+		$("#cancelBtn").on("click", function(e){
+			e.preventDefault();
+			$("#moveForm").submit();	
+		});	
+		
+		/* 수정 페이지 이동 */
+		$("#modifyBtn").on("click", function(e){
+			e.preventDefault();
+			let addInput = '<input type="hidden" name="bookId" value="${goodsInfo.bookId}">';
+			$("#moveForm").append(addInput);
+			$("#moveForm").attr("action", "/admin/goodsModify");
+			$("#moveForm").submit();
+		});
 		
 </script>
 </html>
