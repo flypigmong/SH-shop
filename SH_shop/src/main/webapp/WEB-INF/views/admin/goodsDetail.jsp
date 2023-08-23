@@ -167,6 +167,10 @@
 		/* 책 소개 */
 		ClassicEditor
 			.create(document.querySelector('#bookIntro_textarea'))
+			.then(editor => {
+					console.log(editor);
+					editor.isReadOnly = true;  //ckeditor 내부에서 입력 및 수정불가
+			})	
 			.catch(error=>{
 				console.error(error);
 			});
@@ -174,6 +178,11 @@
 		/* 책 목차 */	
 		ClassicEditor
 		.create(document.querySelector('#bookContents_textarea'))
+		.then(editor => {
+				console.log(editor);
+				editor.isReadOnly = true;  //ckeditor 내부에서 입력 및 수정불가
+		})	
+		
 		.catch(error=>{
 			console.error(error);
 		});	  
