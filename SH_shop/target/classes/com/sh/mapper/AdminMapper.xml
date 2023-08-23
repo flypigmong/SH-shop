@@ -47,5 +47,16 @@
   		</if>
   	
   	</select>
+  	
+  	
+ 	<!-- 상품 조회 페이지 -->
+	<select id="goodsGetDetail" resultType="com.sh.model.BookVO">
+	
+		select bookId, bookName, (select authorName from sh_author where authorId =sh_book.authorId) authorName, 
+			authorId, publeYear, publisher, cateCode, bookPrice, bookStock, bookDiscount, bookIntro, bookContents, regDate, updateDate 
+		from sh_book where bookId = #{bookId}
+	
+	</select> 	
+  	
 
   </mapper>

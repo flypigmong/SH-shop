@@ -49,6 +49,7 @@ public class AdminMapperTests {
 	}
 	*/
 	
+	/*
 	// 상품 리스트 & 상품 총 갯수 
 	@Test
 	public void goodsGetListTest() {
@@ -64,9 +65,19 @@ public class AdminMapperTests {
 			System.out.println("result......." + i + " : " + list.get(i));
 		}
 		
-		/* 상품 총 갯수 */
+		// 상품 총 갯수 
 		int result = mapper.goodsGetTotal(cri);
 		System.out.println("result.........." + result);
 		
 	}
+	*/
+	
+		// 상품 조회 페이지
+		@Test
+		public void goodsGetDetailTest() {
+			int bookId= 150;
+			BookVO result = mapper.goodsGetDetail(bookId);
+			System.out.println("상품 조회 데이터 : " + result);
+			
+		}
 }

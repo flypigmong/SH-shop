@@ -191,4 +191,19 @@ public class AdminController {
 		logger.info("authorPopGET...........");
 		
 	}
+	
+	
+		/* 상품 조회 페이지 */
+		@GetMapping("/goodsDetail")
+		public void goodsGetInfoGET(int bookId, Criteria cri, Model model) {
+			
+			logger.info("goodsGetInfo().............." + bookId);
+			
+			/* 목록 페이지에 데이터 가져오기 위한 조건 정보 */
+			model.addAttribute("cri", cri);
+			
+			/* 조회 페이지에 데이터 가져오기 위한 조건 정보 */
+			model.addAttribute("goodsInfo", adminService.goodsGetDetail(bookId));
+		
+		}
 }
