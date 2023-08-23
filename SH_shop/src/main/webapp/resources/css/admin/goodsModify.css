@@ -187,6 +187,17 @@ input[name='publeYear'] {
     background-color: #c9cbd0;
 }
 
+/* 삭제 버튼 */
+
+.delete_btn{
+	background-color: #efcdcd;
+}
+.delete_btn:hover{
+	background-color : #e4a7a7;
+}
+
+
+
 .form_section_content select {		/* 카테고리 css 설정 */
     width: 92%;
     height: 35px;

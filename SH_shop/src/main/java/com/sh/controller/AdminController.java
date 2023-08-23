@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -226,4 +227,16 @@ public class AdminController {
 				return "redirect:/admin/goodsManage";
 		}
 		
+		
+		/* 상품 정보 삭제 */
+		@PostMapping("/goodsDelete")
+		public String goodsDeletePOST(int bookId, RedirectAttributes rttr) {
+			
+				logger.info("controller:::goodsDeletePOST.........");
+				int result = adminService.goodsDelete(bookId);
+				rttr.addFlashAttribute("delete_result", result);
+				
+				return "redirect:/admin/goodsManage";
+		
+		}
 }
