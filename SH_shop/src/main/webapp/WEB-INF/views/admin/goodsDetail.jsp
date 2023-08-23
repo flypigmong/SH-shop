@@ -176,7 +176,7 @@
 		.create(document.querySelector('#bookContents_textarea'))
 		.catch(error=>{
 			console.error(error);
-		});	
+		});	  
 		
 </script>
 </html>
