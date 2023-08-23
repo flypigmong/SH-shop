@@ -114,6 +114,7 @@
  
 	$(document).ready(function(){
 		
+ 		/* 등록 성공 이벤트*/
 		let eResult = '<c:out value="${enroll_result}"/>';
 		
 		checkResult(eResult);
@@ -128,6 +129,13 @@
 			
 		}
 	
+		/* 수정 성공 이벤트 */
+		let modify_result = '${modify_result}';
+		
+		if(modify_result == 1){
+			alert("수정 완료");
+		}
+		
 	});
 	
 	

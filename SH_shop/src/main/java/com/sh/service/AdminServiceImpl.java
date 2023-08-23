@@ -23,7 +23,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void bookEnroll(BookVO book) {
 		
-		log.info("(service)bookEnroll...........");
+		log.info("service:::bookEnroll...........");
 		
 		adminMapper.bookEnroll(book);
 		
@@ -32,27 +32,33 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<CateVO> cateList() {
 		
-		log.info("(service)cateList................");
+		log.info("service:::cateList................");
 		
 		return adminMapper.cateList();
 	}
 
 	@Override
 	public List<BookVO> goodsGetList(Criteria cri) {
-		log.info("goodsGetTotalList()............");
+		log.info("service:::goodsGetTotalList()............");
 		return adminMapper.goodsGetList(cri);
 	}
 
 	@Override
 	public int goodsGetTotal(Criteria cri) {
-		log.info("goodsGetTotal()....................");
+		log.info("service:::goodsGetTotal()....................");
 		return adminMapper.goodsGetTotal(cri);
 	}
 
 	@Override
 	public BookVO goodsGetDetail(int bookId) {
-		log.info("goodsGetDetail()....................");
+		log.info("service:::goodsGetDetail()....................");
 		return adminMapper.goodsGetDetail(bookId);
+	}
+
+	@Override
+	public int goodsModify(BookVO vo) {
+		log.info("service:::goodsModify()..................");
+		return adminMapper.goodsModify(vo);
 	}
 
 }

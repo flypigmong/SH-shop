@@ -58,5 +58,12 @@
 	
 	</select> 	
   	
-
+	<!--  상품 정보 수정 -->
+	<update id="goodsModify">
+	
+		update sh_book set bookName = #{bookName}, authorId = #{authorId}, publeYear = #{publeYear}, publisher = #{publisher}, cateCode = ${cateCode}, 
+			bookPrice = #{bookPrice}, bookStock = #{bookStock}, bookDiscount = #{bookDiscount}, bookIntro = #{bookIntro}, bookContents = #{bookContents}, updateDate = now()
+		where bookId = ${bookId}
+	
+	</update>
   </mapper>

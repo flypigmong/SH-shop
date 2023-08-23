@@ -20,6 +20,7 @@ import com.sh.model.Criteria;
 import com.sh.model.PageDTO;
 import com.sh.service.AdminService;
 import com.sh.service.AuthorService;
+import com.sun.source.tree.AssertTree;
 
 @Controller
 @RequestMapping("/admin")
@@ -194,7 +195,7 @@ public class AdminController {
 	}
 	
 	
-		/* 상품 조회 페이지 */
+		/* 상품 조회,수정 페이지 */
 		@GetMapping({"/goodsDetail", "/goodsModify" })
 		public void goodsGetInfoGET(int bookId, Criteria cri, Model model) throws JsonProcessingException {
 			
@@ -212,4 +213,17 @@ public class AdminController {
 			model.addAttribute("goodsInfo", adminService.goodsGetDetail(bookId));
 		
 		}
+		
+		
+		/* 상품 정보 수정 */
+		@PostMapping("/goodsModify")
+		public String goodsModifyPOST(BookVO vo,RedirectAttributes rttr) {
+				
+				logger.info("controller:::goodsModifyPOST............." + vo);
+				int result = adminService.goodsModify(vo);
+				rttr.addFlashAttribute("modify_result", result);
+	
+				return "redirect:/admin/goodsManage";
+		}
+		
 }
