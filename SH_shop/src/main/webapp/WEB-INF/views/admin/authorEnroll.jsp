@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>작가 등록</title>
 <link rel="stylesheet" href="../resources/css/admin/authorEnroll.css">
  
 <script

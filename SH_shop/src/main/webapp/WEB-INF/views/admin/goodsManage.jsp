@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 관리</title>
 <link rel="stylesheet" href="../resources/css/admin/goodsManage.css">
  
 <script
