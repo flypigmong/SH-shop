@@ -77,6 +77,7 @@
 	                 		<div class="btn_section">
 	                   			<button id="cancelBtn" class="btn">취소</button>
 		                    	<button id="modifyBtn" class="btn modify_btn">수 정</button>
+		                   		<button id="deleteBtn" class="btn delete_btn">삭 제</button>
 		                    </div> 
 	                    </form>
                     </div>                    
@@ -93,56 +94,66 @@
 
 </body>
 <script>
-
-let moveForm = $("#moveForm");
-let modifyForm = $("#modifyForm");
-
-
-
-
-/* 작가 상세 페이지 이동 버튼 */
-$("#cancelBtn").on("click", function(e){
 	
-	e.preventDefault();
-			
-	moveForm.attr("action", "/admin/authorDetail")
-	moveForm.submit();
-	
-});
+	let moveForm = $("#moveForm");
+	let modifyForm = $("#modifyForm");
 
-/* 작가 수정 버튼 작동 및 유효성 검사 */
-$("#modifyBtn").on("click", function(e){
 
-	let authorName = $(".form_section_content input[name='authorName']").val();
-	let authorIntro = $(".form_section_content textarea").val();		
-
-	let nameCk = false;
-	let introCk = false;		
-	
-	e.preventDefault();
-	
-	if(!authorName){
-		$("#warn_authorName").css("display", "block");
-	} else {
-		$("#warn_authorName").css("display", "none");
-		nameCk = true;
-	}
-	if(!authorIntro){
-		$("#warn_authorIntro").css("display", "block");
-	} else {
-		$("#warn_authorIntro").css("display", "none");
-		introCk = true;
-	}
+	/* 작가 상세 페이지 이동 버튼 */
+	$("#cancelBtn").on("click", function(e){
+		
+		e.preventDefault();
+				
+		moveForm.attr("action", "/admin/authorDetail")
+		moveForm.submit();
+		
+	});
 
 	
-	if(nameCk && introCk ){
-		modifyForm.submit();	
-	} else {
-		return false;
-	}
+	/* 삭제 버튼 */
+	$("#deleteBtn").on("click", function(e){
+		e.preventDefault();
+		moveForm.find("input").remove();
+		moveForm.append('<input type="hidden" name="authorId" value="${authorInfo.authorId}">');
+		moveForm.attr("action", "/admin/authorDelete");
+		moveForm.attr("method", "post");
+		moveForm.submit();
+	});
 	
 	
-});
+	/* 작가 수정 버튼 작동 및 유효성 검사 */
+	$("#modifyBtn").on("click", function(e){
+	
+		let authorName = $(".form_section_content input[name='authorName']").val();
+		let authorIntro = $(".form_section_content textarea").val();		
+	
+		let nameCk = false;
+		let introCk = false;		
+		
+		e.preventDefault();
+		
+		if(!authorName){
+			$("#warn_authorName").css("display", "block");
+		} else {
+			$("#warn_authorName").css("display", "none");
+			nameCk = true;
+		}
+		if(!authorIntro){
+			$("#warn_authorIntro").css("display", "block");
+		} else {
+			$("#warn_authorIntro").css("display", "none");
+			introCk = true;
+		}
+	
+		
+		if(nameCk && introCk ){
+			modifyForm.submit();	
+		} else {
+			return false;
+		}
+		
+		
+	});	
 
 </script>
 </html>

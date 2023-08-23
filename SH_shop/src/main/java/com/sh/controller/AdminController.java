@@ -239,4 +239,33 @@ public class AdminController {
 				return "redirect:/admin/goodsManage";
 		
 		}
+		
+		/* 작가 정보 삭제 */
+		@PostMapping("/authorDelete")
+		public String authorDeletePOST(int authorId, RedirectAttributes rttr) {
+			
+			logger.info("controller:::authorDeletePOST..........");
+			
+			int result = 0; //0으로 초기화
+			
+			try {
+				//참조되지않는 행 지울때 삭제 수행하고 작가목록 페이지로 1전송.			
+				result = authorService.authorDelete(authorId); 
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				result = 2;  // 예외발생시 작가목록 페이지로 2 전송
+				rttr.addFlashAttribute("delete_result", result);
+				
+				return "redirect:/admin/authorManage";
+				
+			}
+			
+			
+			rttr.addFlashAttribute("delete_result", result); //1 or 2 전송
+			logger.info("result " + result);
+			return "redirect:/admin/authorManage";
+			
+		}	
 }
