@@ -1,5 +1,8 @@
 package com.sh.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -276,6 +279,30 @@ public class AdminController {
 		public void uploadAjaxActionPOST(MultipartFile[] uploadFile) { //뷰가 전송한 데이터를 정상적으로 전달받는지 확인하기 위해서 일단 void로 지정
 			
 				logger.info("controller:::uploadAjaxActionPOST........................");
+				String uploadFolder = "C:\\upload";  //파일 저장할 기본 경로
+				
+				/* 날짜 폴더 경로 */
+				
+				//오늘의 날짜를 지정된 형식의 문자열 데이터로 생성하기 위한 SimpleDateFormat 객체 생성
+				SimpleDateFormat myDate = new SimpleDateFormat("yyyy-MM-dd");
+				
+				//오늘의 날짜를 얻기위해 사용
+				Date date = new Date();
+				
+				//String에 대입
+				String str = myDate.format(date);
+				
+				//날짜를 2023-08-10이면 '-'를 '/'로 변경
+				String datePath = str.replace("-", File.separator);
+				
+				/* 폴더 생성 */
+				// 부모 경로 = uploadFolder
+				// 자식 경로 = datePath
+				File uploadPath = new File(uploadFolder, datePath);
+				
+				if(uploadPath.exists() == false) { //대상 파일 혹은 디렉터리가 없으면
+					uploadPath.mkdirs(); //여러개(-s) 폴더 생성하는 메서드
+				}
 				
 				for(int i = 0; i < uploadFile.length; i++) {
 					logger.info("-----------------------------------------------");
