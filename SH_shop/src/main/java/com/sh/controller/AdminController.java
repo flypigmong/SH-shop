@@ -32,6 +32,8 @@ import com.sh.service.AdminService;
 import com.sh.service.AuthorService;
 import com.sun.source.tree.AssertTree;
 
+import net.coobird.thumbnailator.Thumbnails;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -332,24 +334,47 @@ public class AdminController {
 					/* 파일 저장 */
 					try {
 						multipartFile.transferTo(saveFile);
-						
+					
+					/* 방법1
+
 					//썸네일 이미지 만들기
 					File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);
 					//BufferedImage 타입으로 변경
 					BufferedImage buffered_orimage = ImageIO.read(saveFile);
 					logger.info("buffered_orimage" + buffered_orimage);
 					
+					// 비율 
+					double ratio = 3;
+					// 넓이 높이
+					int width = (int) (buffered_orimage.getWidth() / ratio);
+					int height = (int) (buffered_orimage.getHeight() / ratio);			
+					
 					//BufferedImage 객체 생성하고 참조 변수 대입(도화지)
-					BufferedImage buffered_image = new BufferedImage(300, 500, BufferedImage.TYPE_3BYTE_BGR);
+					BufferedImage buffered_image = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
 					logger.info("buffered_image"+buffered_image );
 					
 					//그림을 그리기 위한 Graphic2D 객체 생성(도화지에 그림그리기)
 					Graphics2D graphic = buffered_image.createGraphics();
 					logger.info("graphic"+graphic );
 					//썸네일을 지정한 크기로 변경하여 0,0 좌표부터 시작해서 넓이x높이(300x500) 으로 크기 변경(도화지에 그림그리기2)
-					graphic.drawImage(buffered_image, 0, 0,300,500, null);
+					graphic.drawImage(buffered_image, 0, 0,width,height, null);
 					//썸네일 파일 저장(파일로 저장할이미지,이미지 형식,저장될 경로와 이름으로 생성한 File객체(thumbnailFile)
 					ImageIO.write(buffered_image, "jpg", thumbnailFile);
+					*/
+						
+					/* 방법 2 :thumbnailator 라이브러리 사용 */ 
+					File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);				
+					BufferedImage buffered_orimage = ImageIO.read(saveFile);
+					
+					//비율 
+					double ratio = 3;
+					//넓이 높이
+					int width = (int) (buffered_orimage.getWidth() / ratio);
+					int height = (int) (buffered_orimage.getHeight() / ratio);					
+				
+					Thumbnails.of(saveFile)
+			        .size(width, height)
+			        .toFile(thumbnailFile);						
 					} catch (Exception e) {
 						e.printStackTrace();
 					} 					
