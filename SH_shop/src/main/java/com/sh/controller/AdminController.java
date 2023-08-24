@@ -304,11 +304,25 @@ public class AdminController {
 					uploadPath.mkdirs(); //여러개(-s) 폴더 생성하는 메서드
 				}
 				
-				for(int i = 0; i < uploadFile.length; i++) {
+				for(MultipartFile multipartFile : uploadFile) {
 					logger.info("-----------------------------------------------");
-					logger.info("파일 이름 : " + uploadFile[i].getOriginalFilename());
-					logger.info("파일 타입 : " + uploadFile[i].getContentType());
-					logger.info("파일 크기 : " + uploadFile[i].getSize());			
+					logger.info("파일 이름 : " + multipartFile.getOriginalFilename());
+					logger.info("파일 타입 : " +  multipartFile.getContentType());
+					logger.info("파일 크기 : " +  multipartFile.getSize());			
+					
+					/* 파일 이름 */
+					String uploadFileName = multipartFile.getOriginalFilename();	
+					
+					/* 파일 위치, 파일 이름을 합친 File 객체 */
+					File saveFile = new File(uploadPath, uploadFileName);
+					
+					/* 파일 저장 */
+					try {
+						multipartFile.transferTo(saveFile);
+					} catch (Exception e) {
+						e.printStackTrace();
+					} 					
+					
 				}
 		}
 		
