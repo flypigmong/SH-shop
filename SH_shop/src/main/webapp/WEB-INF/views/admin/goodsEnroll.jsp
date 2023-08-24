@@ -136,6 +136,14 @@
  									<span class="ck_warn bookContents_warn">책 목차를 입력해주세요.</span>                   			
                     			</div>
                     		</div>
+                     		<div class="form_section">
+                    			<div class="form_section_title">
+                    				<label>상품 이미지</label>
+                    			</div>
+                    			<div class="form_section_content">
+									<input type="file" multiple id ="fileItem" name='uploadFile' style="height: 30px;">					
+                    			</div>
+                    		</div>                    		
                    		</form>
                    			<div class="btn_section">
                    				<button id="cancelBtn" class="btn">취 소</button>
@@ -466,6 +474,52 @@
 			$(".span_discount").html(discountPrice);
 		}
 	});
+		
+		
+	/* 이미지 업로드 */
+	$("input[type='file']").on("change", function(e){
+		//alert("동작");
+		let fileInput = $('input[name="uploadFile"]');
+		let fileList = fileInput[0].files;
+		let fileObj = fileList[0];
+		/*
+		console.log("fileList : " + fileList); // FileList 객체
+		console.log("fileObj : " + fileObj);  //File 객체
+		console.log("fileName : " + fileObj.name); //파일 이름
+		console.log("fileSize : " + fileObj.size); // 파일 사이즈
+		console.log("fileType(MimeType) : " + fileObj.type); // 파일 타입
+		*/
+		
+		if(!fileCheck(fileObj.name, fileObj.size)){
+			return false;
+		}
+		
+		alert("통과");
+	});		
+		
+	
+	/* jpg,png파일만, 크기는 1MB 크기만 허용*/
+	let regex = new RegExp("(.*?)\.(jpg|png)$");
+	let maxSize = 1048576; //1MB	
+	
+	function fileCheck(fileName, fileSize){
+
+		if(fileSize >= maxSize){ //1MB를 넘기면
+			alert("파일 사이즈 초과");
+			return false;
+		}
+			  
+		if(!regex.test(fileName)){ //jpg,png가 아니면
+			alert("해당 종류의 파일은 업로드할 수 없습니다.");
+			return false;
+		}
+		
+		return true;		
+		
+	}
+	
+	
+	
  </script>
  
 </body>
