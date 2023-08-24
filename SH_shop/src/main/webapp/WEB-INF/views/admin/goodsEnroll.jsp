@@ -478,7 +478,8 @@
 		
 	/* 이미지 업로드 */
 	$("input[type='file']").on("change", function(e){
-		//alert("동작");
+		alert("동작");
+		let formData = new FormData();
 		let fileInput = $('input[name="uploadFile"]');
 		let fileList = fileInput[0].files;
 		let fileObj = fileList[0];
@@ -493,6 +494,17 @@
 		if(!fileCheck(fileObj.name, fileObj.size)){
 			return false;
 		}
+		
+		formData.append("uploadFile", fileObj);
+		
+		$.ajax({
+			url: '/admin/uploadAjaxAction', //서버로 요청을 보낼 url
+	    	processData : false, //서버로 전송할 데이터를 queryStirng 형태로 변환할지 여부 
+	    	contentType : false, //서버로 전송되는 데이터의 content-type
+	    	data : formData, //서버로 전송할 데이터
+	    	type : 'POST', //서버 요청 타입(GET, POST)
+	    	dataType : 'json' //서버로부터 반환받을 데이터 타입
+		});	
 		
 		alert("통과");
 	});		

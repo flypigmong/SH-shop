@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -268,4 +269,20 @@ public class AdminController {
 			return "redirect:/admin/authorManage";
 			
 		}	
+		
+		
+		/* 첨부 파일 업로드 */
+		@PostMapping("/uploadAjaxAction")
+		public void uploadAjaxActionPOST(MultipartFile[] uploadFile) { //뷰가 전송한 데이터를 정상적으로 전달받는지 확인하기 위해서 일단 void로 지정
+			
+				logger.info("controller:::uploadAjaxActionPOST........................");
+				
+				for(int i = 0; i < uploadFile.length; i++) {
+					logger.info("-----------------------------------------------");
+					logger.info("파일 이름 : " + uploadFile[i].getOriginalFilename());
+					logger.info("파일 타입 : " + uploadFile[i].getContentType());
+					logger.info("파일 크기 : " + uploadFile[i].getSize());			
+				}
+		}
+		
 }
