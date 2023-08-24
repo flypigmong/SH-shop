@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -312,6 +313,14 @@ public class AdminController {
 					
 					/* 파일 이름 */
 					String uploadFileName = multipartFile.getOriginalFilename();	
+					
+					/* uuid 적용 파일 이름 */
+					// String 타입으로 변경
+					String uuid = UUID.randomUUID().toString(); 
+					
+					//파일 이름을 "UUID_파일 이름" 형식이 되도록 변경
+					uploadFileName = uuid + "_" + uploadFileName;
+					
 					
 					/* 파일 위치, 파일 이름을 합친 File 객체 */
 					File saveFile = new File(uploadPath, uploadFileName);
