@@ -490,11 +490,11 @@
 		console.log("fileSize : " + fileObj.size); // 파일 사이즈
 		console.log("fileType(MimeType) : " + fileObj.type); // 파일 타입
 		*/
-		
+		/*
 		if(!fileCheck(fileObj.name, fileObj.size)){
 			return false;
 		}
-		
+		*/
 		formData.append("uploadFile", fileObj);
 		
 		$.ajax({
@@ -506,7 +506,11 @@
 	    	dataType : 'json', //서버로부터 반환받을 데이터 타입
 			success : function(result){
 							console.log(result);
-							}
+			},
+	    	error : function(result){
+	    			   alert("이미지 파일이 아닙니다.");
+	    	}
+
 		});	
 		
 		alert("통과");

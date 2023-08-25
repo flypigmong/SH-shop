@@ -294,15 +294,15 @@ public class AdminController {
 			
 				logger.info("controller:::uploadAjaxActionPOST........................");
 				
-				/* 이미지 파일 체크 */
+				/* 이미지 파일 체크... */
 				for(MultipartFile multipartFile : uploadFile) {
-					File checkFile = new File(multipartFile.getOriginalFilename());
-					String type = null;
+					File checkFile = new File(multipartFile.getOriginalFilename()); //전달받은 파일 File 객체로 만들고 File 참조 변수에 대입...
+					String type = null; //MIME TYPE을 저장할 String 타입의 type 변수...
 					
 					try {
-						//반환하는 MIME TYPE 데이터를 type 변수에 대입
+						//반환하는 MIME TYPE 데이터를 type 변수에 대입...(checkFile을 Path객체로 만들기위해 toPath 메서드사용)
 						type = Files.probeContentType(checkFile.toPath());
-						logger.info("MIME TYPE : " + type);
+						logger.info("MIME TYPE : " + type); //MIME TYPE 확인(image면 image 출력)
 					} catch (IOException e) {
 						e.printStackTrace();
 					} 
