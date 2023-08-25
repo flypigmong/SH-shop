@@ -364,13 +364,13 @@ public class AdminController {
 						
 					/* 방법 2 :thumbnailator 라이브러리 사용 */ 
 					File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);				
-					BufferedImage buffered_orimage = ImageIO.read(saveFile);
+					BufferedImage buf_oriImage = ImageIO.read(saveFile);
 					
 					//비율 
 					double ratio = 3;
 					//넓이 높이
-					int width = (int) (buffered_orimage.getWidth() / ratio);
-					int height = (int) (buffered_orimage.getHeight() / ratio);					
+					int width = (int) (buf_oriImage.getWidth() / ratio);
+					int height = (int) (buf_oriImage.getHeight() / ratio);					
 				
 					Thumbnails.of(saveFile)
 			        .size(width, height)
