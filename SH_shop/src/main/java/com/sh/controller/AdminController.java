@@ -3,7 +3,10 @@ package com.sh.controller;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -13,6 +16,9 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sh.model.AttachImageVO;
 import com.sh.model.AuthorVO;
 import com.sh.model.BookVO;
 import com.sh.model.Criteria;
@@ -282,25 +289,39 @@ public class AdminController {
 		
 		
 		/* 첨부 파일 업로드 */
-		@PostMapping("/uploadAjaxAction")
-		public void uploadAjaxActionPOST(MultipartFile[] uploadFile) { //뷰가 전송한 데이터를 정상적으로 전달받는지 확인하기 위해서 일단 void로 지정
+		@PostMapping(value="/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+		public ResponseEntity<List<AttachImageVO>> uploadAjaxActionPOST(MultipartFile[] uploadFile) { //뷰가 전송한 데이터를 정상적으로 전달받는지 확인하기 위해서 일단 void로 지정
 			
 				logger.info("controller:::uploadAjaxActionPOST........................");
+				
+				/* 이미지 파일 체크 */
+				for(MultipartFile multipartFile : uploadFile) {
+					File checkFile = new File(multipartFile.getOriginalFilename());
+					String type = null;
+					
+					try {
+						//반환하는 MIME TYPE 데이터를 type 변수에 대입
+						type = Files.probeContentType(checkFile.toPath());
+						logger.info("MIME TYPE : " + type);
+					} catch (IOException e) {
+						e.printStackTrace();
+					} 
+					// image가 아니면
+					 if(!type.startsWith("image")) {
+						
+						 List<AttachImageVO> list = null;
+						 return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
+					 }
+				}
+				
 				String uploadFolder = "C:\\upload";  //파일 저장할 기본 경로
 				
 				/* 날짜 폴더 경로 */
 				
-				//오늘의 날짜를 지정된 형식의 문자열 데이터로 생성하기 위한 SimpleDateFormat 객체 생성
-				SimpleDateFormat myDate = new SimpleDateFormat("yyyy-MM-dd");
-				
-				//오늘의 날짜를 얻기위해 사용
-				Date date = new Date();
-				
-				//String에 대입
-				String str = myDate.format(date);
-				
-				//날짜를 2023-08-10이면 '-'를 '/'로 변경
-				String datePath = str.replace("-", File.separator);
+				SimpleDateFormat myDate = new SimpleDateFormat("yyyy-MM-dd");//오늘의 날짜를 지정된 형식의 문자열 데이터로 생성하기 위한 SimpleDateFormat 객체 생성
+				Date date = new Date();	//오늘의 날짜를 얻기위해 사용
+				String str = myDate.format(date);//String에 대입
+				String datePath = str.replace("-", File.separator);//날짜를 2023-08-10이면 '-'를 '/'로 변경
 				
 				/* 폴더 생성 */
 				// 부모 경로 = uploadFolder
@@ -311,7 +332,14 @@ public class AdminController {
 					uploadPath.mkdirs(); //여러개(-s) 폴더 생성하는 메서드
 				}
 				
+				/* 이미저 정보 담는 객체 */
+				List<AttachImageVO> list = new ArrayList();
+				
 				for(MultipartFile multipartFile : uploadFile) {
+					
+					/* 이미지 정보 객체생성 */
+					AttachImageVO imageVo = new AttachImageVO();
+					
 					logger.info("-----------------------------------------------");
 					logger.info("파일 이름 : " + multipartFile.getOriginalFilename());
 					logger.info("파일 타입 : " +  multipartFile.getContentType());
@@ -319,10 +347,14 @@ public class AdminController {
 					
 					/* 파일 이름 */
 					String uploadFileName = multipartFile.getOriginalFilename();	
+					imageVo.setFileName(uploadFileName);
+					imageVo.setUploadPath(datePath);
+					
 					
 					/* uuid 적용 파일 이름 */
-					// String 타입으로 변경
+					// String 타입으로 변경하고 AttachImageVO 객체에 저장
 					String uuid = UUID.randomUUID().toString(); 
+					imageVo.setUuid(uuid);
 					
 					//파일 이름을 "UUID_파일 이름" 형식이 되도록 변경
 					uploadFileName = uuid + "_" + uploadFileName;
@@ -335,33 +367,6 @@ public class AdminController {
 					try {
 						multipartFile.transferTo(saveFile);
 					
-					/* 방법1
-
-					//썸네일 이미지 만들기
-					File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);
-					//BufferedImage 타입으로 변경
-					BufferedImage buffered_orimage = ImageIO.read(saveFile);
-					logger.info("buffered_orimage" + buffered_orimage);
-					
-					// 비율 
-					double ratio = 3;
-					// 넓이 높이
-					int width = (int) (buffered_orimage.getWidth() / ratio);
-					int height = (int) (buffered_orimage.getHeight() / ratio);			
-					
-					//BufferedImage 객체 생성하고 참조 변수 대입(도화지)
-					BufferedImage buffered_image = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
-					logger.info("buffered_image"+buffered_image );
-					
-					//그림을 그리기 위한 Graphic2D 객체 생성(도화지에 그림그리기)
-					Graphics2D graphic = buffered_image.createGraphics();
-					logger.info("graphic"+graphic );
-					//썸네일을 지정한 크기로 변경하여 0,0 좌표부터 시작해서 넓이x높이(300x500) 으로 크기 변경(도화지에 그림그리기2)
-					graphic.drawImage(buffered_image, 0, 0,width,height, null);
-					//썸네일 파일 저장(파일로 저장할이미지,이미지 형식,저장될 경로와 이름으로 생성한 File객체(thumbnailFile)
-					ImageIO.write(buffered_image, "jpg", thumbnailFile);
-					*/
-						
 					/* 방법 2 :thumbnailator 라이브러리 사용 */ 
 					File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);				
 					BufferedImage buf_oriImage = ImageIO.read(saveFile);
@@ -379,7 +384,12 @@ public class AdminController {
 						e.printStackTrace();
 					} 					
 					
+					list.add(imageVo);
 				}
+				// List<AttachImageVO> 이고 상태코드가 OK(200)인 ResponseEntity 객체가 생성 (Http의 바디에 추가될 데이터)
+				ResponseEntity<List<AttachImageVO>> result = new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
+			
+				return result;
 		}
 		
 }

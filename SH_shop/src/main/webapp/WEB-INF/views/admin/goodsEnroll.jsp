@@ -503,7 +503,10 @@
 	    	contentType : false, //서버로 전송되는 데이터의 content-type
 	    	data : formData, //서버로 전송할 데이터
 	    	type : 'POST', //서버 요청 타입(GET, POST)
-	    	dataType : 'json' //서버로부터 반환받을 데이터 타입
+	    	dataType : 'json', //서버로부터 반환받을 데이터 타입
+			success : function(result){
+							console.log(result);
+							}
 		});	
 		
 		alert("통과");
