@@ -217,6 +217,8 @@ input[name='publeYear'] {
 
 
 
+
+
 /* 관리자 컨텐츠 제목 영역 */
 .admin_content_subject{            
     font-size: 40px;
@@ -227,6 +229,7 @@ input[name='publeYear'] {
     line-height: 80px;
     color: white;    
 }
+ 
  
 /* footer navai 영역 */
 .footer_nav{
