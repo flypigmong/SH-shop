@@ -491,7 +491,7 @@
 		let goodsPrice = $("input[name='bookPrice']").val();	// 원가
 		let discountPrice = goodsPrice * (1 - sendDiscountRate);// 할인가격
 		
-		if(!isNaN(bookDiscount)){ //NaN(문자가 아니면)
+		if(!isNaN(discountRate)){ //NaN(문자가 아니면)
 			$(".span_discount").html(discountPrice);
 			discountInput.val(sendDiscountRate);	
 		}
