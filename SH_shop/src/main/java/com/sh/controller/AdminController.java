@@ -239,7 +239,7 @@ public class AdminController {
 		@PostMapping("/goodsModify")
 		public String goodsModifyPOST(BookVO vo,RedirectAttributes rttr) {
 				
-				logger.info("controller:::goodsModifyPOST............." + vo);
+				logger.info("goodsModifyPOST............." + vo);
 				int result = adminService.goodsModify(vo);
 				rttr.addFlashAttribute("modify_result", result);
 	
@@ -251,7 +251,7 @@ public class AdminController {
 		@PostMapping("/goodsDelete")
 		public String goodsDeletePOST(int bookId, RedirectAttributes rttr) {
 			
-				logger.info("controller:::goodsDeletePOST.........");
+				logger.info("goodsDeletePOST.........");
 				int result = adminService.goodsDelete(bookId);
 				rttr.addFlashAttribute("delete_result", result);
 				
@@ -263,7 +263,7 @@ public class AdminController {
 		@PostMapping("/authorDelete")
 		public String authorDeletePOST(int authorId, RedirectAttributes rttr) {
 			
-			logger.info("controller:::authorDeletePOST..........");
+			logger.info("authorDeletePOST..........");
 			
 			int result = 0; //0으로 초기화
 			
@@ -293,7 +293,7 @@ public class AdminController {
 		@PostMapping(value="/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		public ResponseEntity<List<AttachImageVO>> uploadAjaxActionPOST(MultipartFile[] uploadFile) { //뷰가 전송한 데이터를 정상적으로 전달받는지 확인하기 위해서 일단 void로 지정
 			
-				logger.info("controller:::uploadAjaxActionPOST........................");
+				logger.info("uploadAjaxActionPOST........................");
 				
 				/* 이미지 파일 체크... */
 				for(MultipartFile multipartFile : uploadFile) {
@@ -396,7 +396,7 @@ public class AdminController {
 		/* 이미지 파일 삭제 */
 		@PostMapping("/deleteFile")
 		public ResponseEntity<String> deleteFile(String fileName){
-				logger.info("controller:::deleteFile......" + fileName);
+				logger.info("deleteFile......" + fileName);
 				File file = null;
 				
 			try {

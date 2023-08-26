@@ -1,6 +1,7 @@
 package com.sh.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class BookVO {
 	
@@ -50,6 +51,9 @@ public class BookVO {
 	/* 수정 날짜 */
 	private Date updateDate;
 
+	/* 이미지 정보 */
+	private List<AttachImageVO> imageList;
+	
 	public int getBookId() {
 		return bookId;
 	}
@@ -169,6 +173,14 @@ public class BookVO {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public List<AttachImageVO> getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(List<AttachImageVO> imageList) {
+		this.imageList = imageList;
+	}
 
 	@Override
 	public String toString() {
@@ -176,8 +188,10 @@ public class BookVO {
 				+ authorName + ", publeYear=" + publeYear + ", publisher=" + publisher + ", cateCode=" + cateCode
 				+ ", cateName=" + cateName + ", bookPrice=" + bookPrice + ", bookStock=" + bookStock + ", bookDiscount="
 				+ bookDiscount + ", bookIntro=" + bookIntro + ", bookContents=" + bookContents + ", regDate=" + regDate
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", imageList=" + imageList + "]";
 	}
+
+
 	
 	
 }

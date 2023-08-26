@@ -597,7 +597,10 @@
 		 str += "<div id='result_card'>";
 	     str += "<img src='/display?fileName=" + fileCallPath +"'>";
 	     str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";
-		 str += "</div>";	
+		str += "<input type='hidden' name='imageList[0].fileName' value='"+ obj.fileName +"'>";
+		str += "<input type='hidden' name='imageList[0].uuid' value='"+ obj.uuid +"'>";
+		str += "<input type='hidden' name='imageList[0].uploadPath' value='"+ obj.uploadPath +"'>";		
+	     str += "</div>";	
 	
 		uploadResult.append(str);
 	}
