@@ -216,7 +216,7 @@
             <version>${org.springframework-version}</version>
         </dependency>
 
-	<!-- BCryptePasswordEncoder  -->
+		<!-- BCryptePasswordEncoder  -->
         <!-- security -->
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
         <dependency>
@@ -264,7 +264,19 @@
 		    <version>0.4.13</version>
 		</dependency>		
 	
-	
+		<!--  Qurartz  배치 라이브러리 -->
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz-jobs -->
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz-jobs</artifactId>
+		    <version>2.3.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>2.3.2</version>
+		</dependency>
 	
 	    
 	</dependencies>
