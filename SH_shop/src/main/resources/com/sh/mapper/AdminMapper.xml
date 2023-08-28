@@ -81,11 +81,19 @@
 	
 	</delete>
 	
-		<!-- 이미지 등록 -->
+	<!-- 이미지 등록 -->
 	<insert id="imageEnroll">
 	
 		insert into sh_image(bookId, fileName, uploadPath, uuid) values (#{bookId}, #{fileName}, #{uploadPath}, #{uuid})
 	
 	</insert>
+	
+	<!-- 지정 상품 이미지 전체 삭제 --> 
+	<delete id="deleteImageAll">
+	
+		delete FROM sh_image where bookId = #{bookId}
+	
+	</delete>	
+	
 	
   </mapper>

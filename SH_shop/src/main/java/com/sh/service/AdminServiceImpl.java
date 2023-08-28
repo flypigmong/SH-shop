@@ -65,18 +65,38 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.goodsGetTotal(cri);
 	}
 
+	/*  상품 상세정보  */
 	@Override
 	public BookVO goodsGetDetail(int bookId) {
 		log.info("service:::goodsGetDetail()....................");
 		return adminMapper.goodsGetDetail(bookId);
 	}
 
+	/*  상품 정보 수정 */
+	@Transactional
 	@Override
 	public int goodsModify(BookVO vo) {
-		log.info("service:::goodsModify()..................");
-		return adminMapper.goodsModify(vo);
+		
+		int result = adminMapper.goodsModify(vo);
+		
+		// 이미지파일이 정상적(result==1)이고 , 이미지정보가 존재할 때 
+		if(result == 1 && vo.getImageList() != null && vo.getImageList().size() > 0) {
+			adminMapper.deleteImageAll(vo.getBookId()); //정보 모두 삭제
+	
+			// 각 요소 순서대로 이미지 정보를 DB에 저장..
+			for (AttachImageVO attach : vo.getImageList()) {
+							
+			    attach.setBookId(vo.getBookId());
+			    adminMapper.imageEnroll(attach);
+			
+			};		
+		
+		}
+		
+		return result;
 	}
 
+	/* 상품 정보 삭제 */
 	@Override
 	public int goodsDelete(int bookId) {
 		log.info("service:::goodsDelete()...................");
