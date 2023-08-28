@@ -98,8 +98,13 @@ public class AdminServiceImpl implements AdminService {
 
 	/* 상품 정보 삭제 */
 	@Override
+	@Transactional
 	public int goodsDelete(int bookId) {
 		log.info("service:::goodsDelete()...................");
+	
+		//DB 데이터 삭제( 상품 정보, 이미지 정보)
+		adminMapper.deleteImageAll(bookId);
+		
 		return adminMapper.goodsDelete(bookId) ;
 	}
 
