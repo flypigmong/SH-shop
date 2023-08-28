@@ -39,7 +39,7 @@ public class AttachFileCheckTask {
 		return str.replace("-", File.separator);
 	}
 	
-	@Scheduled(cron="0 * * * * *")
+	@Scheduled(cron="0 0 1 * * *")
 	public void checkFiles() throws Exception{	
 		
 		log.warn("File Check Task Run..........");

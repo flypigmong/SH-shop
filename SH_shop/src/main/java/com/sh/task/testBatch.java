@@ -9,7 +9,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class testBatch {
 	
-	@Scheduled(cron = "0 * * * * *")
+	@Scheduled(cron = "0 0 1 * * *")
 	public void testMethod() throws Exception {
 		log.warn("배치 실행 테스트......");
 		log.warn("===============");
