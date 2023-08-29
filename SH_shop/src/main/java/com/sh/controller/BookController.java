@@ -79,6 +79,7 @@ public class BookController {
 	/* 상품 검색 */
 	@GetMapping("/search")
 	public String searchGoodsGET(Criteria cri, Model model) {
+		
 		logger.info("cri : " + cri);
 		
 		List<BookVO> list = bookService.getGoodsList(cri);
@@ -88,6 +89,8 @@ public class BookController {
 			logger.info("list : " + list);
 		} else {
 			model.addAttribute("listCheck", "empty");
+			
+			return "search";
 		}
 		
 		model.addAttribute("pageMaker", new PageDTO(cri, bookService.goodsGetTotal(cri)));

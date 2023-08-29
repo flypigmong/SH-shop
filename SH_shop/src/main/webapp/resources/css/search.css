@@ -160,6 +160,18 @@ a{
 .footer_nav_container>ul>span{
     margin: 0 4px;
 }
+
+
+/* 검색결과 없음 */
+.table_empty{
+	height: 50px;
+    text-align: center;
+    margin: 200px 0 215px 0px;
+    font-size: 25px;
+}
+
+
+
 /* footer 영역 */
 .footer{
     width:100%;
