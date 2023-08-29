@@ -1,5 +1,7 @@
 package com.sh.model;
 
+import java.util.Arrays;
+
 public class Criteria {
 
     /* 현재 페이지 번호 */
@@ -17,6 +19,12 @@ public class Criteria {
     /* 검색 키워드 */
     private String keyword;
     
+    /* 작가 리스트 */
+    private String[] authorArr;
+    
+    /* 카테고리 코드 */
+    private String cateCode;
+    
     /* Criteria 생성자 */
     public Criteria(int pageNum, int amount) {
         this.pageNum = pageNum;
@@ -30,6 +38,8 @@ public class Criteria {
     }
     
     /* 검색 타입 데이터 배열 변환 */
+    // view로부터 전달받은 type의 값을 String 클래스의 split메서드를 
+    // 사용해서 String 배열 형태로 Mapper에 전달
     public String[] getTypeArr() {
         return type == null? new String[] {}:type.split("");
     }
@@ -76,12 +86,29 @@ public class Criteria {
 		this.keyword = keyword;
 	}
 
+
+	public String[] getAuthorArr() {
+		return authorArr;
+	}
+
+	public void setAuthorArr(String[] authorArr) {
+		this.authorArr = authorArr;
+	}
+
+	public String getCateCode() {
+		return cateCode;
+	}
+
+	public void setCateCode(String cateCode) {
+		this.cateCode = cateCode;
+	}
+
 	@Override
 	public String toString() {
 		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", skip=" + skip + ", type=" + type
-				+ ", keyword=" + keyword + "]";
+				+ ", keyword=" + keyword + ", authorArr=" + Arrays.toString(authorArr) + ", cateCode=" + cateCode + "]";
 	}
-    
-    
+
+	
     
 }

@@ -22,6 +22,17 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public List<BookVO> getGoodsList(Criteria cri) {
 		log.info("getGoodsList().....");
+		
+		String type = cri.getType();
+		String[] typeArr = type.split("");
+		
+		for(String t : typeArr) {
+			if(t.equals("A")) {
+				String[] authorArr = bookMapper.getAuthorIdList(cri.getKeyword());
+				cri.setAuthorArr(authorArr);
+			}
+		}
+		
 		return bookMapper.getGoodsList(cri);
 	}
 
