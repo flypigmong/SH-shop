@@ -36,7 +36,7 @@
 	<!-- 상품 검색 -->
 	<select id="getGoodsList" resultType="com.sh.model.BookVO">
 	
-			select  bookId, bookName, b.authorName, a.authorId, c.cateName, a.cateCode, publisher, publeYear, bookPrice
+			select  bookId, bookName, b.authorName, a.authorId, c.cateName, a.cateCode, publisher, publeYear, bookPrice, bookDiscount
 			from sh_book a left outer join sh_author b on a.authorId = b.authorId
 			left outer join sh_bcate c on a.cateCode = c.cateCode
 			<include refid="criteria"></include>
