@@ -48,7 +48,7 @@ public class BookController {
 	/*  이미지 출력 */
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getImage(String fileName) {
-		
+		System.out.println("fileName: " + fileName);
 		logger.info("controller::: getImage()........." +fileName);
 		File file = new File("c:\\upload\\" + fileName);
 		
@@ -57,6 +57,8 @@ public class BookController {
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-type", Files.probeContentType(file.toPath()));
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		System.out.println("result" + result);
+			logger.info("result  : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

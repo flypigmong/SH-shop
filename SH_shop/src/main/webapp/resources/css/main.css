@@ -10,7 +10,7 @@ a{
 
 /* 화면 전체 렙 */
 .wrapper{
-	width: 1900px;
+	width: 100%;
 }
 /* content 랩 */
 .wrap{

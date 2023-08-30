@@ -103,13 +103,17 @@
 							<tbody id="searchList>">
 								<c:forEach items="${list}" var="list">
 									<tr>
-										<td class="image"></td>
+									<td class="image">
+										<div class="image_wrap" data-bookid="${list.imageList[0].bookId}" data-path="${list.imageList[0].uploadPath}" data-uuid="${list.imageList[0].uuid}" data-filename="${list.imageList[0].fileName}">
+												<img>
+										</div>									
+									</td>
 										<td class="detail">
 											<div class="category">
 												[${list.cateName}]
 											</div>
 											<div class="title">
-												${list.bookName}
+												${list.bookName}d
 											</div>
 											<div class="author">
 												${list.authorName} 지음 | ${list.publisher} | ${list.publeYear}
@@ -208,14 +212,14 @@
 					<img src="resources/img/Logo.png">
 				</div>
 				<div class="footer_right">
-					(주) VamBook    대표이사 : OOO
+					(주) SHBook    대표이사 : OOO
 					<br>
 					사업자등록번호 : ooo-oo-ooooo
 					<br>
 					대표전화 : oooo-oooo(발신자 부담전화)
 					<br>
 					<br>
-					COPYRIGHT(C) <strong>kimvampa.tistory.com</strong>	ALL RIGHTS RESERVED.
+					COPYRIGHT(C) <strong>ABC@MAIL.COM</strong>	ALL RIGHTS RESERVED.
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -255,13 +259,36 @@
 	
 	
 	$(document).ready(function(){
+
 		// 검색 타입 selected
 		const selectedType = '<c:out value="${pageMaker.cri.type}"/>';
 		if(selectedType != ""){
-			$("select[name='type']").val(selectedType).attr("selected", "selected");	
+		$("select[name='type']").val(selectedType).attr("selected", "selected");
 		}
+
+		/* 이미지 삽입*/
 		
-	});
+		$(".image_wrap").each(function(i, obj){
+		const bobj = $(obj);
+
+	
+		if(bobj.data("bookid")){
+		const uploadPath = bobj.data("path");
+		const uuid = bobj.data("uuid");
+		const fileName = bobj.data("filename");
+
+		const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+
+		$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+
+		} else {
+
+		$(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
+		}
+
+		});
+
+		});
 </script>
 
 </body>
