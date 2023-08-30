@@ -83,12 +83,37 @@
 			</div>
 			<div class="clearfix"></div>			
 		</div>
-		<div class="navi_bar_area">
-			
-			
+			<div class="navi_bar_area">
+			<div class="dropdown">
+			    <button class="dropbtn">국내 
+			      <i class="fa fa-caret-down"></i>
+			    </button>
+			    <div class="dropdown-content">
+			    	<a href="#">테스트1</a>
+			    	<a href="#">테스트2</a>
+			    	<a href="#">테스트3</a>
+			    	<a href="#">테스트4</a>
+			    	<a href="#">테스트5</a>
+			    	<a href="#">테스트6</a>	      		      		      
+			    </div>			
+			</div>
+			<div class="dropdown">
+			    <button class="dropbtn">국외 
+			      <i class="fa fa-caret-down"></i>
+			    </button>
+			    <div class="dropdown-content">
+			    	<a href="/search?type=C&cateCode=202001">교양</a>
+			    	<a href="#">테스트1</a>
+			    	<a href="#">테스트2</a>
+			    	<a href="#">테스트3</a>
+			    	<a href="#">테스트4</a>
+			    	<a href="#">테스트5</a>
+			    	<a href="#">테스트6</a>	      		      		      
+			    </div>			
+			</div>
 		</div>
 		<div class="content_area">
-			
+			<h1>contents area</h1>
 		</div>
 	<!-- Footer 영역 -->
         <div class="footer_nav">
