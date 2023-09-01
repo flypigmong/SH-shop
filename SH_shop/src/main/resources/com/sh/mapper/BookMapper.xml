@@ -61,4 +61,22 @@
 	
 	</select>	
 	
+	<!-- 국내 카테고리 리스트 -->
+	<select id="getCateCode1" resultType="com.sh.model.CateVO">
+	
+		<![CDATA[
+				select * from sh_bcate where cateCode > 100000 and cateCode < 200000		
+		]]>	
+
+	</select>
+	
+	<!-- 국외 카테고리 리스트 -->
+	<select id="getCateCode2" resultType="com.sh.model.CateVO">
+	
+		<![CDATA[
+				select * from sh_bcate where cateCode > 200000 and cateCode < 300000		
+		]]>	
+
+	</select>
+	
   </mapper>
