@@ -1,5 +1,7 @@
 package com.sh.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import com.sh.mapper.AttachMapper;
 import com.sh.mapper.BookMapper;
 import com.sh.model.AttachImageVO;
 import com.sh.model.BookVO;
+import com.sh.model.CateFilterDTO;
 import com.sh.model.CateVO;
 import com.sh.model.Criteria;
 
@@ -78,6 +81,43 @@ public class BookServiceImpl implements BookService {
 		log.info("getCateCode2()..................");
 		
 		return bookMapper.getCateCode2();
+	}
+
+	@Override
+	public List<CateFilterDTO> getCateInfoList(Criteria cri) {
+		
+		List<CateFilterDTO> filterInfoList = new ArrayList<CateFilterDTO>();
+		
+		String[] typeArr = cri.getType().split(""); // 검색 타입을 저장할 배열 생성 
+		String [] authorArr; // 저자정보 저장할 배열
+		
+		for (String type : typeArr) { // typeArr 배열의 각 요소를 반복실행
+				if(type.equals("A")) { // type=A이면 , 
+//getAuthorIdList 메서드로 cri 객체의 getKeyword 메서드로 검색 키워드를 
+//가져와서 저자 아이디 리스트를 반환해서 그 값을 authorArr에 저장
+					authorArr = bookMapper.getAuthorIdList(cri.getKeyword());
+					if(authorArr.length == 0 ) { //authorArr 배열이 요소를 가지지 않는 경우 getCateInfo() 메서드 실행x
+						return filterInfoList;
+					}
+						cri.setAuthorArr(authorArr); // cri객체에 저자정보 저장
+				}
+		}
+		
+		//cateCode(카테고리 코드)를 반환해주는 getAuthorIdList를 호출하고 반환 값을 cateList 변수에 저장
+		String[] cateList = bookMapper.getCateList(cri);
+		
+		String tempCateCode = cri.getCateCode(); // 임시로 cateCode 값 담기
+		
+		for (String cateCode : cateList) {
+			cri.setCateCode(cateCode); // cateList 요소에 있는 cateCode를 cateCode 변수에 저장
+			CateFilterDTO filterInfo = bookMapper.getCateInfo(cri);
+			filterInfoList.add(filterInfo);
+		}
+		
+		//임시로 저장해둔 tempCateCode 값을 cateCode 에 저장
+		cri.setCateCode(tempCateCode);
+		
+		return filterInfoList;
 	}
 
 }

@@ -53,6 +53,7 @@ public class BookMapperTests {
 	}
 	*/
 	
+	/*
 	// 검색 (동적 쿼리 적용) - 작가(A)
 	@Test 
 	public void getGoodsListTest1() {
@@ -166,5 +167,60 @@ public class BookMapperTests {
 		
 	}
 	
+	*/
 	
+	
+	// 카테고리 리스트 (A or T ==> catecode)
+	// |--------- |
+	// |catecode|
+	// |--------- |
+	// |201001  |
+	// |--------- |
+	
+	@Test
+	public void getCateListTest1() {
+		Criteria cri = new Criteria();
+		
+		String type ="T";           //검색타입="제목"
+		String keyword = "눈";    //작성한 키워드
+		
+		//String type="A";
+		//String keyword = "게이고";
+		
+		cri.setType(type);
+		cri.setKeyword(keyword);
+		System.out.println(" type :::: " + type);
+		System.out.println(" keyword :::: " + keyword);
+		//cri.setAuthorArr(mapper.getAuthorIdList(keyword));
+		
+		String[] cateList = mapper.getCateList(cri);
+		for(String codeNum : cateList) {
+			System.out.println("codeNum :::::: " + codeNum);
+		}
+	}
+	
+
+		// 카테고리 정보 얻기 	
+		
+		//		catecount |catecode |catename |
+		//		|----------|---------|---------|
+		// 		|1         |201001   |소설       |
+		/*
+		@Test
+		public void getCateInfoTest1() {
+			
+			Criteria cri = new Criteria();
+			
+			String type = "TC";
+			String keyword = "눈";	
+			String cateCode="201001";
+
+			cri.setType(type);
+			cri.setKeyword(keyword);
+			cri.setCateCode(cateCode);
+			
+			mapper.getCateInfo(cri);
+			
+		}
+		*/
 }

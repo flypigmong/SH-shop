@@ -79,4 +79,70 @@
 
 	</select>
 	
+
+	<!-- 검색 대상 카테고리 리스트 (작가(type=A) 혹은 제목(type=T)으로 cateCode(코드번호) 가져옴 -->	
+	<select id="getCateList" resultType="String">
+	
+		select distinct cateCode from sh_book where 
+		<foreach item="type" collection="typeArr">		
+  				<choose>
+  					<when test="type == 'A'.toString()">
+  						<trim prefixOverrides="or">
+		  					<foreach collection="authorArr" item="authorId">
+		  						<trim prefix="or">
+		  							authorId = #{authorId}
+		  						</trim>
+		  					</foreach>  						
+  						</trim>
+  					</when>
+  					<when test="type == 'T'.toString()">
+  						bookName like concat ('%', #{keyword}, '%')
+  					</when>  					
+  				</choose>
+  		</foreach>
+	
+	</select>
+	
+	
+	<!-- 카테고리 정보(+검색대상 갯수) 검색조건(C or T)과 카테고리 코드번호 두 조건을 충족하는 
+	카테고리 정보(catecount, catecode, cateName)가 출력되도록 함 
+	-->		
+	<select id="getCateInfo" resultType="com.sh.model.CateFilterDTO">
+	
+		select DISTINCT count(*) cateCount, a.cateCode,b.cateName from sh_book a left join sh_bcate b on a.cateCode = b.cateCode 
+		
+		where 
+
+		<foreach item="type" collection="typeArr">		
+  				<choose>
+  					<when test="type == 'A'.toString()">
+  					
+  						<trim prefix="(" suffix=")" prefixOverrides="or">
+  						
+		  					<foreach collection="authorArr" item="authorId">
+		  					
+		  						<trim prefix="or">
+		  						
+		  							authorId = #{authorId}
+		  							
+		  						</trim>
+		  						
+		  					</foreach>
+		  					  						
+  						</trim>
+  						
+  						and a.cateCode = #{cateCode}
+  						
+  					</when>
+  					
+  					<when test="type == 'T'.toString()">
+  					
+  						bookName like concat ('%', #{keyword}, '%') and a.cateCode = #{cateCode}
+  						 
+  					</when>
+  					  					
+  				</choose>
+  		</foreach>
+	
+	</select>
   </mapper>

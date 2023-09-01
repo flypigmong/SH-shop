@@ -102,6 +102,17 @@ public class BookController {
 		
 		model.addAttribute("pageMaker", new PageDTO(cri, bookService.goodsGetTotal(cri)));
 		
+		model.addAttribute("filter_info", bookService.getCateInfoList(cri)); // 상품목록 페이지에 필터 정보 전달
+		
+		String[] typeArr = cri.getType().split("");
+		
+		for (String s : typeArr) {   // type이 "A","AC","T", "TC" 인 경우에만 호출
+			if (s.equals("T") || s.equals("A")) { //"T" 나 "A"를 포함
+				model.addAttribute("filter_info", bookService.getCateInfoList(cri));
+			}
+			
+		}
+		
 		return "search";
 		
 	}

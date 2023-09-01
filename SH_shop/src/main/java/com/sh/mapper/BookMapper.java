@@ -3,6 +3,7 @@ package com.sh.mapper;
 import java.util.List;
 
 import com.sh.model.BookVO;
+import com.sh.model.CateFilterDTO;
 import com.sh.model.CateVO;
 import com.sh.model.Criteria;
 
@@ -22,4 +23,11 @@ public interface BookMapper {
 	
 	/* 국외 카테고리 리스트 */
 	public List<CateVO> getCateCode2();
+	
+	/* 검색 대상 카테고리 리스트 */
+	public String[] getCateList(Criteria cri);
+	
+	/* 카테고리 정보(+검색대상 갯수) */
+	public CateFilterDTO getCateInfo(Criteria cri);
+	
 }
