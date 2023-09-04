@@ -25,9 +25,11 @@ public class CateFilterDTO {
 	public String getCateCode() {
 		return cateCode;
 	}
-
+	
+	// 국내,국외 카테고리 구분을 쉽게하기 위함 . " "를 기준으로 첫번째 요소가져오기 국내- 1 , 국외 - 2
 	public void setCateCode(String cateCode) {
 		this.cateCode = cateCode;
+		this.cateGroup = cateCode.split("")[0];
 	}
 
 	public int getCateCount() {
@@ -42,17 +44,14 @@ public class CateFilterDTO {
 		return cateGroup;
 	}
 
-	// 국내,국외 카테고리 구분을 쉽게하기 위함 . " "를 기준으로 첫번째 요소가져오기 국내- 1 , 국외 - 2
-	public void setCateGroup(String cateCode) {
-		this.cateCode = cateCode;
-		this.cateGroup = cateCode.split("")[0];  
+	public void setCateGroup(String cateGroup) {
+		this.cateGroup = cateGroup;
 	}
 
 	@Override
 	public String toString() {
-		return "CateFilterVO [cateName=" + cateName + ", cateCode=" + cateCode + ", cateCount=" + cateCount
+		return "CateFilterDTO [cateName=" + cateName + ", cateCode=" + cateCode + ", cateCount=" + cateCount
 				+ ", cateGroup=" + cateGroup + "]";
 	}
-	
-	
+
 }
