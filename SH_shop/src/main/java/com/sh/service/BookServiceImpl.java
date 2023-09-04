@@ -83,12 +83,17 @@ public class BookServiceImpl implements BookService {
 		return bookMapper.getCateCode2();
 	}
 
+	/* 검색결과 카테고리 필터 정보*/
 	@Override
 	public List<CateFilterDTO> getCateInfoList(Criteria cri) {
 		
 		List<CateFilterDTO> filterInfoList = new ArrayList<CateFilterDTO>();
+		log.info("filterInfoList" + filterInfoList );
 		
 		String[] typeArr = cri.getType().split(""); // 검색 타입을 저장할 배열 생성 
+		log.info(":::: typeArr" + cri.getType().split("") );
+		
+		
 		String [] authorArr; // 저자정보 저장할 배열
 		
 		for (String type : typeArr) { // typeArr 배열의 각 요소를 반복실행
@@ -105,7 +110,7 @@ public class BookServiceImpl implements BookService {
 		
 		//cateCode(카테고리 코드)를 반환해주는 getAuthorIdList를 호출하고 반환 값을 cateList 변수에 저장
 		String[] cateList = bookMapper.getCateList(cri);
-		
+		log.info("getCateList" +cateList);
 		String tempCateCode = cri.getCateCode(); // 임시로 cateCode 값 담기
 		
 		for (String cateCode : cateList) {

@@ -95,22 +95,21 @@
 						<button class="filter_button filter_active" id="filter_button_a">국내</button>
 						<button class="filter_button" id="filter_button_b">국외</button>
 					</div>
-					<div class="filter_content filter_a">
-							<a>테스트용1</a>
-							<a>테스트용2</a>
-							<a>테스트용3</a>
-							<a>테스트용4</a>
-							<a>테스트용5</a>
-							<a>테스트용6</a>
+					
+				<div class="filter_content filter_a">
+						<c:forEach items="${filter_info}" var="filter">
+							<c:if test="${filter.cateGroup eq '1'}">
+								<a href="${filter.cateCode}">${filter.cateName}(${filter.cateCount})</a>
+							</c:if>
+						</c:forEach>
 					</div>
 					<div class="filter_content filter_b">
-							<a>테스트용1</a>
-							<a>테스트용2</a>
-							<a>테스트용3</a>
-							<a>테스트용4</a>
-							<a>테스트용5</a>
-							<a>테스트용6</a>
-					</div>	
+						<c:forEach items="${filter_info}" var="filter">
+							<c:if test="${filter.cateGroup eq '2'}">
+								<a href="${filter.cateCode}">${filter.cateName}(${filter.cateCount})</a>
+							</c:if>
+						</c:forEach>
+					</div>		
 					
 					<form id="filter_form" action="/search" method="get">
 							<input type="hidden" name="keyword">
