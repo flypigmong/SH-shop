@@ -233,6 +233,7 @@
 		$(".publeyear").html(publeYear);
 		
 		
+		
 	});	
 </script>
 
