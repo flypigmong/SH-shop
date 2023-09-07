@@ -167,7 +167,7 @@ public class BookMapperTests {
 		
 	}
 	
-	*/
+	
 	
 	
 	// 카테고리 리스트 (A or T ==> catecode)
@@ -223,4 +223,14 @@ public class BookMapperTests {
 			
 		}
 		*/
+	
+	//상품 정보
+	@Test
+	public void getGoodsInfo() {
+		int bookId = 26;
+		BookVO goodsInfo = mapper.getGoodsInfo(bookId); 
+		System.out.println("===================");
+		System.out.println(goodsInfo);
+		System.out.println("===================");
+	}
 }
