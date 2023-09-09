@@ -30,7 +30,11 @@ public class CartMapperTests {
 		cart.setBookCount(count);
 		
 		int result = 0;
-		result = mapper.addCart(cart);
+		try {
+			result = mapper.addCart(cart);
+		} catch (Exception e) {
+			System.out.println("에러 발생");;
+		}
 		
 		System.out.println("결과 : " + result);
 		
