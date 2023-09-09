@@ -132,7 +132,7 @@
 							주문수량
 							<input type="text" class="quantity input" value="1">
 							<span>
-								<button class="plus btn">+</button>
+								<button class="plus_btn">+</button>
 								<button class="minus_btn">-</button>
 							</span>
 						</div>
@@ -234,25 +234,27 @@
 		
 	});	
 	
+	
 	// 수량 버튼 조작
 	let quantity = $(".quantity_input").val();
 	
-	$(.plus_btn).on("click", function(){
+	$(".plus_btn").on("click", function(){
 		$(".quantity_input").val(++quantity);
-		
-	$(."minus_btn").on("click", function(){
+	
+	});
+	
+	$(".minus_btn").on("click", function(){
 		if(quantity > 1) {
-			$(".quntity_input").val(--quantity);
+			$(".quantity_input").val(--quantity);
 		}
-	})
 		
 	});
 	
 	// 서버로 전송할 데이터
 	const form = {
-			member : '${member.member}',
+			member : '${member.memberId}',
 			bookId : '${goodsInfo.bookId}',
-			bookCount : '';
+			bookCount : ''
 	}
 	
 	// 장바구니 추가 버튼
@@ -279,6 +281,7 @@
 		} else if(result == '5'){
 			alert("로그인이 필요합니다.");	
 		}
+	}
 </script>
 
 </body>
