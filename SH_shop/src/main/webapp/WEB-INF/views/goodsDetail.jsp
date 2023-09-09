@@ -268,6 +268,7 @@
 		})
 	});
 	
+	
 	function cartAlert(result){
 		if(result == '0'){
 			alert("장바구니에 추가를 하지 못하였습니다.");
