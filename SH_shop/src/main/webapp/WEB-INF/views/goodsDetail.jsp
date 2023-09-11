@@ -133,7 +133,7 @@
 					<div class="button">						
 						<div class="button_quantity">
 							주문수량
-							<input type="text" class="quantity input" value="1">
+							<input type="text" class="quantity_input" value="1">
 							<span>
 								<button class="plus_btn">+</button>
 								<button class="minus_btn">-</button>

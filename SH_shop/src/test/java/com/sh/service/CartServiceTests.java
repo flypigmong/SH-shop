@@ -20,7 +20,7 @@ public class CartServiceTests {
 	public void addCartTest() {
 		//given
 			String memberId = "admin";
-			int bookId = 22;
+			int bookId = 19;
 			int count = 5;
 			
 			CartDTO dto = new CartDTO(); 
@@ -30,6 +30,7 @@ public class CartServiceTests {
 		
 		//when
 			int result = service.addCart(dto);
+			System.out.println("result :::::::::::: ");
 		
 		//then
 			System.out.println("** result : " + result);

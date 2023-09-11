@@ -28,13 +28,14 @@ public class CartController {
 		// 로그인 체크
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO) session.getAttribute("member");
+		System.out.println("mvo: " + mvo);
 		if (mvo == null) {
 			return "5";
 		}
 		
 		// 카트 등록
 		int result = cartService.addCart(cart);
-		
+		System.out.println("result : " + result);
 		return result + "";
 	}
 	

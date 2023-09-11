@@ -23,14 +23,14 @@ public class CartServiceImpl implements CartService {
 	public int addCart(CartDTO cart) {
 		// 장바구니 데이터 체크
 		CartDTO checkCart = cartMapper.checkCart(cart);
-		
+		System.out.println("checkCart: " + checkCart);
 		if(checkCart != null) {
 			return 2;
 		}
 		
 		// 장바구니 등록 & 에러 시 0 반환
 		try {
-			return cartMapper.addCart(checkCart);
+			return cartMapper.addCart(cart);
 		} catch (Exception e) {
 			return 0;
 		}
