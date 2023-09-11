@@ -151,7 +151,9 @@
 								<td class="td_width_4 table_text_align_center">
 									<fmt:formatNumber value="${ci.salePrice * ci.bookCount}" pattern="#,### 원" />
 								</td>
-								<td class="td_width_4 table_text_align_center delete_btn"><button>삭제</button></td>
+								<td class="td_width_4 table_text_align_center delete_btn"><button>삭제</button>
+									<button class="delete_btn" data-cartid="${ci.cartId}">삭제</button>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -239,6 +241,12 @@
 			<form action="/cart/update" method="post" class="quantity_update_form">
 				<input type="hidden" name="cartId" class="update_cartId">
 				<input type="hidden" name="bookCount" class="update_bookCount">
+				<input type="hidden" name="memberId" value="${member.memberId}">
+			</form>
+
+			<!-- 삭제 form -->
+			<form action="/cart/delete" method="post" class="quantity_delete_form">
+				<input type="hidden" name="cartId" class="delete_cartId">
 				<input type="hidden" name="memberId" value="${member.memberId}">
 			</form>
 
@@ -410,6 +418,15 @@
 		$(".update_bookCount").val(bookCount);
 		$(".quantity_update_form").submit();
 		
+	});
+	
+	
+	/* 장바구니 삭제 버튼 */
+	$(".delete_btn").on("click", function(e){
+		e.preventDefault();
+		const cartId = $(this).data("cartid");
+		$(".delete_cartId").val(cartId);
+		$(".quantity_delete_form").submit();
 	});
 	
 	</script>

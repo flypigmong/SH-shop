@@ -54,9 +54,19 @@ public class CartServiceImpl implements CartService {
 		return cart;
 	}
 
+	/* 카트 수량 변경 */
 	@Override
 	public int modifyCount(CartDTO cart) {
 		
 		return cartMapper.modifyCount(cart);
 	}
+
+	/* 카트 삭제*/
+	@Override
+	public int deleteCart(int cartId) {
+		
+		return cartMapper.deleteCart(cartId);
+	}
+	
+	
 }
