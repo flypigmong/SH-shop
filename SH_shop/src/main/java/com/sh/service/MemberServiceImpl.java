@@ -21,7 +21,8 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired(required=false)
 	private BCryptPasswordEncoder pwEncoder;
 	
-
+	
+	/* 회원가입 */
 	public void memberJoin(MemberVO member) throws Exception{ 
 			String rawPw = ""; // 인코딩 전 비밀번호 
 			String encodePw = ""; // 인코딩 후 비밀번호
@@ -35,7 +36,7 @@ public class MemberServiceImpl implements MemberService{
 	
 		}
 		
-	
+		/* 로그인 */
 		public MemberVO memberLogin(MemberVO member) {
 			  MemberVO lvo = membermapper.memberLogin(member); // DAO를 호출하여 일치하는 아이디가 있는지 확인
 			  logger.info("success1:" + lvo);
@@ -86,11 +87,20 @@ public class MemberServiceImpl implements MemberService{
 		return membermapper.memberLogin(member);
 	}
 	*/
-	
+		
+	/* 아이디 중복 검사 */
 	@Override
 	public int idCheck(String memberId) throws Exception {
 		
 		return membermapper.idCheck(memberId);
+	}
+
+
+	/* 주문자 정보 */
+	@Override
+	public MemberVO getMemberInfo(String memberId) {
+		
+		return membermapper.getMemberInfo(memberId);
 	}
 
 
