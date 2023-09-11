@@ -48,8 +48,8 @@ public class CartController {
 		return "/cart";
 	}
 	
-	/* 장바구니 수량 수정 */
-	@PostMapping("/cart/update")
+	/* 장바구니 수량 삭제 */
+	@PostMapping("/cart/delete")
 	public String updateCartPOST(CartDTO cart) {
 		
 		cartService.modifyCount(cart);
