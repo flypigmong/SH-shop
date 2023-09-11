@@ -21,6 +21,7 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	
+	/* 장바구니 추가 */
 	@PostMapping("/cart/add")
 	@ResponseBody
 	public String addCartPOST(CartDTO cart, HttpServletRequest request) {
@@ -45,5 +46,14 @@ public class CartController {
 		model.addAttribute("cartInfo", cartService.getCartList(memberId)); // 장바구니 데이터 전송
 	
 		return "/cart";
+	}
+	
+	/* 장바구니 수량 수정 */
+	@PostMapping("/cart/update")
+	public String updateCartPOST(CartDTO cart) {
+		
+		cartService.modifyCount(cart);
+		
+		return "redirect:/cart/" + cart.getMemberId();
 	}
 }
