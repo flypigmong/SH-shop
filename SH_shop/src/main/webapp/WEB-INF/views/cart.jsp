@@ -280,7 +280,28 @@
 
 <script>
 	$(document).ready(function(){
-		setTotalInfo(); // 종합 정보 삽입
+		
+		/* 종합 정보 삽입 */
+		setTotalInfo(); 
+		
+		/* 이미지 삽입 */
+		$(".image_wrap").each(function(i,obj){
+			
+			const bobj = $(obj);
+			
+			if(bobj.data("bookid")){
+				const uploadPath = bobj.data("path");
+				const uuid = bobj.data("uuid");
+				const fileName = bobj.data("filename");
+				
+				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+				
+				$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+			} else {
+				$(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
+			}
+			
+		});
 	});
 
 	/* 체크여부에 따른 종합 정보 변화 */
@@ -301,24 +322,7 @@
 		/* 종합 정보 세팅 */
 		setTotalInfo($(".cart_info_td"));
 		
-		/* 이미지 삽입 */
-		$(".image_wrap").each(function(i,obj){
-			
-			const bobj = $(obj);
-			
-			if(bobj.data("bookid")){
-				const uploadPath = bobj.data("path");
-				const uuid = bobj.data("uuid");
-				const fileName = bobj.data("filename");
-				
-				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
-				
-				$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
-			} else {
-				$(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
-			}
-			
-		});
+
 		
 	});
 	

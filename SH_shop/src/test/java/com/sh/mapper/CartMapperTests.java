@@ -20,9 +20,9 @@ public class CartMapperTests {
 	// 카트 추가
 	@Test
 	public void addCart() {
-		String memberId = "test10";
+		String memberId = "test9";
 		int bookId = 1049;
-		int count = 2;
+		int count = 5;
 		
 		CartDTO cart = new CartDTO();
 		cart.setMemberId(memberId);

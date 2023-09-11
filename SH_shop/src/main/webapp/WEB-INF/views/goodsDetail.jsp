@@ -262,7 +262,7 @@
 	
 	// 서버로 전송할 데이터
 	const form = {
-			member : '${member.memberId}',
+			memberId : '${member.memberId}',
 			bookId : '${goodsInfo.bookId}',
 			bookCount : ''
 	}
