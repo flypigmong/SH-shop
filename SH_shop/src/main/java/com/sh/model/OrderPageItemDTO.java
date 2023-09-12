@@ -1,5 +1,7 @@
 package com.sh.model;
 
+import java.util.List;
+
 public class OrderPageItemDTO {
 
 	/* 뷰로부터 전달받을 값 */
@@ -24,6 +26,9 @@ public class OrderPageItemDTO {
     
     private int totalPoint;
 
+   /* 상품 이미지 */
+   private List<AttachImageVO> imageList; 
+   
 	public int getBookId() {
 		return bookId;
 	}
@@ -96,6 +101,7 @@ public class OrderPageItemDTO {
 		this.totalPoint = totalPoint;
 	}
     
+	
 	public void initSaleTotal() {
 		this.salePrice = (int) (this.bookPrice * (1-this.bookDiscount));
 		this.totalPrice = this.salePrice*this.bookCount;
@@ -103,12 +109,23 @@ public class OrderPageItemDTO {
 		this.totalPoint =this.point * this.bookCount;
 	}
 
+	
+	public List<AttachImageVO> getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(List<AttachImageVO> imageList) {
+		this.imageList = imageList;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderPageItemDTO [bookId=" + bookId + ", bookCount=" + bookCount + ", bookName=" + bookName
 				+ ", bookPrice=" + bookPrice + ", bookDiscount=" + bookDiscount + ", salePrice=" + salePrice
-				+ ", totalPrice=" + totalPrice + ", point=" + point + ", totalPoint=" + totalPoint + "]";
+				+ ", totalPrice=" + totalPrice + ", point=" + point + ", totalPoint=" + totalPoint + ", imageList="
+				+ imageList + "]";
 	}
+
 	
 	
     
