@@ -17,6 +17,7 @@ public class CartMapperTests {
 	@Autowired
 	private CartMapper mapper;
 	
+	/*
 	// 카트 추가
 	@Test
 	public void addCart() {
@@ -40,7 +41,7 @@ public class CartMapperTests {
 		
 	}	
 
-	/*
+	
 	// 카트 삭제 
 
 	@Test
@@ -104,4 +105,18 @@ public class CartMapperTests {
 		
 	}
 	*/
+	
+	// 장바구니 제거(주문 처리) 
+	@Test
+	public void deleteOrderCart() {
+		String memberId = "admin";
+		int bookId = 11;
+		
+		CartDTO dto = new CartDTO();
+		dto.setMemberId(memberId);
+		dto.setBookId(bookId);
+		
+		mapper.deleteOrderCart(dto);
+		
+	}
 }
