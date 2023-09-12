@@ -18,6 +18,7 @@ import com.sh.model.AttachImageVO;
 import com.sh.model.BookVO;
 import com.sh.model.CartDTO;
 import com.sh.model.MemberVO;
+import com.sh.model.OrderCancelDTO;
 import com.sh.model.OrderDTO;
 import com.sh.model.OrderItemDTO;
 import com.sh.model.OrderPageItemDTO;
@@ -139,6 +140,55 @@ public class OrderServiceImpl implements OrderService {
 			cartMapper.deleteOrderCart(dto);
 		}
 
+		
+	}
+
+	/* 주문취소 */
+	@Override
+	@Transactional
+	public void orderCancle(OrderCancelDTO dto) {
+		
+			// 1.주문, 주문상품 객체 가져오기
+			// 회원정보
+			MemberVO member = memberMapper.getMemberInfo(dto.getMemberId());
+			// 주문상품정보
+			List<OrderItemDTO> ords = orderMapper.getOrderItemInfo(dto.getOrderId());
+			for(OrderItemDTO ord : ords) {
+				ord.initSaleTotal();
+			}
+			// 주문정보
+			OrderDTO orw = orderMapper.getOrder(dto.getOrderId());
+			orw.setOrders(ords);
+			
+			orw.getOrderPriceInfo();
+			
+			
+			
+			// 2. 주문상품 취소 DB('주문상태' 컬럼 값 -> '주문 취소' 로 변경) */
+			orderMapper.orderCancle(dto.getOrderId());
+			
+			
+			// 3. 돈, 포인트 변환 
+			// 돈 
+			int calMoney = member.getMoney();
+			calMoney += orw.getOrderFinalSalePrice();
+			member.setMoney(calMoney);
+			
+			// 포인트 
+			int calPoint = member.getPoint();
+			calPoint = calPoint + orw.getUsePoint() - orw.getOrderSavePoint();
+			member.setPoint(calPoint);
+			
+			// 주문 돈,포인트 취소 DB (돈,포인트 가산)
+			orderMapper.deductMoney(member);
+				
+			
+			// 4. 재고 변환
+			for(OrderItemDTO ord : orw.getOrders()) {
+				BookVO book = bookMapper.getGoodsInfo(ord.getBookId());
+				book.setBookStock(book.getBookStock() + ord.getBookCount());
+				orderMapper.deductStock(book);
+			}
 		
 	}
 	

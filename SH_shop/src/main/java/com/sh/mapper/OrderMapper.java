@@ -1,5 +1,7 @@
 package com.sh.mapper;
 
+import java.util.List;
+
 import com.sh.model.BookVO;
 import com.sh.model.MemberVO;
 import com.sh.model.OrderDTO;
@@ -25,4 +27,14 @@ public interface OrderMapper {
 	
 	/* 주문 재고 차감 */
 	public int deductStock(BookVO book);
+	
+	/* 주문 취소(컬럼값을 '주문취소'로 변경)*/
+	public int orderCancle(String orderId);
+	
+	/* 주문 상품 정보(주문취소) 회원이 주문한 sh_order테이블의 데이터 가져오기 */
+	public List<OrderItemDTO> getOrderItemInfo(String orderId);
+	
+	/* 주문 정보(주문취소) sh_orderItem 테이블의 데이터 가져오기 */
+	public OrderDTO getOrder(String orderId);
+	
 }

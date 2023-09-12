@@ -2,6 +2,7 @@ package com.sh.service;
 
 import java.util.List;
 
+import com.sh.model.OrderCancelDTO;
 import com.sh.model.OrderDTO;
 import com.sh.model.OrderPageItemDTO;
 
@@ -13,4 +14,6 @@ public interface OrderService {
 	/* 주문 */
 	public void order(OrderDTO orw);
 	
+	/* 주문 취소*/
+	public void orderCancle(OrderCancelDTO dto); 
 }
