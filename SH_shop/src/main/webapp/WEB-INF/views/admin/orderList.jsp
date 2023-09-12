@@ -48,6 +48,9 @@
 	                    			<td><fmt:formatDate value="${list.orderDate}" pattern="yyyy-MM-dd"/></td>
 	                    			<td><c:out value="${list.orderState}"/></td>
 	                    			<td>
+	                    					<c:if test="${list.orderState == '배송준비' }">
+												<button class="delete_btn" data-orderid="${list.orderId}">취소</button>
+											</c:if>
 	                    			</td>
 	                    		</tr>
 	                    		</c:forEach>
@@ -74,6 +77,7 @@
                     	</form>
                     </div>                    
                     
+                   </div>
                     
  					<!-- 페이지 이동 인터페이스 영역 -->
                     <div class="pageMaker_wrap" >
@@ -110,8 +114,16 @@
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 						<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
 					</form>                              
+                                     
+                              
+                    <form id="deleteForm" action="/admin/orderCancle" method="post">
+                    	<input type="hidden" name="orderId">
+						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+						<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+						<input type="hidden" name="memberId" value="${member.memberId}">
+                    </form>          
                                       
-                </div>               
                   
   			<%@include file="../includes/admin/footer.jsp" %>
  
@@ -153,5 +165,16 @@
 		
 	});
 
+	// 취소버튼 눌렀을 때 동작
+	$(".delete_btn").on("click", function(e){
+		
+		e.preventDefault();
+		
+		let id = $(this).data("orderid"); //orderId 값 대입
+		
+		$("#deleteForm").find("input[name='orderId']").val(id);
+		$("#deleteForm").submit();
+	});
+	
 </script>
 </html>

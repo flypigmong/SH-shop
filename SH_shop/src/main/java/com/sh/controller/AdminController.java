@@ -37,10 +37,12 @@ import com.sh.model.AttachImageVO;
 import com.sh.model.AuthorVO;
 import com.sh.model.BookVO;
 import com.sh.model.Criteria;
+import com.sh.model.OrderCancelDTO;
 import com.sh.model.OrderDTO;
 import com.sh.model.PageDTO;
 import com.sh.service.AdminService;
 import com.sh.service.AuthorService;
+import com.sh.service.OrderService;
 import com.sun.source.tree.AssertTree;
 
 import net.coobird.thumbnailator.Thumbnails;
@@ -56,6 +58,9 @@ public class AdminController {
     
     @Autowired
     private AdminService adminService;
+    
+    @Autowired
+    private OrderService orderService;
     
     /* 관리자 메인 페이지 이동 */
     @GetMapping(value="main")
@@ -463,5 +468,15 @@ public class AdminController {
 			}
 			
 			return "/admin/orderList";
+		}
+		
+		/* 주문 삭제(취소) */
+		@PostMapping("/orderCancle")
+		public String orderCancelPOST(OrderCancelDTO dto) {
+		
+			orderService.orderCancle(dto);
+			
+			return "redirect:/admin/orderList?keyword=" + dto.getKeyword() + "&amount=" + dto.getAmount() + "&pageNum=" + dto.getPageNum();
+			
 		}
 }
