@@ -11,6 +11,7 @@ import com.sh.model.AttachImageVO;
 import com.sh.model.BookVO;
 import com.sh.model.CateVO;
 import com.sh.model.Criteria;
+import com.sh.model.OrderDTO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -113,6 +114,16 @@ public class AdminServiceImpl implements AdminService {
 	public List<AttachImageVO> getAttachInfo(int bookId) {
 		log.info("getAttachInfo.......");
 		return adminMapper.getAttachInfo(bookId);
+	}
+
+	@Override
+	public List<OrderDTO> getOrderList(Criteria cri) {
+		return adminMapper.getOrderList(cri);
+	}
+
+	@Override
+	public int getOrderTotal(Criteria cri) {
+		return adminMapper.getOrderTotal(cri);
 	}
 
 }

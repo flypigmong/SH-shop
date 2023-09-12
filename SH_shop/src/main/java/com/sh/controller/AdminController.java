@@ -37,6 +37,7 @@ import com.sh.model.AttachImageVO;
 import com.sh.model.AuthorVO;
 import com.sh.model.BookVO;
 import com.sh.model.Criteria;
+import com.sh.model.OrderDTO;
 import com.sh.model.PageDTO;
 import com.sh.service.AdminService;
 import com.sh.service.AuthorService;
@@ -445,5 +446,22 @@ public class AdminController {
 				 return new ResponseEntity<String>("fail", HttpStatus.NOT_IMPLEMENTED);
 			}
 			return new ResponseEntity<String>("success", HttpStatus.OK);
+		}
+		
+		
+		/* 주문 현황 페이지 */
+		@GetMapping("/orderList")
+		public String orderListGET(Criteria cri, Model model) {
+
+			List<OrderDTO> list = adminService.getOrderList(cri);
+			
+			if(!list.isEmpty()) {
+				model.addAttribute("list", list);
+				model.addAttribute("pageMaker", new PageDTO(cri, adminService.getOrderTotal(cri)));
+			} else {
+				model.addAttribute("listCheck", "empty");
+			}
+			
+			return "/admin/orderList";
 		}
 }

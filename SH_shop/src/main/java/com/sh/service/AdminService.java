@@ -6,6 +6,7 @@ import com.sh.model.AttachImageVO;
 import com.sh.model.BookVO;
 import com.sh.model.CateVO;
 import com.sh.model.Criteria;
+import com.sh.model.OrderDTO;
 
 public interface AdminService {
 
@@ -33,4 +34,10 @@ public interface AdminService {
 	/* 지정 상품 이미지 정보 얻기 */
 	public List<AttachImageVO> getAttachInfo(int bookId);
 
+	/* 주문 상품 리스트 */
+	public List<OrderDTO> getOrderList(Criteria cri);
+	
+	/* 주문 총 갯수 */
+	public int getOrderTotal(Criteria cri);
+	
 }
