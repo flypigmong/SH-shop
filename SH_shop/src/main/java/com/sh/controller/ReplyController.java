@@ -1,11 +1,15 @@
 package com.sh.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sh.model.Criteria;
 import com.sh.model.ReplyDTO;
+import com.sh.model.ReplyPageDTO;
 import com.sh.service.ReplyService;
 
 @RestController
@@ -28,4 +32,12 @@ public class ReplyController {
 	public String replyCheckPOST(ReplyDTO dto) {
 		return replyService.checkReply(dto);
 	}
+	
+	/* 댓글 페이징 */
+	@GetMapping(value="/list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ReplyPageDTO replyListPOST(Criteria cri) {
+		return replyService.replyList(cri);
+	}
+	
+	
 }

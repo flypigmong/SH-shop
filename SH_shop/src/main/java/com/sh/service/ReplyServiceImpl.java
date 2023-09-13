@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sh.mapper.ReplyMapper;
+import com.sh.model.Criteria;
+import com.sh.model.PageDTO;
 import com.sh.model.ReplyDTO;
+import com.sh.model.ReplyPageDTO;
 
 @Service
 public class ReplyServiceImpl implements ReplyService{
@@ -22,6 +25,7 @@ public class ReplyServiceImpl implements ReplyService{
 		return result;
 	}
 
+	/* 댓글 체크*/
 	@Override
 	public String checkReply(ReplyDTO dto) {
 		
@@ -33,6 +37,18 @@ public class ReplyServiceImpl implements ReplyService{
 			return "1";
 		}
 		
+	}
+	
+	/* 댓글 페이징 */
+	@Override
+	public ReplyPageDTO replyList(Criteria cri) {
+		
+		ReplyPageDTO dto = new ReplyPageDTO();
+		
+		dto.setList(replyMapper.getReplyList(cri));
+		dto.setPageInfo(new PageDTO(cri, replyMapper.getReplyTotal(cri.getBookId())));
+		
+		return dto;
 	}
 
 }
