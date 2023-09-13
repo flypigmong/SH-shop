@@ -130,7 +130,7 @@
 										<td>
 											${memberInfo.memberAddr1} ${memberInfo.memberAddr2}<br>${memberInfo.memberAddr3}										
 										<input class="selectAddress" value="T" type="hidden">
-										<input class="addressee_input" value="${memberInfo.memberName}" type="hidden">
+										<input class="address_input" value="${memberInfo.memberName}" type="hidden">
 										<input class="address1_input" type="hidden" value="${memberInfo.memberAddr1}">
 										<input class="address2_input" type="hidden" value="${memberInfo.memberAddr2}">
 										<input class="address3_input" type="hidden" value="${memberInfo.memberAddr3}">
@@ -149,7 +149,7 @@
 									<tr>
 										<th>이름</th>
 										<td>
-											<input class="addressee_input">
+											<input class="address_input">
 										</td>
 									</tr>
 									<tr>
@@ -333,7 +333,7 @@
 			<!-- 주문자 회원번호 -->
 			<input name="memberId" value="${memberInfo.memberId}" type="hidden">
 			<!-- 주소록 & 받는이-->
-			<input name="addressee" type="hidden">
+			<input name="address" type="hidden">
 			<input name="memberAddr1" type="hidden">
 			<input name="memberAddr2" type="hidden">
 			<input name="memberAddr3" type="hidden">
@@ -577,7 +577,7 @@ function execution_daum_address(){
 		/* 주소 정보 & 받는이*/
 		$(".addressInfo_input_div").each(function(i, obj){
 			if($(obj).find(".selectAddress").val() === 'T'){
-				$("input[name='addressee']").val($(obj).find(".addressee_input").val());
+				$("input[name='address']").val($(obj).find(".addressee_input").val());
 				$("input[name='memberAddr1']").val($(obj).find(".address1_input").val());
 				$("input[name='memberAddr2']").val($(obj).find(".address2_input").val());
 				$("input[name='memberAddr3']").val($(obj).find(".address3_input").val());

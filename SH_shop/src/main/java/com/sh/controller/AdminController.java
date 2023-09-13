@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,15 +35,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sh.mapper.MemberMapper;
 import com.sh.model.AttachImageVO;
 import com.sh.model.AuthorVO;
 import com.sh.model.BookVO;
 import com.sh.model.Criteria;
+import com.sh.model.MemberVO;
 import com.sh.model.OrderCancelDTO;
 import com.sh.model.OrderDTO;
 import com.sh.model.PageDTO;
 import com.sh.service.AdminService;
 import com.sh.service.AuthorService;
+import com.sh.service.MemberService;
 import com.sh.service.OrderService;
 import com.sun.source.tree.AssertTree;
 
@@ -62,6 +67,12 @@ public class AdminController {
     @Autowired
     private OrderService orderService;
     
+    @Autowired
+    private MemberService memberService;
+    
+	@Autowired
+	MemberMapper membermapper;
+	
     /* 관리자 메인 페이지 이동 */
     @GetMapping(value="main")
     public void adminMainGET() throws Exception{
@@ -472,10 +483,41 @@ public class AdminController {
 		
 		/* 주문 삭제(취소) */
 		@PostMapping("/orderCancle")
-		public String orderCancelPOST(OrderCancelDTO dto) {
+		public String orderCancelPOST(OrderCancelDTO dto, HttpServletRequest request) {
 		
 			orderService.orderCancle(dto);
+
+			MemberVO member = new MemberVO();
+			member.setMemberId(dto.getMemberId());
+			System.out.println("memberId를 넣은 후 : " + member);
+
+			HttpSession session = request.getSession(); 
+			System.out.println("session22222: " + session);
+
 			
+			try {
+				MemberVO memberLogin = membermapper.memberLogin(member);
+				System.out.println("memberLogin2222 : " + memberLogin);
+				
+				memberLogin.setMemberPw("");
+				System.out.println("setMemberPw이후 :" + member );
+				
+				session.setAttribute("member", memberLogin);
+				System.out.println("member44444 : " + memberLogin);
+	
+			
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			
+			/*
+			 * MemberVO sessionMember = (MemberVO) session.getAttribute("member"); // 세션에서
+			 * memberVO 객체 가져오기
+			 * 
+			 * sessionMember.setMoney(memberVO.getMoney()); // 세션에 저장된 memberVO의 돈 변경하기
+			 * sessionMember.setPoint(memberVO.getPoint()); // 세션에 저장된 memberVO의 포인트 변경하기
+			 */			
 			return "redirect:/admin/orderList?keyword=" + dto.getKeyword() + "&amount=" + dto.getAmount() + "&pageNum=" + dto.getPageNum();
 			
 		}

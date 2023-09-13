@@ -8,6 +8,14 @@ public class OrderCancelDTO {
 	
 	private String keyword;
 	
+	// 멤버 업데이트 값 가져오기
+	
+	//회원 돈
+	private int money;
+	
+	//회원 포인트
+	private int point;
+	
 	private int amount;
 	
 	private int pageNum;
@@ -52,12 +60,30 @@ public class OrderCancelDTO {
 		this.pageNum = pageNum;
 	}
 
+	
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
 	@Override
 	public String toString() {
-		return "OrderCancelDTO [memberId=" + memberId + ", orderId=" + orderId + ", keyword=" + keyword + ", amount="
-				+ amount + ", pageNum=" + pageNum + "]";
+		return "OrderCancelDTO [memberId=" + memberId + ", orderId=" + orderId + ", keyword=" + keyword + ", money="
+				+ money + ", point=" + point + ", amount=" + amount + ", pageNum=" + pageNum + "]";
 	}
-	
+
+
 	
 	
 }

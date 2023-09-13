@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.sh.mapper.MemberMapper;
 import com.sh.model.MemberVO;
 import com.sh.model.OrderDTO;
 import com.sh.model.OrderPageDTO;
@@ -25,6 +26,8 @@ public class OrderController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	MemberMapper membermapper;
 	
 	@GetMapping("/order/{memberId}")
 	public String orderPgaeGET(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) {
@@ -47,12 +50,24 @@ public class OrderController {
 		orderService.order(od);
 		
 		MemberVO member = new MemberVO();
-		HttpSession session = request.getSession();
+		member.setMemberId(od.getMemberId());
+			
+		member.setMemberId(od.getMemberId());
+		System.out.println("memberId를 넣은 후 : " + member);
 		
+		HttpSession session = request.getSession();
+		System.out.println("session1111: " + session);
+	
 		try {
-			MemberVO memberLogin = memberService.memberLogin(member);
+			MemberVO memberLogin = membermapper.memberLogin(member);
+			System.out.println("memberLogin1111 : " + memberLogin);
+			
 			memberLogin.setMemberPw("");
+			System.out.println("setMemberPw이후 :" + member );
+			
 			session.setAttribute("member", memberLogin);
+			System.out.println("member2222 : " + memberLogin);
+			
 			
 		} catch (Exception e) {
 			

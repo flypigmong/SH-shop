@@ -50,7 +50,7 @@ public class OrderMapperTests {
 		ord.setOrders(orders);
 		
 		ord.setOrderId("2021_test1");
-		ord.setAddressee("test");
+		ord.setAddress("test");
 		ord.setMemberId("admin");
 		ord.setMemberAddr1("test");
 		ord.setMemberAddr2("test");
