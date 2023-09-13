@@ -156,4 +156,13 @@
 	
 	</select>
 	
+	<!-- bookName 가져오기 -->
+	<select id="getBookIdName" resultType="com.sh.model.BookVO">
+	
+		select bookId, bookName from sh_book 
+		where bookId = #{bookId}
+	
+	
+	</select>	
+	
   </mapper>
