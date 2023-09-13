@@ -22,4 +22,17 @@ public class ReplyServiceImpl implements ReplyService{
 		return result;
 	}
 
+	@Override
+	public String checkReply(ReplyDTO dto) {
+		
+		Integer result = replyMapper.checkReply(dto);
+		
+		if(result == null) {
+			return "0";
+		} else {
+			return "1";
+		}
+		
+	}
+
 }

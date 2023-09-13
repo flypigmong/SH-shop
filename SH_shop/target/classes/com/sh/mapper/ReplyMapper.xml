@@ -10,4 +10,12 @@
   	
   	</insert>
  
+ 	<!-- 댓글 체크(이전 댓글 있는지 확인) -->
+ 	<select id="checkReply" resultType="integer">
+	
+		select replyId from sh_reply 
+		where memberId = #{memberId} and bookId = #{bookId}
+	
+	</select>
+ 
   </mapper>
