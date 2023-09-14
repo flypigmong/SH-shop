@@ -521,6 +521,28 @@
 		
 	});
 	
+	
+	/* 리뷰 삭제 버튼 */
+	 $(document).on('click', '.delete_reply_btn', function(e){
+
+		 e.preventDefault();
+		 let replyId = $(this).attr("href");
+			
+			$.ajax({
+				data : {
+					replyId : replyId,
+					bookId : '${goodsInfo.bookId}'
+				},
+				url : '/reply/delete',
+				type : 'POST',
+				success : function(result){
+					replyListInit();
+					alert('삭제가 완료되었습니다.');
+				}
+			});	
+			
+	 });
+	
 </script>
 
 </body>

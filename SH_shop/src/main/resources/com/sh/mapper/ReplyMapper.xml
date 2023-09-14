@@ -47,11 +47,18 @@
  	
  	</update>
  	
- 		<select id="getUpdateReply" resultType="com.sh.model.ReplyDTO">
+ 	<select id="getUpdateReply" resultType="com.sh.model.ReplyDTO">
 	
 		select * from sh_reply
 		where replyId = #{replyId}
 		
 	</select>
  	
+ 	<!-- 댓글 삭제 -->
+ 	<delete id="deleteReply">
+ 	
+ 		delete from sh_reply
+ 		where replyId = #{replyId}
+ 	
+ 	</delete>
   </mapper>
