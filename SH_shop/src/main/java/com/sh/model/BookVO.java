@@ -51,6 +51,9 @@ public class BookVO {
 	/* 수정 날짜 */
 	private Date updateDate;
 
+	/* 평점 ....*/
+	private double ratingAvg;
+	
 	/* 이미지 정보 */
 	private List<AttachImageVO> imageList;
 	
@@ -182,14 +185,24 @@ public class BookVO {
 		this.imageList = imageList;
 	}
 
+	
+	public double getRatingAvg() {
+		return ratingAvg;
+	}
+
+	public void setRatingAvg(double ratingAvg) {
+		this.ratingAvg = ratingAvg;
+	}
+
 	@Override
 	public String toString() {
 		return "BookVO [bookId=" + bookId + ", bookName=" + bookName + ", authorId=" + authorId + ", authorName="
 				+ authorName + ", publeYear=" + publeYear + ", publisher=" + publisher + ", cateCode=" + cateCode
 				+ ", cateName=" + cateName + ", bookPrice=" + bookPrice + ", bookStock=" + bookStock + ", bookDiscount="
 				+ bookDiscount + ", bookIntro=" + bookIntro + ", bookContents=" + bookContents + ", regDate=" + regDate
-				+ ", updateDate=" + updateDate + ", imageList=" + imageList + "]";
+				+ ", updateDate=" + updateDate + ", ratingAvg=" + ratingAvg + ", imageList=" + imageList + "]";
 	}
+
 
 
 	

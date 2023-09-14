@@ -7,6 +7,7 @@ import com.sh.model.CateFilterDTO;
 import com.sh.model.CateVO;
 import com.sh.model.Criteria;
 import com.sh.model.SelectDTO;
+import com.sh.model.UpdateReplyDTO;
 
 public interface BookMapper {
 	
@@ -39,5 +40,6 @@ public interface BookMapper {
 	
 	/* 메인페이지에 보여 줄 평점 순 상품 정보 (여러 개의 상품 정보를 담기 위해 반환타입:List) */
 	public List<SelectDTO> likeSelect();
+	
 	
 }

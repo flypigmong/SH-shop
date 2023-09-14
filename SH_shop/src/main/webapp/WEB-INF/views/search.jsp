@@ -149,8 +149,35 @@
 											</div>
 										</td>
 										<td class="info">
-											<div class="rating">
-												평점(추후 추가)
+											<div class="rating_title">
+												[평균 별점]
+											</div>
+											<div class="ratingAvg">
+												<c:if test="${list.ratingAvg == 0.5}">
+													<img src="./resources/img/star_0.5.jpg" alt="star0.5"/>
+												</c:if>
+												 <c:if test="${list.ratingAvg == 1.0}"> 
+													<img src="./resources/img/star_1.0.jpg" alt="star1.0"/>
+												</c:if>
+												 <c:if test="${list.ratingAvg == 1.5}"> 
+													<img src="./resources/img/star_1.5.jpg" alt="star1.5"/>
+												</c:if>
+												<c:if test="${list.ratingAvg == 2.0}"> 
+													<img src="./resources/img/star_2.0.jpg" alt="star2.0"/>
+												</c:if>
+												 <c:if test="${list.ratingAvg == 2.5}"> 
+													<img src="./resources/img/star_2.5.jpg" alt="star2.5"/>
+												</c:if>
+												 <c:if test="${list.ratingAvg == 3.0}"> 
+													<img src="./resources/img/star_3.0.jpg" alt="star3.0"/>
+												</c:if>
+												 <c:if test="${list.ratingAvg == 3.5}"> 
+													<img src="./resources/img/star_3.5.jpg" alt="star3.5"/>
+												</c:if>
+												 <c:if test="${list.ratingAvg == 4.0}"> 
+													<img src="./resources/img/star_4.0.jpg" alt="star4.0" />
+												</c:if>
+												
 											</div>
 										</td>
 										<td class="price">
@@ -172,7 +199,8 @@
 						
 						</table>
 					</div>		
-	<!-- 페이지 이동 인터페이스 -->
+					
+			<!-- 페이지 이동 인터페이스 -->
 				<div class="pageMaker_wrap">
 					<ul class="pageMaker">
 	                			

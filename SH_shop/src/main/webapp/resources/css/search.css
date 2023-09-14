@@ -152,6 +152,12 @@ a{
 		font-size: 12px;
     	font-weight: 600;
 	}
+	/* 평균 별점 타이틀*/
+	.rating_title{
+		font-size: 10px;
+	    color: #3a60df;
+	    font-weight: 700;
+	}
 	.title{
 	    font-size: 20px;
 	    color: #3a60df;
