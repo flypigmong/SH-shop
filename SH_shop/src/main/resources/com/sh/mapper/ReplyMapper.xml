@@ -61,4 +61,23 @@
  		where replyId = #{replyId}
  	
  	</delete>
+ 	
+ 	<!-- 평균 평점 구하기 -->
+    <select id="getRatingAverage" resultType="double">
+  	
+  		select avg(rating)
+  		from sh_reply
+  		where bookId = #{bookId}
+  	
+  	</select>
+
+	<!-- 평균 평점 업데이트 -->
+	<update id="updateRating">
+	
+		update sh_book
+		set ratingAvg = #{ratingAvg}
+		where bookId = #{bookId}
+	
+	</update>
+ 	
   </mapper>
