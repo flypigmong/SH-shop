@@ -296,3 +296,29 @@ a{
 .clearfix{
 	clear: both;
 }
+
+/* 슬릭 숨겨진 좌우이동버튼 보이도록 함*/
+.slick-prev{
+	left: 160px;
+    z-index: 1;
+}
+.slick-next{
+	right: 160px;
+    z-index: 1;
+}
+
+/* 슬라이드 메인 페이지 중앙에 정렬되도록 함 */
+
+.slide_div img{
+	margin: auto;
+}
+.slide_div_wrap{
+	padding: 15px 0 15px 0;
+    background: #e6e9f6;
+}
+.image_wrap img{
+	max-width: 85%;
+    height: auto;
+    display: block;
+	margin: auto;    
+}

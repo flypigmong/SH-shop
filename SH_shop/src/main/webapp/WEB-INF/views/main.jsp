@@ -8,10 +8,13 @@
 <meta charset="UTF-8">
 <title>Welcome BookMall</title>
 <link rel="stylesheet" href="resources/css/main.css">
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
 <body>
 
@@ -106,7 +109,28 @@
 			</div>
 		</div>
 		<div class="content_area">
-			<h1>contents area</h1>
+			
+			<div class="slide_div_wrap">
+				<div class="slide_div">
+					<div>
+						<a>
+							<img src="../resources/img/115a8ff198e34e4fb24643289ae37cc8.jpg">
+						</a>
+					</div>
+					<div>
+						<a>
+							<img src="../resources/img/7f09544e0c0840f79c3e4edda64e52f8.jpg">
+						</a>
+					</div>
+					<div>
+						<a>
+							<img src="../resources/img/cbe0ed1ed35e4208948683dc60139a6a.jpg">
+						</a>
+					</div>				
+				</div>	
+			</div>			
+			
+			
 		</div>
 	<!-- Footer 영역 -->
         <div class="footer_nav">
@@ -162,6 +186,21 @@
             } 
         }); // ajax 	        
 	 });	
+	    
+	    
+	    
+	    $(document).ready(function(){
+	    	
+	    	$(".slide_div").slick(
+			    	{
+			    		dots: true,   //점 기능 사용 
+			    		autoplay : true, // 자동 넘김 기능 사용
+			    		autoplaySpeed: 5000 // 자동 넘김 속도(1밀리초=0.001초)
+			    	}
+			 );
+		});
+		    
+	    
 	    
 	</script>
 </body>
