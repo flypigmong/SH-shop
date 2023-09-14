@@ -6,6 +6,7 @@ import com.sh.model.BookVO;
 import com.sh.model.CateFilterDTO;
 import com.sh.model.CateVO;
 import com.sh.model.Criteria;
+import com.sh.model.SelectDTO;
 
 public interface BookService {
 	
@@ -29,5 +30,8 @@ public interface BookService {
 	
 	/* 상품 id 이름 */
 	public BookVO getBookIdName(int bookId);
+	
+	/* 메인페이지 평점순 상품 정보 */
+	public List<SelectDTO> likeSelect();
 	
 }

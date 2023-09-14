@@ -162,7 +162,16 @@
 		select bookId, bookName from sh_book 
 		where bookId = #{bookId}
 	
-	
 	</select>	
+	
+	
+	<!--메인 페이지 상품 보이기  -->
+	<select id="likeSelect" resultType="com.sh.model.SelectDTO">
+	
+	select bookId, bookName, ratingAvg, (select cateName from sh_bcate where sh_book.cateCode = sh_bcate.cateCode) as cateName
+	from sh_book
+	order by ratingAvg desc limit 8		
+	
+	</select>
 	
   </mapper>

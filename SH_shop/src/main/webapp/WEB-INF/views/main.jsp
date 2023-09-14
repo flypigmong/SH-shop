@@ -128,10 +128,41 @@
 						</a>
 					</div>				
 				</div>	
-			</div>			
+			</div>		
+			
+			
+			<div class="ls_wrap">
+				<div class="ls_div_subject">
+					평점순 상품
+				</div>
+				<div class="ls_div">
+					<c:forEach items="${ls}" var="ls">
+						<a href="/goodsDetail/${ls.bookId}">
+							<div class="ls_div_content_wrap">
+								<div class="ls_div_content">
+									<div class="image_wrap" data-bookid="${ls.imageList[0].bookId}" data-path="${ls.imageList[0].uploadPath}" data-uuid="${ls.imageList[0].uuid}" data-filename="${ls.imageList[0].fileName}">
+										<img>
+									</div>				
+									<div class="ls_category">
+										${ls.cateName}
+									</div>
+									<div class="ls_rating">
+										${ls.ratingAvg}
+									</div>
+									<div class="ls_bookName">
+										${ls.bookName}
+									</div>							
+								</div>
+							</div>
+						</a>					
+					</c:forEach>					
+				</div>
+			</div>
 			
 			
 		</div>
+		
+		
 	<!-- Footer 영역 -->
         <div class="footer_nav">
             <div class="footer_nav_container">
@@ -198,8 +229,37 @@
 			    		autoplaySpeed: 5000 // 자동 넘김 속도(1밀리초=0.001초)
 			    	}
 			 );
+	    	
+	    	
+			$(".ls_div").slick({
+				
+				slidesToShow: 4,  // 몇 개의 슬라이드를 한 화면에 보일지
+				slidesToScroll: 4,  // 다음 슬라이드 이동 시 몇 개씩 이동할 것인지
+				prevArrow : "<button type='button' class='ls_div_content_prev'>이전</button>",		// 이전 화살표 모양 설정
+				nextArrow : "<button type='button' class='ls_div_content_next'>다음</button>",		// 다음 화살표 모양 설정				
+			});
+	    	
 		});
 		    
+	    
+		/* 이미지 삽입 */
+		$(".image_wrap").each(function(i, obj){
+			
+			const bobj = $(obj);
+			
+			if(bobj.data("bookid")){
+				const uploadPath = bobj.data("path");
+				const uuid = bobj.data("uuid");
+				const fileName = bobj.data("filename");
+				
+				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+				
+				$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+			} else {
+				$(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
+			}
+			
+		});
 	    
 	    
 	</script>
