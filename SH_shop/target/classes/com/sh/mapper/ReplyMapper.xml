@@ -38,4 +38,20 @@
   	
   	</select>
  
+ 
+ 	<!--  댓글 수정 -->
+ 	<update id="updateReply">
+ 	
+ 		update sh_reply set content = #{content}, rating = #{rating}
+ 		where replyId = #{replyId}
+ 	
+ 	</update>
+ 	
+ 		<select id="getUpdateReply" resultType="com.sh.model.ReplyDTO">
+	
+		select * from sh_reply
+		where replyId = #{replyId}
+		
+	</select>
+ 	
   </mapper>

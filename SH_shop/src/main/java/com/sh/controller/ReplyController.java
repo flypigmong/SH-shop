@@ -39,5 +39,11 @@ public class ReplyController {
 		return replyService.replyList(cri);
 	}
 	
+	/* 댓글 수정 */
+	@PostMapping("/update")
+	public void replyModifyPOST(ReplyDTO dto) {
+		replyService.updateReply(dto);
+	}
+	
 	
 }
