@@ -109,7 +109,7 @@
 	                    
                     </div>
                               
-					<form id="moveForm" action="/admin/authorManage" method="get">
+					<form id="moveForm" action="/admin/orderList" method="get">
 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 						<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
@@ -134,7 +134,7 @@
 	let searchForm = $('#searchForm');
 	let moveForm = $('#moveForm');
 	
-	/* 작거 검색 버튼 동작 */
+	/* 주문아이디 검색 버튼 동작 */
 	$("#searchForm button").on("click", function(e){
 		
 		e.preventDefault();
