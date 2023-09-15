@@ -1,5 +1,7 @@
 package com.sh.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.sh.controller.MemberController;
 import com.sh.mapper.MemberMapper;
+import com.sh.model.Criteria;
 import com.sh.model.MemberVO;
+import com.sh.model.MemberVO1;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -101,6 +105,20 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO getMemberInfo(String memberId) {
 		
 		return membermapper.getMemberInfo(memberId);
+	}
+
+	@Override
+	public List<MemberVO1> memberGetList(Criteria cri) {
+		
+		logger.info("(service)memberGetList()........." + cri);
+		
+		return membermapper.memberGetList(cri);
+	}
+
+	@Override
+	public int memberGetTotal(Criteria cri) throws Exception {
+        logger.info("(service)memberGetTotal()......." + cri);
+        return membermapper.memberGetTotal(cri);
 	}
 
 

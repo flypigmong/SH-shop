@@ -521,4 +521,23 @@ public class AdminController {
 			return "redirect:/admin/orderList?keyword=" + dto.getKeyword() + "&amount=" + dto.getAmount() + "&pageNum=" + dto.getPageNum();
 			
 		}
+		
+	    //회원 관리 페이지 접속 
+	    @GetMapping(value="/memberManage")
+	    public void memberManageGET(Criteria cri, Model model) throws Exception{
+	    	logger.info("멤버 관리 페이지 접속");
+	  
+	    	// 멤버 목록 출력 데이터 
+	    	List list = memberService.memberGetList(cri);
+	    	model.addAttribute("list", list);
+	    
+	    	//페이지 이동 인터페이스 데이터 
+	        int total = memberService.memberGetTotal(cri);
+	        
+	        PageDTO pageMaker = new PageDTO(cri, total);
+	        
+	        model.addAttribute("pageMaker", pageMaker);
+	    }
+	    
+	    
 }

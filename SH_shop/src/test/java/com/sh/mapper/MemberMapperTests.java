@@ -1,12 +1,16 @@
 package com.sh.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.sh.model.Criteria;
 import com.sh.model.MemberVO;
+import com.sh.model.MemberVO1;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 	@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -44,20 +48,19 @@ import com.sh.model.MemberVO;
 			membermapper.idCheck(id);
 			membermapper.idCheck(id2);
 		}		
-		*/
 		
 		
-	    /* 로그인 쿼리 mapper 메서드 테스트 */
+	    // 로그인 쿼리 mapper 메서드 테스트 
 	    @Test
 	    public void memberLogin() throws Exception{
 	        
 	        MemberVO member = new MemberVO();    // MemberVO 변수 선언 및 초기화
 	        
-	        /* 올바른 아이디 비번 입력경우 */
+	        // 올바른 아이디 비번 입력경우 
 	        //member.setMemberId("test7");
 	        //member.setMemberPw("test7");
 	        
-	        /* 올바르지 않은 아이디 비번 입력경우 */
+	        // 올바르지 않은 아이디 비번 입력경우 
 	        member.setMemberId("test1123");
 	        member.setMemberPw("test1321321");
 	        
@@ -65,5 +68,38 @@ import com.sh.model.MemberVO;
 	        System.out.println("결과 값 : " + membermapper.memberLogin(member));		
 		
 	}
+	    
+		
+		
+		//  회원 목록 테스트
+		@Test
+		public void memberGetListTest() throws Exception{
+			
+			Criteria cri = new Criteria(1,10); // 1페이지 & 10 개 행 표시
+			
+			cri.setKeyword("test"); // 검색
+			
+			List<MemberVO1> list = membermapper.memberGetList(cri);
+			
+			for (int i = 0; i < list.size(); i++) {
+				System.out.println("list" + i + "......." + list.get(i));
+			}
+		}
+		
+		*/
+		
+		/* 회원 총 수 */
+		@Test
+		public void memberGetTotalTest() throws Exception{
+			
+			Criteria cri = new Criteria();
+			cri.setKeyword("test");
+			
+			int total = membermapper.memberGetTotal(cri);
+			
+			System.out.println("total................ " + total);
+			
+		}
+		
 }
 

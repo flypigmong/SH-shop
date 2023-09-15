@@ -32,4 +32,30 @@
      	
      </select>
      
+     
+     <!-- 회원 목록 -->
+     <select id="memberGetList" resultType="com.sh.model.MemberVO1">
+     
+     select memberId,memberName,memberMail,memberAddr1, memberAddr2, memberAddr3, regDate, money, point
+     from book_member
+     <if test="keyword != null">
+     		where memberName like concat('%',#{keyword}, '%')
+     </if>
+     		order by memberId desc
+     		limit #{skip}, #{amount}
+     
+     </select>
+     
+      <!-- 회원 총 수 -->
+      <select id="memberGetTotal" resultType="int">
+      
+          select count(*) from book_member
+          
+          <if test="keyword != null">
+          
+              where memberName like concat('%', #{keyword}, '%');
+          
+          </if>
+          
+      </select>
   </mapper>
