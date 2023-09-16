@@ -42,3 +42,5 @@
             </div>
         </div> <!-- class="footer" -->        
         
+    </div>    <!-- class="wrap" -->
+</div>    <!-- class="wrapper" -->
