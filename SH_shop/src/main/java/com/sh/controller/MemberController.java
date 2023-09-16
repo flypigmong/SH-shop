@@ -1,5 +1,6 @@
 package com.sh.controller;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -13,6 +14,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sh.model.Criteria;
 import com.sh.model.MemberVO;
 import com.sh.service.MemberService;
 
@@ -62,6 +65,7 @@ public class MemberController {
 	  MemberVO lvo = memberservice.memberLogin(member); // Service를 호출하여 로그인 로직 수행
 	  if(lvo != null) { // 로그인 성공 시
 	    session.setAttribute("member", lvo); // session에 사용자의 정보 저장
+	    
 	    logger.info("login success");
 	    return "redirect:/main"; // 메인페이지로 리다이렉트
 	  } else { // 로그인 실패 시
@@ -250,6 +254,12 @@ public class MemberController {
         
     }   
     
+    
+    /* 마이페이지 */
+	@RequestMapping(value="myPage")
+	public String myPageFrm() {
+		return "member/myPage";
+	}
     
 }
 	
