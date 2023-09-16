@@ -11,11 +11,13 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
+	<context:property-placeholder location="/config/config.properties" />
+	
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">	
- 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://127.0.0.1:3307/book?serverTimezone=Asia/Seoul"></property> 
-		<property name="username" value="castello"></property>
-		<property name="password" value="0000"></property>
+ 		<property name="driverClassName" value="{spring.datasource.driverClassname}"></property>
+		<property name="jdbcUrl" value="${spring.datasource.url}"></property> 
+		<property name="username" value="${spring.datasource.username}"></property>
+		<property name="password" value="${spring.datasource.password}"></property>
 	</bean>	
 	
 	<bean id="datasource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
