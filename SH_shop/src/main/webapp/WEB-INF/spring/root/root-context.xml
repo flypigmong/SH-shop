@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-	
-	<context:property-placeholder location="/config/config.properties" />
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:property-placeholder location="classpath:config/config.properties" />
 	
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">	
- 		<property name="driverClassName" value="{spring.datasource.driverClassname}"></property>
-		<property name="jdbcUrl" value="${spring.datasource.url}"></property> 
+ 		<property name="driverClassName" value="${spring.datasource.driverClassName}"></property>
+		<property name="jdbcUrl" value="${spring.datasource.jdbcUrl}"></property> 
 		<property name="username" value="${spring.datasource.username}"></property>
 		<property name="password" value="${spring.datasource.password}"></property>
 	</bean>	
@@ -48,18 +44,10 @@
      </property>
     </bean>
 	
-	<!--  트랜잭션 -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="datasource"></property>
-	</bean>
+
 	
-	<tx:annotation-driven />
-	
-	<task:annotation-driven/>
-	
-	<context:component-scan base-package="com.sh.sample"></context:component-scan>
+
 	<mybatis-spring:scan base-package="com.sh.mapper"/>
-	<context:component-scan base-package="com.sh.model"></context:component-scan>	
-	<context:component-scan base-package="com.sh.service"></context:component-scan>
-	<context:component-scan base-package="com.sh.task"></context:component-scan>
+
+	
 </beans>

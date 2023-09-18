@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -25,25 +27,17 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 배치 프로그램 -->
+	<task:annotation-driven/>
+	<!-- 배치 프로그램 -->
+	<context:component-scan base-package="com.sh.task" />
+	
 	<context:component-scan base-package="com.sh.controller" />
 	<context:component-scan base-package="com.sh.service" />
-	
-    <!-- 인터셉터 적용 -->
-    <interceptors>
-        <interceptor>
-            <mapping path="/member/login"></mapping>
-            <beans:bean id="loginIntreceptor" class="com.sh.interceptor.LoginInterceptor"></beans:bean>
-        </interceptor>
-        <interceptor>
-            <mapping path="/admin/**"></mapping>
-            <beans:bean id="AdminIntreceptor" class="com.sh.interceptor.AdminInterceptor"></beans:bean>
-        </interceptor>
-        <interceptor>
-			<mapping path="/cart/**"/>
-			<exclude-mapping path="/cart/add"/>
-			<beans:bean id="CartIntreceptor" class="com.sh.interceptor.CartInterceptor"></beans:bean>
-		</interceptor>
-    </interceptors>	
+	<context:component-scan base-package="com.sh.model" />	
+	<context:component-scan base-package="com.sh.service" />
+  
+
 	
 	<!-- 업로드 관련 빈 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>		
