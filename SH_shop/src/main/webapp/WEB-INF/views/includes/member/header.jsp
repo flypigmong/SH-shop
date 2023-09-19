@@ -15,7 +15,6 @@
             <div class="admin_top_wrap">
                 <span>마이룸 페이지</span>
                 
-            </div>
-         </div>
+
     </div>     
  

@@ -40,8 +40,5 @@
 	                      <a class="admin_list_06" href="/admin/orderList">주문 현황</a>                            
 	                  </li>                                                                                         
                   </ul>
-                </div>
-                </div>
-                
-                </div>
-             </div>   
+
+   </div>

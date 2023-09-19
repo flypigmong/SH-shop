@@ -16,6 +16,7 @@
 </head>
 <body>
 
+	<div class="wrapper">
 		<div class="subject_name_warp">
 			<span>작가 선택</span>
 		</div>
@@ -59,7 +60,7 @@
                     	<form id="searchForm" action="/admin/authorPop" method="get">
                     		<div class="search_input">
                     			<input type="text" name="keyword" value='<c:out value="${pageMaker.cri.keyword}"></c:out>'>
-                    			<input type="hidden" name="pageNum" value='<c:out value="${pageMaker.cri.pageNum }"></c:out>'>
+                    			<input type="hidden" name="pageNum" value='<c:out value="${pageMaker.cri.pageNum}"></c:out>'>
                     			<input type="hidden" name="amount" value='${pageMaker.cri.amount}'>
                     			<button class='btn search_btn'>검 색</button>
                     		</div>

@@ -216,9 +216,14 @@ public class AdminController {
 	public void authorPopGET(Criteria cri, Model model) throws Exception {
 	
 		/* 게시물 출력 데이터 */
-		List list = authorService.authorGetList(cri);
-		
 		cri.setAmount(5);
+		
+		List list = authorService.authorGetList(cri);
+		logger.info("list " + list);
+		int total = authorService.authorGetTotal(cri);
+		logger.info("total" + total);
+		
+		logger.info("cri.setAmount() : " + cri.getAmount());
 		
 		if(!list.isEmpty()) {
 			model.addAttribute("list",list);	// 작가 존재 경우
@@ -228,7 +233,8 @@ public class AdminController {
 		
 		
 		/* 페이지 이동 인터페이스 데이터 */
-		model.addAttribute("pageMaker", new PageDTO(cri, authorService.authorGetTotal(cri)));		
+		model.addAttribute("pageMaker", new PageDTO(cri, total));		
+		logger.info("model " + model.toString());
 		logger.info("authorPopGET...........");
 		
 	}

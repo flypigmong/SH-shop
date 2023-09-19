@@ -41,6 +41,7 @@ public class AuthorServiceImpl implements AuthorService {
 		log.info("(service)authorGetTotal()......." + cri);
 		return authorMapper.authorGetTotal(cri);
 	}
+	
 
 	@Override
 	public AuthorVO authorGetDetail(int authorId) throws Exception {
@@ -59,6 +60,6 @@ public class AuthorServiceImpl implements AuthorService {
 	public int authorDelete(int authorId) {
 		log.info("service::: authorDelete..........." + authorId);
 		return authorMapper.authorDelete(authorId);
-	}	
-	
+	}
+
 }
