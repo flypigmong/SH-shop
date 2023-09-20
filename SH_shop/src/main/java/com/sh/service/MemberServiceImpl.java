@@ -39,14 +39,39 @@ public class MemberServiceImpl implements MemberService{
 		membermapper.memberJoin(member);            // DAO에게 회원가입 쿼리 요청
 	
 		}
-		
+	
+	/* 비밀번호 변경 */
+	@Override
+	public boolean memberPwUpdate(MemberVO member, String currentPw, String newPw) {
+		// 일치하는 아이디 있는지 확인
+		MemberVO Ivo = membermapper.memberLogin(member); 
+		System.out.println("getmemberpwww" + Ivo.getMemberPw());
+		System.out.println("memberpwwwwwwww" +currentPw);
+		// 일치하는 아이디 있으면
+		if(Ivo != null) {
+			if(pwEncoder.matches(currentPw, Ivo.getMemberPw())) { //현재의 비밀번호가 일치하면
+				String encodePw = pwEncoder.encode(newPw); // 변경할 비밀번호 인코딩
+				member.setMemberPw(encodePw); // 인코딩 된 비밀번호 member객체에 다시 저장
+				membermapper.memberPwUpdate(member); // dao 에 비밀번호 변경 요청 전달
+	            return true;      //비밀번호 변경 성공을 반환
+	        } else {
+	            return false;      //비밀번호 변경 실패를 반환
+	        }
+		}
+		return false;  //비밀번호 변경 실패를 반환
+	}
+	
+
+
+
+	
 		/* 로그인 */
 		public MemberVO memberLogin(MemberVO member) {
 			  MemberVO lvo = membermapper.memberLogin(member); // DAO를 호출하여 일치하는 아이디가 있는지 확인
 			  logger.info("success1:" + lvo);
 			  if(lvo != null) { // 일치하는 아이디가 있으면
 			    if(pwEncoder.matches(member.getMemberPw(), lvo.getMemberPw())) { // 비밀번호가 일치하면
-			      lvo.setMemberPw(null); // 인코딩된 비밀번호 정보 지움
+			     // lvo.setMemberPw(null); // 인코딩된 비밀번호 정보 지움
 			      logger.info("success2:" + lvo);
 			      return lvo; // 로그인 성공한 회원 정보 반환
 			    } else {
@@ -55,6 +80,8 @@ public class MemberServiceImpl implements MemberService{
 			  } else { // 일치하는 아이디가 없으면
 			    return null; // null 반환
 			  }
+			  
+			  
 			}
 		
 		
@@ -120,6 +147,13 @@ public class MemberServiceImpl implements MemberService{
         logger.info("(service)memberGetTotal()......." + cri);
         return membermapper.memberGetTotal(cri);
 	}
+
+	@Override
+	public MemberVO memberInfo(String memberId) {
+		logger.info("(service)membeGetrInfo()...."+ memberId);
+		return membermapper.memberInfo(memberId);
+	}
+
 
 
 	

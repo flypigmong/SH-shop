@@ -1,5 +1,8 @@
 package com.sh.mapper;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
 
 import org.junit.Test;
@@ -12,35 +15,56 @@ import com.sh.model.Criteria;
 import com.sh.model.MemberVO;
 import com.sh.model.MemberVO1;
 
+import lombok.extern.log4j.Log4j;
+
 @RunWith(SpringJUnit4ClassRunner.class)
-	@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-	public class MemberMapperTests {
+	@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root/root-context.xml")
+@Log4j
+
+public class MemberMapperTests {
 
 		@Autowired
 		private MemberMapper membermapper;			//MemberMapper.java 인터페이스 의존성 주입
 
+		@Test
+		public void memberPwUpdate() throws Exception{
+			MemberVO member = new MemberVO();
+			
+			member.setMemberId("test14");			//회원 id
+			member.setMemberPw("test16");			//회원 비밀번호
+			member.setMemberName("test14");		//회원 이름
+			member.setMemberMail("test14");		//회원 메일
+			member.setMemberAddr1("test14");		//회원 우편번호
+			member.setMemberAddr2("test14");		//회원 주소
+			member.setMemberAddr3("test14");		//회원 상세주소
+			
+			membermapper.memberPwUpdate(member);;			//쿼리 메서드 실행
+			
+		}
+		
+		
 		/*
 		//회원가입 쿼리 테스트 메서드
 		@Test
 		public void memberJoin() throws Exception{
 			MemberVO member = new MemberVO();
 			
-			member.setMemberId("test");			//회원 id
-			member.setMemberPw("test");			//회원 비밀번호
-			member.setMemberName("test");		//회원 이름
-			member.setMemberMail("test");		//회원 메일
-			member.setMemberAddr1("test");		//회원 우편번호
-			member.setMemberAddr2("test");		//회원 주소
-			member.setMemberAddr3("test");		//회원 상세주소
+			member.setMemberId("test14");			//회원 id
+			member.setMemberPw("test14");			//회원 비밀번호
+			member.setMemberName("test14");		//회원 이름
+			member.setMemberMail("test14");		//회원 메일
+			member.setMemberAddr1("test14");		//회원 우편번호
+			member.setMemberAddr2("test14");		//회원 주소
+			member.setMemberAddr3("test14");		//회원 상세주소
 			
 			membermapper.memberJoin(member);			//쿼리 메서드 실행
 			
 		}
 
-		*/
 		
-		/* 아이디 중복검사 */
-		/* 
+		
+		// 아이디 중복검사 
+		 
 		@Test
 		public void memberIdChk() throws Exception{
 			String id = "admin";	// 존재하는 아이디
@@ -86,9 +110,9 @@ import com.sh.model.MemberVO1;
 			}
 		}
 		
-		*/
 		
-		/* 회원 총 수 */
+		
+		// 회원 총 수 
 		@Test
 		public void memberGetTotalTest() throws Exception{
 			
@@ -101,5 +125,24 @@ import com.sh.model.MemberVO1;
 			
 		}
 		
+		
+		// 회원 정보
+		@Test
+		public void memberGetInfo() throws Exception{
+			
+			//get
+			String memberId = "admin" ; //테스트 할 회원 아이디
+			
+			//when
+			MemberVO member = membermapper. getMemberInfo(memberId); // mapper메소드호출
+			
+			  // then
+			  assertNotNull(member); // member 객체가 null이 아닌지 확인
+			  assertEquals(memberId, member.getMemberId()); // member 객체의 아이디가 입력한 아이디와 같은지 확인
+			  log.info(member); // member 객체의 정보를 로그로 출력
+			
+		}
+		*/
+	
 }
 

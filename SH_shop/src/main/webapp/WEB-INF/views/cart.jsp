@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Welcome BookMall</title>
-<link rel="stylesheet" href="resources/css/cart.css">
+<link rel="stylesheet" href="../resources/css/cart.css">
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -35,7 +35,7 @@
 						<a id="gnb_logout_button">로그아웃</a>
 					</li>
 					<li>
-						마이룸
+						<a href="/member/myPage/${member.memberId}">마이룸</a>
 					</li>
 					<li>
 						<a href="/cart/${member.memberId}">장바구니</a>
@@ -49,7 +49,7 @@
 		<div class="top_area">
 			<!-- 로고영역 -->
 			<div class="logo_area">
-				<a href="/main"><img src="resources/img/mLogo.png"></a>
+				<a href="/main"><img src="../resources/img/mLogo.png"></a>
 			</div>
 			<div class="search_area">
                 	<div class="search_wrap">
@@ -280,7 +280,7 @@
 			<div class="footer_container">
 				
 				<div class="footer_left">
-					<img src="resources/img/Logo.png">
+					<img src="/resources/img/Logo.png">
 				</div>
 				<div class="footer_right">
 					(주) SHBook    대표이사 : OOO

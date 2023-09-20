@@ -31,6 +31,9 @@ ul{
 .th_column_1{
 	width:120px;
 }
+.th_column_2{
+	width:120px;
+}
 .th_column_3{
 	width:110px;
 }
@@ -40,7 +43,18 @@ ul{
 .th_column_5{
 	width:140px;
 }
-
+.th_column_6{
+	width:140px;
+}
+.th_column_7{
+	width:140px;
+}
+.th_column_8{
+	width:140px;
+}
+.th_column_9{
+	width:140px;
+}
 /* 화면 전체 렙 */
 .wrapper{
     width: 100%;

@@ -16,9 +16,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -27,7 +29,7 @@ import com.sh.model.MemberVO;
 import com.sh.service.MemberService;
 
 @Controller
-@RequestMapping(value = "/member")
+@RequestMapping(value = "/member") 
 public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -59,6 +61,41 @@ public class MemberController {
 		return "redirect:/main";
 	}
 
+	// 비밀번호 변경 페이지
+	@GetMapping("/pwUpdateForm")
+	public void meberPwUpdateForm(String memberId, Model model, HttpSession session) throws Exception{
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		System.out.println("Member " + member);
+		
+	}
+	
+	//비밀번호 변경
+	@PostMapping(value="/pwUpdate")
+	public String memberPwUpdate(@RequestParam("currentPw") String currentPw,
+			@RequestParam("newPw") String newPw, HttpSession session,RedirectAttributes rttr) {
+				
+		// 세션에서 로그인한 회원의 정보 가져오기
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		System.out.println("Member : " + member);
+		System.out.println("currentPw : " + currentPw);
+		System.out.println("newPw: " + newPw);
+		
+		// 서비스에 비밀번호 변경 요청 전달
+		boolean result = memberservice.memberPwUpdate(member, currentPw, newPw);
+		
+		//결과에 따라 다른 페이지로 리다이렉트
+		if(result) {
+			rttr.addFlashAttribute("msg", "비밀번호 변경성공!"); // 로그인 실패 메시지 전달
+		    session.removeAttribute("msg"); // 세션에서 로그인 실패 메시지 삭제
+			return "redirect:/main";
+		}else {
+		    rttr.addFlashAttribute("msg", "변경에 실패했습니다"); // 로그인 실패 메시지 전달
+		    session.removeAttribute("msg"); // 세션에서 로그인 실패 메시지 삭제
+			return "redirect:/member/pwUpdateForm";
+		}
+		
+	}
+	
 	@PostMapping(value="login")
 	public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
 	  HttpSession session = request.getSession();
@@ -75,86 +112,6 @@ public class MemberController {
 	  }
 	}	
 	
-	
-	/*
-	 @PostMapping(value="login") 
-	 public String loginPOST(MemberVO member, HttpSession session, RedirectAttributes rttr) throws Exception{ 
-		 MemberVO login = memberservice.memberLogin(member); // 서비스에게 로그인 요청 전달 
-		 if(login != null) {    // 로그인 성공 시
-			 session.setAttribute("member", login);  // 세션에 로그인 정보 저장 
-			 logger.info("login success");
-			 rttr.addFlashAttribute("msg", "로그인 성공!"); // 로그인 성공 메시지 전달
-			logger.info("msg");
-			 return "redirect:/main"; // 메인페이지로 리다이렉트 
-
-			 
-		 	} else {		 // 로그인 실패 시 
-		 		logger.info("login fail");
-		 		 rttr.addFlashAttribute("msg", "아이디나 비밀번호가 틀렸어요."); // 로그인 실패 메시지 전달
-				 return "redirect:/member/login"; // 로그인페이지로 리다이렉트 
-		 	} 
-	 }
-
-	*/
-	
-	
-	
-	/*
-	//회원가입
-	@PostMapping(value="join")
-	public String joinPOST(MemberVO member) throws Exception{
-      
-		String rawPw = "";            // 인코딩 전 비밀번호
-        String encodePw = "";        // 인코딩 후 비밀번호
-        
-        rawPw = member.getMemberPw();            // 비밀번호 데이터 얻음
-        encodePw = pwEncoder.encode(rawPw);        // 비밀번호 인코딩
-        member.setMemberPw(encodePw);            // 인코딩된 비밀번호 member객체에 다시 저장
-        
-        /* 회원가입 쿼리 실행 
-        memberservice.memberJoin(member);		
-		
-        return "redirect:/main";
-        
-	}	**/
-	
-	   /* 로그인 
-    @PostMapping(value="login")
-    public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
-       
-        HttpSession session = request.getSession();
-        String rawPw = "";
-        String encodePw = "";
-    
-        MemberVO lvo = memberservice.memberLogin(member);    // 제출한아이디와 일치하는 아이디 있는지 
-        
-        if(lvo != null) {            // 일치하는 아이디 존재시
-            
-            rawPw = member.getMemberPw();        // 사용자가 제출한 비밀번호
-            encodePw = lvo.getMemberPw();        // 데이터베이스에 저장한 인코딩된 비밀번호
-            
-            if(true == pwEncoder.matches(rawPw, encodePw)) {        // 비밀번호 일치여부 판단
-                
-                lvo.setMemberPw("");                    // 인코딩된 비밀번호 정보 지움
-                session.setAttribute("member", lvo);     // session에 사용자의 정보 저장
-                return "redirect:/main";        // 메인페이지 이동
-                
-                
-            } else {
- 
-                rttr.addFlashAttribute("result", 0);            
-                return "redirect:/member/login";    // 로그인 페이지로 이동
-                
-            }
-            
-        } else {                    // 일치하는 아이디가 존재하지 않을 시 (로그인 실패)
-            
-            rttr.addFlashAttribute("result", 0);            
-            return "redirect:/member/login";    // 로그인 페이지로 이동
-            
-        }
-    }
-    */
     
 	// 아이디 중복 검사
 	@PostMapping(value = "/memberIdChk")
@@ -256,8 +213,12 @@ public class MemberController {
     
     
     /* 마이페이지 */
-	@RequestMapping(value="myPage")
-	public String myPageFrm() {
+	@GetMapping("/myPage/{memberId}")
+	public String myPageGet(@PathVariable("memberId") String memberId, Model model) {
+		
+		model.addAttribute("memberInfo", memberservice.memberInfo(memberId));
+		logger.info("model " + model);
+		
 		return "member/myPage";
 	}
     

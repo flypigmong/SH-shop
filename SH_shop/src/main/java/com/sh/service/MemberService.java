@@ -26,4 +26,10 @@ public interface MemberService {
 	// 회원 총 수
 	public int memberGetTotal(Criteria cri) throws Exception;
 	
+    // 회원 정보
+    public MemberVO memberInfo(String memberId);
+
+    // 비밀번호 변경
+	public boolean memberPwUpdate(MemberVO member, String currentPw, String newPw);
+    
 }

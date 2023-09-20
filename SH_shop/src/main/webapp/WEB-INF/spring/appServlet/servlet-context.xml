@@ -15,11 +15,9 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- mapping="~~"으로 들어온 요청을  location="~~"에 매핑해준다 -->
 	<resources mapping="/resources/**" location="/resources/" />
-	<resources mapping="/admin/resources/**" location="/resources/" />
-	<resources mapping="/cart/resources/**" location="/resources/" />
-	<resources mapping="/order/resources/**" location="/resources/" />
-	<resources mapping="/member/resources/**" location="/resources" />
+	<resources mapping="/**/resources/**" location="/resources/" />
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -32,11 +30,8 @@
 	<!-- 배치 프로그램 -->
 	<context:component-scan base-package="com.sh.task" />
 	
-	<context:component-scan base-package="com.sh.controller" />
-	<context:component-scan base-package="com.sh.service" />
-	<context:component-scan base-package="com.sh.model" />	
-	<context:component-scan base-package="com.sh.service" />
-  
+	<context:component-scan base-package="com.sh.*" />
+
 
 	
 	<!-- 업로드 관련 빈 -->

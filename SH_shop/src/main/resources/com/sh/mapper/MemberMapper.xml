@@ -58,4 +58,19 @@
           </if>
           
       </select>
+      
+      <!-- 회원 정보 -->
+      <select id="memberInfo" resultType="com.sh.model.MemberVO">
+      
+      SELECT memberId,memberName, memberMail, memberAddr1, memberAddr2, memberAddr3, money, point FROM book_member WHERE memberid = #{memberId}
+  		
+  		</select>
+  
+  
+  	<!-- 비밀번호 변경 -->
+  	<update id="memberPwUpdate">
+  	
+  		UPDATE book_member SET  memberPw= #{memberPw} WHERE memberId= #{memberId}
+  	
+  	</update>
   </mapper>

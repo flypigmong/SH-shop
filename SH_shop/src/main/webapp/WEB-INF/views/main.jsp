@@ -38,7 +38,7 @@
                         <a id="gnb_logout_button">로그아웃</a>
                     </li>
                     <li>
-                        마이룸
+                       <a href="/member/myPage/${member.memberId}">마이룸</a>
                     </li>
                     <li>
                         <a href="/cart/${member.memberId}">장바구니</a>

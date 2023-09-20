@@ -6,9 +6,6 @@
 a{
 	text-decoration: none;
 }
-ul{
-    list-style: none;
-}
 /* 화면 전체 렙 */
 .wrapper{
 	width: 100%;
@@ -23,7 +20,7 @@ ul{
 	width: 100%;
     height: 50px;
     background-color: #f0f0f1;
-    position:relative;
+    position:relative;    
 }
 .top_gnb_area .list{
 	position: absolute;
@@ -38,134 +35,126 @@ ul{
     font-weight: 900;
     cursor: pointer;
 }
-
-/* 관리제 페이지 상단 현페이지 정보 */
-.admin_top_wrap{
-    height:110px;
-    line-height: 110px;
-    background-color: #5080bd;
-    margin-bottom:15px;
+/* 로고, 검색, 로그인 */
+.top_area{
+	width: 100%;
+    height: 150px;
+    /* background-color: #f7f0b9; */
 }
-.admin_top_wrap>span{
-    margin-left: 30px;
-    display:inline-block;
-    color: white;
-    font-size: 50px;
-    font-weight: bolder;
+/* 로고 영역 */
+.logo_area{
+	width: 25%;
+	height: 100%;
+	float:left;
 }
-/* 관리자 wrap(네비+컨텐츠) */
-.admin_wrap{
-    
-    
-}
-
-/* 관리자페이지 네비 영역 */
-.admin_navi_wrap{
-    width: 20%;
-    height: 300px;
-    float:left;
+.logo_area img{
+	width: 100%;
     height: 100%;
 }
-.admin_navi_wrap li{
-    display: block;
-    height: 80px;
-    line-height: 80px;
-    text-align: center;
-}
-.admin_navi_wrap li a{
-    display: block;
-    height: 100%;
-    width: 95%;
-    margin: 0 auto;
-    cursor: pointer;
-    font-size: 30px;
-    font-weight: bolder;
-}
-.admin_navi_wrap li a:link {color: black;}
-.admin_navi_wrap li a:visited {color: black;}
-.admin_navi_wrap li a:active {color: black;}
-.admin_navi_wrap li a:hover {color: black;}
-
-.admin_list_04{
-    background-color: #c8c8c8;
-} 
 
 
-/* 관리자페이지 컨텐츠 영역 */
-.admin_content_wrap{
-    width: 80%;
-    float:left;
-    min-height:700px;
+
+/* 로그인 버튼 영역 */
+.login_area{
+	width: 25%;
+	height: 100%;
+	display: inline-block;	
+	text-align: center;		
 }
-/* 관리자 컨텐츠 제목 영역 */
-.admin_content_subject{	
+.login_button{
+	height: 50%;
+    background-color: #D4DFE6;
+    margin-top: 30px;
+    line-height: 77px;
     font-size: 40px;
-    font-weight: bolder;
-    padding-left: 15px;
-    background-color: #6AAFE6;
-    height: 80px;
-    line-height: 80px;
-    color: white;	
+    font-weight: 900;
+    border-radius: 10px;
+    cursor: pointer;	
 }
-/* 관리자 컨텐츠 메인 영역 */
-.form_section{
-	width: 95%;
-    margin-left: 2%;
-    margin-top: 20px;
-    border: 1px solid #dbdde2;
-    background-color: #efefef;	
+.login_area>span{
+	margin-top: 10px;
+    font-weight: 900;
+    display: inline-block;
 }
-.form_section_title{
-	padding: 20px 35px;	
+.login_button{
+	height : 50%;
+	background-color: #D4DFE6;
+	margin-top:30px;
 }
-.form_section_title label{
-	display: block;
-    font-size: 20px;
-    font-weight: 800;
-}
-.form_section_content{
-	padding: 20px 35px;
-    border-top: 1px solid #dbdde2;	
-}
-.form_section_content input{
-	width: 98%;
-    height: 25px;
-    font-size: 20px;
-    padding: 5px 1%;
-}
-.form_section_content textarea{
-    width: 98%;
-    height: 170px;
-    font-size: 20px;	
-}
-.form_section_content select{
-	width: 98%;
-    height: 35px;
-    font-size: 20px;
-    text-align-last: center;
-}
-.input_block{
-	background-color:#f9f9f9;	
+
+/* 제품 목록 네비 */
+.navi_bar_area{
+	width: 100%;
+    height: 70px;
+    background-color: #7696fd;
 }
 
 
-/* 버튼 영역 */
-.btn_section{
-	text-align: center;
-	margin: 80px 0;
+
+	/* 회원 정보 영역 */
+
+	
+.member_table_wrap{
+	padding: 20px 35px
 }
-.btn{
-    min-width: 180px;
-    padding: 4px 30px;
-    font-size: 25px;
-    font-weight: 600;
-    line-height: 40px;
+.member_table{
+	width: 100%;
+    border: 1px solid #d3d8e1;
+    text-align: center;
+    border-collapse: collapse;
 }
-.modify_btn{
-	background-color: #b8d3e8;
-	margin-left:15px;
+.member_table td{
+	/* padding: 10px 5px; */
+	border : 1px solid #e9ebf0;
+}
+.member_table thead{
+	background-color: #f8f9fd;	
+	font-weight: 600;
+}
+.th_column_1{
+	width:120px;
+}
+.th_column_2{
+	width:100px;
+}
+.th_column_3{
+	width:100px;
+}
+.th_column_4{    /*회원주소1*/
+	width:140px;
+}
+.th_column_5{	  /*회원주소2*/
+	width:140px;
+}
+.th_column_6{   /*회원주소3*/
+	width:80px;
+}
+.th_column_7{ 	/* 돈 */
+	width:80px;
+}
+.th_column_8{  /* 포인트 */
+	width:140px;
 }
 
+	.content_area{
+		width: 100%;
+	    min-height: 700px;
+	}
+
+	 .content_subject{
+		height: 110px;
+	    line-height: 110px;
+	    background-color: #5080bd;
+	    margin-bottom: 60px; 
+	 
+	 }
+		 .content_subject span{ 
+		    padding-left: 30 px;
+		    display: inline-block;
+		    color: white;
+		    font-size: 50px;
+		    font-weight: bolder; 
+		 }
 
 
 
@@ -229,8 +218,6 @@ ul{
 	margin-left: 70px;
 	margin-top : 30px;
 }
-
-
 
 
 /* float 속성 해제 */

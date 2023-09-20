@@ -10,6 +10,9 @@
   <!-- exclude-mapping 은 일치하는 요청을 제외 -->
     <mvc:interceptors>
     
+
+    
+    
         <mvc:interceptor>
             <mvc:mapping path="/member/login" />
             <bean id="loginIntreceptor" class="com.sh.interceptor.LoginInterceptor" />

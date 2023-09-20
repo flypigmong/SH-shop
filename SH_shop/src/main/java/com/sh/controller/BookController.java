@@ -46,8 +46,8 @@ public class BookController {
 	
 	
 	/* 메인 페이지 이동 */
-	@RequestMapping(value="/main", method = RequestMethod.GET) 
-		public void mainPageGET(Model model) {
+	@GetMapping(value={"/" , "/main"})
+		public String mainPageGET(Model model) {
 			logger.info("메인 페이지 진입");
 			
 			model.addAttribute("cate1", bookService.getCateCode1()); // 카테고리
@@ -55,6 +55,8 @@ public class BookController {
 			model.addAttribute("ls", bookService.likeSelect()); // 메인페이지 List 정보 담긴 객체
 			logger.info(" 국내 :" + bookService.getCateCode1());
 			logger.info(" 국외 :" + bookService.getCateCode1());
+			
+			return "main";
 		}
 		
 	/*  이미지 출력 */
