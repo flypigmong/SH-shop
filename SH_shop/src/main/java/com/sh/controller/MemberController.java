@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sh.model.Criteria;
@@ -72,7 +73,7 @@ public class MemberController {
 	//비밀번호 변경
 	@PostMapping(value="/pwUpdate")
 	public String memberPwUpdate(@RequestParam("currentPw") String currentPw,
-			@RequestParam("newPw") String newPw, HttpSession session,RedirectAttributes rttr) {
+			@RequestParam("newPw") String newPw, HttpSession session, RedirectAttributes rttr, Model model) {
 				
 		// 세션에서 로그인한 회원의 정보 가져오기
 		MemberVO member = (MemberVO) session.getAttribute("member");
@@ -85,12 +86,19 @@ public class MemberController {
 		
 		//결과에 따라 다른 페이지로 리다이렉트
 		if(result) {
-			rttr.addFlashAttribute("msg", "비밀번호 변경성공!"); // 로그인 실패 메시지 전달
-		    session.removeAttribute("msg"); // 세션에서 로그인 실패 메시지 삭제
-			return "redirect:/main";
+			session.setAttribute("msg1", "비밀번호 변경성공!");
+			 //session.removeAttribute("msg1"); // 세션에서 로그인 실패 메시지 삭제
+			//rttr.addFlashAttribute("msg1", "비밀번호 변경성공!"); // 성공 메시지 전달
+			// session.removeAttribute("msg1");
+			//model.addAttribute("msg", "비밀번호 변경성공!"); // Model 객체에 메시지 저장
+
+			return "redirect:/member/pwUpdateForm";
 		}else {
-		    rttr.addFlashAttribute("msg", "변경에 실패했습니다"); // 로그인 실패 메시지 전달
-		    session.removeAttribute("msg"); // 세션에서 로그인 실패 메시지 삭제
+			session.setAttribute("msg1", "기존 비밀번호가 틀립니다.");
+			//rttr.addFlashAttribute("msg1", "기존 비밀번호가 틀립니다."); // 실패 메시지 전달
+			 //session.removeAttribute("msg1"); // 세션에서 로그인 실패 메시지 삭제
+			// session.removeAttribute("msg1"); // 세션에서 로그인 실패 메시지 삭제
+			// model.addAttribute("msg", "기존 비밀번호가 틀립니다."); // Model 객체에 메시지 저장
 			return "redirect:/member/pwUpdateForm";
 		}
 		
@@ -102,7 +110,6 @@ public class MemberController {
 	  MemberVO lvo = memberservice.memberLogin(member); // Service를 호출하여 로그인 로직 수행
 	  if(lvo != null) { // 로그인 성공 시
 	    session.setAttribute("member", lvo); // session에 사용자의 정보 저장
-	    
 	    logger.info("login success");
 	    return "redirect:/main"; // 메인페이지로 리다이렉트
 	  } else { // 로그인 실패 시

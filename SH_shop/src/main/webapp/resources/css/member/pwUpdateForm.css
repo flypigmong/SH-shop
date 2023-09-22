@@ -1,0 +1,344 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding:0;
+}
+a{
+	text-decoration: none;
+}
+/* 화면 전체 렙 */
+.wrapper{
+	width: 100%;
+}
+/* content 랩 */
+.wrap{
+	width : 1000px;
+	margin: auto;
+}
+/* 홈페이지 기능 네비 */ 
+.top_gnb_area{
+	width: 100%;
+    height: 50px;
+    background-color: #f0f0f1;
+    position:relative;    
+}
+.top_gnb_area .list{
+	position: absolute;
+    top: 0px;
+    right: 0;
+    
+}
+.top_gnb_area .list li{
+	list-style: none;	
+    float : left;
+    padding: 13px 15px 0 10px;
+    font-weight: 900;
+    cursor: pointer;
+}
+/* 로고, 검색, 로그인 */
+.top_area{
+	width: 100%;
+    height: 150px;
+    /* background-color: #f7f0b9; */
+}
+/* 로고 영역 */
+.logo_area{
+	width: 25%;
+	height: 100%;
+	float:left;
+}
+.logo_area img{
+	width: 100%;
+    height: 100%;
+}
+
+
+
+/* 로그인 버튼 영역 */
+.login_area{
+	width: 25%;
+	height: 100%;
+	display: inline-block;	
+	text-align: center;		
+}
+.login_button{
+	height: 50%;
+    background-color: #D4DFE6;
+    margin-top: 30px;
+    line-height: 77px;
+    font-size: 40px;
+    font-weight: 900;
+    border-radius: 10px;
+    cursor: pointer;	
+}
+.login_area>span{
+	margin-top: 10px;
+    font-weight: 900;
+    display: inline-block;
+}
+.login_button{
+	height : 50%;
+	background-color: #D4DFE6;
+	margin-top:30px;
+}
+
+/* 제품 목록 네비 */
+.navi_bar_area{
+	width: 100%;
+    height: 70px;
+    background-color: #7696fd;
+}
+
+
+
+	/* 회원 정보 영역 */
+
+	
+.member_table_wrap{
+	padding: 20px 35px
+}
+.member_table{
+	width: 100%;
+    border: 1px solid #d3d8e1;
+    text-align: center;
+    border-collapse: collapse;
+}
+.member_table td{
+	/* padding: 10px 5px; */
+	border : 1px solid #e9ebf0;
+}
+.member_table thead{
+	background-color: #f8f9fd;	
+	font-weight: 600;
+}
+
+
+	.content_area{
+		width: 100%;
+	    min-height: 700px;
+	}
+
+	 .content_subject{
+		height: 110px;
+	    line-height: 110px;
+	    background-color: #5080bd;
+	    margin-bottom: 60px; 
+	 
+	 }
+		 .content_subject span{ 
+		    padding-left: 30 px;
+		    display: inline-block;
+		    color: white;
+		    font-size: 50px;
+		    font-weight: bolder; 
+		 }
+
+
+/* 페이지 로고 */
+.logo_wrap{
+	text-align: center;	
+	margin: 150px 0;	
+}
+.logo_wrap>span{
+	font-size : 50px;
+	font-weight: 900;
+}
+
+
+
+/* 비밀번호 변경 area */
+
+/* 아이디 영역 */
+.id_wrap{
+	width: 100%;
+    margin-top: 20px;
+}
+.id_name{
+	font-size: 25px;
+    font-weight: bold;
+}
+.id_input_box{
+	border: 1px solid black;
+	height:31px;
+	padding: 10px 14px;	
+	
+}
+
+
+/* 기존 비밀번호 영역 */
+.pw_wrap{
+	width: 100%;
+    margin-top: 20px;
+    
+}
+.pw_name{
+	font-size: 25px;
+    font-weight: bold;
+}
+.pw_input_box{
+	border: 1px solid black;
+	height:31px;
+	padding: 5px 7px;	
+	
+}
+.pw_input{
+	width:100%;
+	height:100%;
+	border:none;
+	font-size:28px;
+}
+
+
+/* 새 비밀번호 영역*/
+.pwck_wrap{
+	width: 100%;
+    margin-top: 20px;
+}
+.pwck_name{
+	font-size: 25px;
+    font-weight: bold;
+}
+.pwck_input_box{
+	border: 1px solid black;
+	height:31px;
+	padding: 10px 14px;	
+}	
+.newPw_input{
+	width:100%;
+	height:100%;
+	border:none;
+	font-size:28px;
+}
+
+/* 새 비밀번호 확인 영역 */
+.pwck_wrap2{
+	width: 100%;
+    margin-top: 20px;
+}
+
+.pwck_name2{
+	font-size: 25px;
+    font-weight: bold;
+}
+.pwck_input_box2{
+	border: 1px solid black;
+	height:31px;
+	padding: 10px 14px;	
+}
+
+.newPw_input2{
+	width:100%;
+	height:100%;
+	border:none;
+	font-size:28px;
+}	
+	
+	
+
+
+
+/* 수정하기 버튼 */
+.update_button_wrap{
+	margin-top: 40px;
+	text-align: center;
+}
+.update_button{
+	width: 84%;
+    height: 80px;
+    background-color: #6AAFE6;
+    font-size: 40px;
+    font-weight: 900;
+    color: white;
+    margin : auto;
+}
+
+/* 유효성 검사 문구(입력해주세요 문구) */
+.original_pw_ck{
+	color:red;
+	display: none;
+}
+.final_pw_ck{
+	color:red;
+    display: none;
+}
+.final_pwck_ck{
+	color:red;
+    display: none;
+}
+
+/* 비밀번호 확인 일치 유효성검사(일치합니다/일치하지않습니다) */
+.pwck_input_re_1{
+        color : green;
+        display : none;    
+}
+.pwck_input_re_2{
+        color : red;
+        display : none;    
+}  
+
+/* footer navai 영역 */
+.footer_nav{
+	width:100%;
+	height:50px;
+}
+.footer_nav_container{
+	width: 100%;
+	height: 100%;
+	background-color:#8EC0E4;
+}
+.footer_nav_container>ul{
+	font-weight : bold;
+	float:left;
+	list-style:none;
+	position:relative;
+	padding-top:10px;
+	line-height: 27px;
+	font-family: dotum;
+	margin-left: 10px;
+}
+.footer_nav_container>ul>li{
+	display:inline;
+	width: 45px;
+	height: 19px;
+	padding: 10px 9px 0 10px;
+}
+.footer_nav_container>ul>span{
+	margin: 0 4px;
+}
+/* footer 영역 */
+.footer{
+	width:100%;
+	height:130px;
+	background-color:#D4DFE6;
+	padding-bottom : 50px;
+}
+.footer_container{
+	width: 100%;
+	height: 100%;
+	margin: auto;
+}
+.footer_left>img {
+	width: 150%;
+    height: 130px;
+    margin-left: -20px;
+    margin-top: -12px;
+}
+.footer_left{
+	float :left;
+	width: 170px;
+	margin-left: 20px;
+	margin-top : 30px;
+	
+}
+.footer_right{
+	float :left;
+	width: 680px;
+	margin-left: 70px;
+	margin-top : 30px;
+}
+
+
+/* float 속성 해제 */
+.clearfix{
+	clear: both;
+}

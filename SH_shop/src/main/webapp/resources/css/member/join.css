@@ -81,6 +81,12 @@
 	border:none;
 	font-size:28px;
 }
+.newpw_input{
+	width:100%;
+	height:100%;
+	border:none;
+	font-size:28px;
+}
 
 /* 비밀번호 확인 영역 */
 .pwck_wrap{

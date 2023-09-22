@@ -45,8 +45,8 @@ public class MemberServiceImpl implements MemberService{
 	public boolean memberPwUpdate(MemberVO member, String currentPw, String newPw) {
 		// 일치하는 아이디 있는지 확인
 		MemberVO Ivo = membermapper.memberLogin(member); 
-		System.out.println("getmemberpwww" + Ivo.getMemberPw());
-		System.out.println("memberpwwwwwwww" +currentPw);
+		System.out.println("getmemberpwww:  " + Ivo.getMemberPw());
+		System.out.println("memberpwwwwwwww:  " +currentPw);
 		// 일치하는 아이디 있으면
 		if(Ivo != null) {
 			if(pwEncoder.matches(currentPw, Ivo.getMemberPw())) { //현재의 비밀번호가 일치하면
