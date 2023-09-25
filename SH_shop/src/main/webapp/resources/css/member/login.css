@@ -74,6 +74,7 @@
     font-weight: 900;
     color: white;
     margin : auto;
+    border-radius: 48px;
 }
 
 /* 로그인 실패시 경고글 */

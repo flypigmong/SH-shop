@@ -123,14 +123,42 @@
     
     
 <script>
+	
 <c:if test="${not empty msg1}">
 	alert("${msg1}");
-	<c:remove var="msg1" scope="session"/> // 세션에서 msg 메시지 삭제
 </c:if>
 
-//<c:if test="${not empty msg1}">
-//	alert("${msg1}");
-//</c:if>
+/*
+<c:choose> 
+	<c:when test="${sessionScope.msg1 eq '비밀번호 변경성공!'}">
+		alert("${sessionScope.msg1}");
+		response.sendRedirect("/main"); 
+	</c:when>
+	<c:when test="${sessionScope.msg1 eq '기존 비밀번호가 틀립니다.'}">
+		alert("${sessionScope.msg1}");  
+	</c:when>
+</c:choose>
+*/
+
+/*
+<c:if test="${not empty sessionScope.msg1}"> 
+	alert("${sessionScope.msg1}"); // EL 표현식 사용
+	session.removeAttribute("msg1"); // 세션에서 msg1 삭제 
+		<c:if test="${sessionScope.msg1 eq '비밀번호 변경성공!'}">
+			response.sendRedirect("/main"); // main으로 리다이렉트
+		</c:if> 
+</c:if>
+*/
+
+/*
+<c:if test="${not empty msg1}">
+	alert("${msg1}");
+	//<c:remove var="msg1" scope="session"/> // 세션에서 msg 메시지 삭제
+</c:if>
+*/
+	
+	
+
     //<c:if test="${not empty msg1}">
         //alert("${msg1}");
         //session.setAttribute("msg1" , null);

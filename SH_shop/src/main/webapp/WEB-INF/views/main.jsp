@@ -147,7 +147,8 @@
 										${ls.cateName}
 									</div>
 									<div class="ls_rating">
-										${ls.ratingAvg}
+										<img src="./resources/img/star.jpg" style="width:13px; height:13px;  display: inline-block; vertical-align:middle;"/>
+											${ls.ratingAvg}
 									</div>
 									<div class="ls_bookName">
 										${ls.bookName}

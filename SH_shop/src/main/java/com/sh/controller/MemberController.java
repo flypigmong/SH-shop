@@ -90,15 +90,15 @@ public class MemberController {
 			 //session.removeAttribute("msg1"); // 세션에서 로그인 실패 메시지 삭제
 			//rttr.addFlashAttribute("msg1", "비밀번호 변경성공!"); // 성공 메시지 전달
 			// session.removeAttribute("msg1");
-			//model.addAttribute("msg", "비밀번호 변경성공!"); // Model 객체에 메시지 저장
+			//model.addAttribute("msg1", "비밀번호 변경성공!"); // Model 객체에 메시지 저장
 
 			return "redirect:/member/pwUpdateForm";
 		}else {
-			session.setAttribute("msg1", "기존 비밀번호가 틀립니다.");
+			 session.setAttribute("msg1", "기존 비밀번호가 틀립니다.");
 			//rttr.addFlashAttribute("msg1", "기존 비밀번호가 틀립니다."); // 실패 메시지 전달
 			 //session.removeAttribute("msg1"); // 세션에서 로그인 실패 메시지 삭제
 			// session.removeAttribute("msg1"); // 세션에서 로그인 실패 메시지 삭제
-			// model.addAttribute("msg", "기존 비밀번호가 틀립니다."); // Model 객체에 메시지 저장
+			// model.addAttribute("msg1", "기존 비밀번호가 틀립니다."); // Model 객체에 메시지 저장
 			return "redirect:/member/pwUpdateForm";
 		}
 		
