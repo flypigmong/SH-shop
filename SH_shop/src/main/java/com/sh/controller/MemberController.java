@@ -1,6 +1,6 @@
 package com.sh.controller;
 
-import java.util.List;
+
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -229,6 +229,15 @@ public class MemberController {
 		return "member/myPage";
 	}
     
+	
+	/* 고객센터 페이지 */
+	@GetMapping("/customer")
+	public void boardListGet(Model model) {
+		
+		logger.info("고객센터 목록 페이지 진입");
+		
+		model.addAttribute("list", memberservice.getList());
+	}
 }
 	
 

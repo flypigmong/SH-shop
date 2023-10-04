@@ -73,4 +73,12 @@
   		UPDATE book_member SET  memberPw= #{memberPw} WHERE memberId= #{memberId}
   	
   	</update>
+  	
+  	
+  	<!-- 고객센터 글 목록 -->
+  	<select id="getList" resultType="com.sh.model.CustomerCenterDTO">
+  	
+  		select * from sh_customer_center
+  	
+  	</select>
   </mapper>

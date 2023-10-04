@@ -3,6 +3,7 @@ package com.sh.service;
 import java.util.List;
 
 import com.sh.model.Criteria;
+import com.sh.model.CustomerCenterDTO;
 import com.sh.model.MemberVO;
 import com.sh.model.MemberVO1;
 
@@ -32,4 +33,7 @@ public interface MemberService {
     // 비밀번호 변경
 	public boolean memberPwUpdate(MemberVO member, String currentPw, String newPw);
     
+	// 고객센터 글 목록 
+	public List<CustomerCenterDTO> getList();
+	
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.sh.controller.MemberController;
 import com.sh.mapper.MemberMapper;
 import com.sh.model.Criteria;
+import com.sh.model.CustomerCenterDTO;
 import com.sh.model.MemberVO;
 import com.sh.model.MemberVO1;
 
@@ -152,6 +153,12 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO memberInfo(String memberId) {
 		logger.info("(service)membeGetrInfo()...."+ memberId);
 		return membermapper.memberInfo(memberId);
+	}
+
+	@Override
+	public List<CustomerCenterDTO> getList() {
+		
+		return membermapper.getList();
 	}
 
 

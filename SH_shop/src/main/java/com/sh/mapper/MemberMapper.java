@@ -3,6 +3,7 @@ package com.sh.mapper;
 import java.util.List;
 
 import com.sh.model.Criteria;
+import com.sh.model.CustomerCenterDTO;
 import com.sh.model.MemberVO;
 import com.sh.model.MemberVO1;
 
@@ -32,4 +33,7 @@ public interface MemberMapper {
     
     //비밀번호 변경
     public void memberPwUpdate(MemberVO member);
+    
+    //고객센터 게시글 목록
+    public List<CustomerCenterDTO> getList();
 }

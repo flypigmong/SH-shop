@@ -26,6 +26,7 @@ public class MemberMapperTests {
 		@Autowired
 		private MemberMapper membermapper;			//MemberMapper.java 인터페이스 의존성 주입
 
+		/*
 		@Test
 		public void memberPwUpdate() throws Exception{
 			MemberVO member = new MemberVO();
@@ -144,5 +145,15 @@ public class MemberMapperTests {
 		}
 		*/
 	
+		//고객센터 게시글 목록 테스트
+		@Test
+		public void testGetList() {
+			List list = membermapper.getList();
+			
+	         for(int i = 0; i < list.size();i++) {
+	             log.info("" + list.get(i));
+	         }
+		}
+		
 }
 
