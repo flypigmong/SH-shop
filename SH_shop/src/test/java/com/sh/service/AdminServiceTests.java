@@ -13,7 +13,7 @@ import com.sh.model.AttachImageVO;
 import com.sh.model.BookVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root/root-context.xml")
 public class AdminServiceTests {
 
 	@Autowired

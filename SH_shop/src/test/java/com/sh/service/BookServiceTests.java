@@ -11,7 +11,7 @@ import com.sh.model.Criteria;
 import com.sh.service.BookService;
 
 	@RunWith(SpringJUnit4ClassRunner.class)
-	@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+	@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root/root-context.xml")
 	public class BookServiceTests {
 	
 		@Autowired

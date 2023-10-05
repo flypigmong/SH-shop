@@ -143,7 +143,7 @@ public class MemberMapperTests {
 			  log.info(member); // member 객체의 정보를 로그로 출력
 			
 		}
-		*/
+		
 	
 		//고객센터 게시글 목록 테스트
 		@Test
@@ -154,6 +154,17 @@ public class MemberMapperTests {
 	             log.info("" + list.get(i));
 	         }
 		}
+		*/
 		
+	    /* 고객센터 게시판 조회 */
+	     @Test
+	    public void testGetPage() {
+	        
+	        /* 실제 존재하는 페이지 */
+	        int postNo = 1;
+	        
+	        log.info("" + membermapper.getPage(postNo));
+	        
+	    }
 }
 

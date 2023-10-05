@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.sh.model.CartDTO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root/root-context.xml")
 public class CartServiceTests {
 	
 	@Autowired

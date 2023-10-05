@@ -34,7 +34,7 @@
 
 <div class="content_area">
 	<div class="member_table_wrap">
-	<a href="/board/enroll" class="top_btn">글 등록</a>
+	<a href="/member/customer/PostEnroll" class="top_btn">글 등록</a>
     <table class="member_table">
    	  <thead> 
         <tr>
@@ -47,20 +47,22 @@
         </tr>
         </thead>
         <c:forEach items="${list}" var="list">
-        <tr>
-            <td><c:out value="${list.postNo}"></c:out></td>
-            <td>${list.memberId}</td>
-            <td>
-            		<a class="move" href='<c:out value="${list.postNo}" />'>
-            				<c:out value="${list.postTitle}"></c:out>
-            		</a>
-            </td>
-            <!-- <td><c:out value="${list.postContent}"></c:out></td> -->
-            <td><fmt:formatDate value="${list.postDate}" pattern="yyyy-MM-dd"/></td>
-            <td><fmt:formatDate value="${list.updateDate}" pattern="yyyy-MM-dd"/></td>
+        	<tr>
+	            <td><c:out value="${list.postNo}"></c:out></td>
+	            <td>${list.memberId}</td>
+	            <td>
+	            		<a class="move" href='<c:out value="${list.postNo}"/>'>
+	            				<c:out value="${list.postTitle}"/>
+	            		</a>
+	            </td>
+            	<!-- <td><c:out value="${list.postContent}"></c:out></td> -->
+	            <td><fmt:formatDate value="${list.postDate}" pattern="yyyy-MM-dd"/></td>
+	            <td><fmt:formatDate value="${list.updateDate}" pattern="yyyy-MM-dd"/></td>
         </tr>
         </c:forEach>
     </table>
+    <form id="moveForm" method="get">
+    </form>
 </div>
 </div>
 
@@ -109,9 +111,20 @@
     </div>    <!-- class="wrap" -->
 </div>    <!-- class="wrapper" -->
 
-
-
-	
+<script>
+    let moveForm = $("#moveForm");
+ 
+    $(".move").on("click", function(e){
+        e.preventDefault();
+        
+        moveForm.append("<input type='hidden' name='postNo' value='"+ $(this).attr("href")+ "'>");
+        moveForm.attr("action", "/member/customer/get");
+        moveForm.submit();
+    });
+    
+    
+</script>
 	
 </body>
+
 </html>

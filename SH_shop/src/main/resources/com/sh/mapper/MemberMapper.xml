@@ -81,4 +81,17 @@
   		select * from sh_customer_center
   	
   	</select>
+  	
+  	
+  	<!-- 고객센터 글 등록 -->
+  	<insert id="enroll">
+        
+        insert into sh_customer_center(memberId, postTitle, postContent) values (#{memberId}, #{postTitle}, #{postContent})
+        
+    </insert>
+    
+    <!--  고객센터 글 조회 -->
+    <select id="getPage" resultType="com.sh.model.CustomerCenterDTO">
+    	select * from sh_customer_center where postNo=#{postNo}
+    </select>
   </mapper>

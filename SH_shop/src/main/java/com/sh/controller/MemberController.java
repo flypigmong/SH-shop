@@ -26,6 +26,7 @@ import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sh.model.Criteria;
+import com.sh.model.CustomerCenterDTO;
 import com.sh.model.MemberVO;
 import com.sh.service.MemberService;
 
@@ -238,6 +239,32 @@ public class MemberController {
 		
 		model.addAttribute("list", memberservice.getList());
 	}
+	
+	@GetMapping("/customer/enroll")
+	public void boardEnrollGet() {
+		logger.info("고객센터 글 등록 페이지 진입");
+	}
+	
+	@PostMapping("/customer/enroll")
+	public String boardEnrollPOST(CustomerCenterDTO board, RedirectAttributes rttr) {
+		logger.info("게시판 글 등록 : " + board);
+		
+		memberservice.enroll(board);
+		
+		rttr.addFlashAttribute("result", "enroll success");
+		
+		return "redirect:/member/customer";
+	}
+	
+	
+	// 고객센터 게시글 조회
+	@GetMapping("/customer/get")
+	public void boardGetPageGET(int postNo, Model model) {
+	
+		model.addAttribute("pageInfo", memberservice.getPage(postNo));
+		logger.info("model" + model);
+	}
+	
 }
 	
 

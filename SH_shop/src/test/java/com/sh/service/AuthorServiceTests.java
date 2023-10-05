@@ -10,7 +10,7 @@ import com.sh.model.AuthorVO;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root/root-context.xml")
 public class AuthorServiceTests {
 
 	  /*AuthoreService 의존성 주입*/

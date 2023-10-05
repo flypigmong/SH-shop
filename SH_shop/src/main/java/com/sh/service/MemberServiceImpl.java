@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService{
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 	@Autowired
-	MemberMapper membermapper;
+	private MemberMapper membermapper;
 	
 	@Autowired(required=false)
 	private BCryptPasswordEncoder pwEncoder;
@@ -155,10 +155,25 @@ public class MemberServiceImpl implements MemberService{
 		return membermapper.memberInfo(memberId);
 	}
 
+	//고객센터 게시글 목록
 	@Override
 	public List<CustomerCenterDTO> getList() {
 		
 		return membermapper.getList();
+	}
+
+	//고객센터 게시글 등록
+	@Override
+	public void enroll(CustomerCenterDTO board) {
+
+			membermapper.enroll(board);
+	}
+
+	//고객센터 게시글 조회
+	@Override
+	public CustomerCenterDTO getPage(int postNo) {
+		
+		return membermapper.getPage(postNo);
 	}
 
 

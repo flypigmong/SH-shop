@@ -36,4 +36,10 @@ public interface MemberMapper {
     
     //고객센터 게시글 목록
     public List<CustomerCenterDTO> getList();
+
+    //고객센터 게시글 등록
+	public void enroll(CustomerCenterDTO board);
+	
+	//고객센터 게시글 조회
+	public CustomerCenterDTO getPage(int postNo);
 }

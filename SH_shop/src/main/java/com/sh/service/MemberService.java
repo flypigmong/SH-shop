@@ -36,4 +36,9 @@ public interface MemberService {
 	// 고객센터 글 목록 
 	public List<CustomerCenterDTO> getList();
 	
+	//고객센터 글 등록
+	public void enroll(CustomerCenterDTO board);
+	
+	//고객센터 글 조회
+	public CustomerCenterDTO getPage(int postNo);
 }
