@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.sh.model.Criteria;
+import com.sh.model.CustomerCenterDTO;
 import com.sh.model.MemberVO;
 import com.sh.model.MemberVO1;
 
@@ -27,6 +28,7 @@ public class MemberMapperTests {
 		private MemberMapper membermapper;			//MemberMapper.java 인터페이스 의존성 주입
 
 		/*
+
 		@Test
 		public void memberPwUpdate() throws Exception{
 			MemberVO member = new MemberVO();
@@ -44,7 +46,7 @@ public class MemberMapperTests {
 		}
 		
 		
-		/*
+	
 		//회원가입 쿼리 테스트 메서드
 		@Test
 		public void memberJoin() throws Exception{
@@ -92,7 +94,7 @@ public class MemberMapperTests {
 	        membermapper.memberLogin(member);
 	        System.out.println("결과 값 : " + membermapper.memberLogin(member));		
 		
-	}
+		}
 	    
 		
 		
@@ -154,17 +156,35 @@ public class MemberMapperTests {
 	             log.info("" + list.get(i));
 	         }
 		}
-		*/
 		
-	    /* 고객센터 게시판 조회 */
+		
+	    // 고객센터 게시판 조회 
 	     @Test
 	    public void testGetPage() {
 	        
-	        /* 실제 존재하는 페이지 */
+	        // 실제 존재하는 페이지 
 	        int postNo = 1;
 	        
 	        log.info("" + membermapper.getPage(postNo));
 	        
 	    }
+
+	     */
+
+	    
+		// 고객센터 게시판 글 등록
+		@Test
+		public void testEnroll() {
+			
+			CustomerCenterDTO dto = new CustomerCenterDTO();
+			
+			dto.setPostTitle("mapper test");
+			dto.setPostContent("mapper test");
+			dto.setMemberId("test11");
+			
+			membermapper.enroll(dto);
+			
+		}
+	    
 }
 

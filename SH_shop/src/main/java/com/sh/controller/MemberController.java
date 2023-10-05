@@ -232,7 +232,7 @@ public class MemberController {
     
 	
 	/* 고객센터 페이지 */
-	@GetMapping("/customer")
+	@GetMapping("/customer/list")
 	public void boardListGet(Model model) {
 		
 		logger.info("고객센터 목록 페이지 진입");
@@ -240,20 +240,24 @@ public class MemberController {
 		model.addAttribute("list", memberservice.getList());
 	}
 	
-	@GetMapping("/customer/enroll")
+	@GetMapping("/customer/postEnroll")
 	public void boardEnrollGet() {
 		logger.info("고객센터 글 등록 페이지 진입");
 	}
 	
-	@PostMapping("/customer/enroll")
+	
+	@PostMapping("/customer/postEnroll")
 	public String boardEnrollPOST(CustomerCenterDTO board, RedirectAttributes rttr) {
-		logger.info("게시판 글 등록 : " + board);
+		
+		logger.info("게시판 글 등록111 : " + board);
 		
 		memberservice.enroll(board);
 		
+		logger.info("게시판 글 등록222 : " + board);
+		
 		rttr.addFlashAttribute("result", "enroll success");
 		
-		return "redirect:/member/customer";
+		return "redirect:/member/customer/list";
 	}
 	
 	

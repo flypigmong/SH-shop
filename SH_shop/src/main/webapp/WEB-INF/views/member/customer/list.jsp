@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이룸</title>
-<link rel="stylesheet" href="/resources/css/member/myPage.css">
+<title>고객센터</title>
+<link rel="stylesheet" href="/resources/css/member/customer.css">
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -21,45 +22,51 @@
                 <ul class="list">    
                     <li><a href="/main">메인 페이지</a></li>
                     <li><a href="/member/logout.do">로그아웃</a></li>
-                    <li><a href="/member/customer/list">고객센터</a></li>
+                    <li><a href="/member/customer">고객센터</a></li>
                     <li><a href="/member/pwUpdateForm">비밀번호변경</a></li>             
                 </ul>
             </div>
             <!-- top_subject_area -->
             <div class="admin_top_wrap">
-                <div class="content_subject"><span>마이룸</span></div>
+                <div class="content_subject"><span>고객센터</span></div>
 
     </div>     
 
+<!--  dfdfdfd -->
 <div class="content_area">
 	<div class="member_table_wrap">
+	<a href="/member/customer/postEnroll" class="top_btn">글 등록</a>
     <table class="member_table">
    	  <thead> 
         <tr>
-            <td class="th_column_1">회원아이디</td>
-            <td class="th_column_2">회원이름</td>
-            <td class="th_column_3">회원메일</td>
-            <td class="th_column_4">회원주소1</td>
-            <td class="th_column_5">회원주소2</td>
-            <td class="th_column_6">회원주소3</td>
-            <td class="th_column_7">돈</td>
-            <td class="th_column_8">포인트</td>
+            <td class="th_column_1">postNo</td>
+            <td class="th_column_2">memberId</td>
+            <td class="th_column_3">postTitle</td>
+            <!-- <td class="th_column_4">postContent</td> -->
+            <td class="th_column_4">postDate</td>
+            <td class="th_column_5">updateDate</td>
         </tr>
         </thead>
-        <tr>
-            <td>${memberInfo.memberId}</td>
-            <td>${memberInfo.memberName}</td>
-            <td>${memberInfo.memberMail}</td>
-            <td>${memberInfo.memberAddr1}</td>
-            <td>${memberInfo.memberAddr2}</td>
-            <td>${memberInfo.memberAddr3}</td>
-            <td>${memberInfo.money}</td>
-            <td>${memberInfo.point}</td>
+        <c:forEach items="${list}" var="list">
+        	<tr>
+	            <td><c:out value="${list.postNo}"></c:out></td>
+	            <td>${list.memberId}</td>
+	            <td>
+	            		<a class="move" href='<c:out value="${list.postNo}"/>'>
+	            				<c:out value="${list.postTitle}"/>
+	            		</a>
+	            </td>
+            	<!-- <td><c:out value="${list.postContent}"></c:out></td> -->
+	            <td><fmt:formatDate value="${list.postDate}" pattern="yyyy-MM-dd"/></td>
+	            <td><fmt:formatDate value="${list.updateDate}" pattern="yyyy-MM-dd"/></td>
         </tr>
+        </c:forEach>
     </table>
-</div>
-</div>
-
+    <form id="moveForm" method="get">
+    </form>
+</div> <!--  member_table_wrap -->
+</div> <!--  "content_area" -->
+<!--  dfdfdfd -->
 
               <div class="clearfix"></div>
             
@@ -105,9 +112,43 @@
     </div>    <!-- class="wrap" -->
 </div>    <!-- class="wrapper" -->
 
+<script>
 
 
-	
+	$(document).ready(function(){
+		
+		let result = '<c:out value="${result}"/>';
+		
+		checkAlert(result);
+		
+		function checkAlert(result){
+			
+			if(result === ''){
+				return;
+			}
+			
+			if(result === "enrol success"){
+				alert("등록이 완료되었습니다.");
+			}
+			
+		}	
+		
+	});
+
+
+    let moveForm = $("#moveForm");
+ 
+    $(".move").on("click", function(e){
+        e.preventDefault();
+        
+        moveForm.append("<input type='hidden' name='postNo' value='"+ $(this).attr("href")+ "'>");
+        moveForm.attr("action", "/member/customer/get");
+        moveForm.submit();
+    });
+    
+    
+</script>
 	
 </body>
+
 </html>

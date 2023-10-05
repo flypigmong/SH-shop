@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>고객센터</title>
-<link rel="stylesheet" href="/resources/css/member/customer.css">
+<title>등록</title>
+<link rel="stylesheet" href="/resources/css/member/postEnroll.css">
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
 </head>
 <body>
-	
+
+<div class="admin_content_wrap">
     <div class="wrapper">
         <div class="wrap">
             <!-- gnv_area -->    
@@ -29,42 +29,29 @@
             <!-- top_subject_area -->
             <div class="admin_top_wrap">
                 <div class="content_subject"><span>고객센터</span></div>
+					<div class="admin_content_subject"><span>글 등록</span></div>
+    </div>
 
-    </div>     
 
-<div class="content_area">
-	<div class="member_table_wrap">
-	<a href="/member/customer/PostEnroll" class="top_btn">글 등록</a>
-    <table class="member_table">
-   	  <thead> 
-        <tr>
-            <td class="th_column_1">postNo</td>
-            <td class="th_column_2">memberId</td>
-            <td class="th_column_3">postTitle</td>
-            <!-- <td class="th_column_4">postContent</td> -->
-            <td class="th_column_4">postDate</td>
-            <td class="th_column_5">updateDate</td>
-        </tr>
-        </thead>
-        <c:forEach items="${list}" var="list">
-        	<tr>
-	            <td><c:out value="${list.postNo}"></c:out></td>
-	            <td>${list.memberId}</td>
-	            <td>
-	            		<a class="move" href='<c:out value="${list.postNo}"/>'>
-	            				<c:out value="${list.postTitle}"/>
-	            		</a>
-	            </td>
-            	<!-- <td><c:out value="${list.postContent}"></c:out></td> -->
-	            <td><fmt:formatDate value="${list.postDate}" pattern="yyyy-MM-dd"/></td>
-	            <td><fmt:formatDate value="${list.updateDate}" pattern="yyyy-MM-dd"/></td>
-        </tr>
-        </c:forEach>
-    </table>
-    <form id="moveForm" method="get">
-    </form>
-</div>
-</div>
+
+
+<form action="/member/customer/postEnroll" method="post">
+    <div class="input_wrap">
+        <label>PostTitle</label>
+        <input name="postTitle">
+    </div>
+    <div class="input_wrap">
+        <label>PostContent</label>
+        <textarea rows="3" name="postContent"></textarea>
+    </div>
+    <div class="input_wrap">
+        <label>memberId</label>
+        <input name="memberId" readonly="readonly" value="${member.memberId}">
+    </div>
+    <button class="btn">등록</button>
+</form>
+
+
 
 
               <div class="clearfix"></div>
@@ -110,21 +97,30 @@
         
     </div>    <!-- class="wrap" -->
 </div>    <!-- class="wrapper" -->
+</div> <!--  admin_content_wrap -->
 
 <script>
-    let moveForm = $("#moveForm");
- 
-    $(".move").on("click", function(e){
-        e.preventDefault();
-        
-        moveForm.append("<input type='hidden' name='postNo' value='"+ $(this).attr("href")+ "'>");
-        moveForm.attr("action", "/member/customer/get");
-        moveForm.submit();
-    });
-    
-    
-</script>
-	
-</body>
 
+	$(document).ready(function(){
+	    
+	    let result = '<c:out value="${result}"/>';
+	    
+	    checkAlert(result);
+	    
+	    function checkAlert(result){
+	        
+	        if(result === ''){
+	            reutrn;
+	        }
+	        
+	        if(result === "enrol success"){
+	            alert("등록이 완료되었습니다.");
+	        }
+	        
+	    }    
+	    
+	});
+
+</script>
+</body>
 </html>
