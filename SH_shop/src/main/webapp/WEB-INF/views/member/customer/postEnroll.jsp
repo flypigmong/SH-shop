@@ -35,23 +35,31 @@
 
 
 
-<form action="/member/customer/postEnroll" method="post">
-    <div class="input_wrap">
-        <label>PostTitle</label>
-        <input name="postTitle">
-    </div>
-    <div class="input_wrap">
-        <label>PostContent</label>
-        <textarea rows="3" name="postContent"></textarea>
-    </div>
-    <div class="input_wrap">
-        <label>memberId</label>
-        <input name="memberId" readonly="readonly" value="${member.memberId}">
-    </div>
-    <button class="btn">등록</button>
-</form>
+			<form action="/member/customer/postEnroll" method="post" id="enrollForm">
+			    <div class="input_wrap">
+			        <label>제목</label>
+			        <input name="postTitle">
+			    </div>
+			    <div class="input_wrap">
+			        <label>내용</label>
+			        <textarea rows="3" name="postContent"></textarea>
+			    </div>
+			    <div class="input_wrap">
+			        <label>작성자</label>
+			        <input name="memberId" readonly="readonly" value="${member.memberId}">
+			    </div>
+			</form>
+			 	<div class="btn_wrap">
+		    		<button id="enrollBtn" class="btn">등록</button>
+		    		<button id="listBtn" class="btn2">목록 페이지</button>
+				</div>
 
 
+			<form id="moveForm" method="get">
+				
+				<input type="hidden" name="memberId" value='<c:out value="${member.memberId}" />'>
+			
+			</form>
 
 
               <div class="clearfix"></div>
@@ -101,24 +109,57 @@
 
 <script>
   
-	$(document).ready(function(){
-	    
-	    let result = '<c:out value="${result}"/>';
-	    
-	    checkAlert(result);
-	    
-	    function checkAlert(result){
-	        
-	        if(result == "enroll success"){ // 
-	            alert("등록이 완료되었습니다.");
-	        }
-	        
-	    }    
-	    
-	});
- 
+	<c:if test="${not empty msg}">
+		alert("${msg}");
+	</c:if>
   
-
+  
+  	let enrollForm= $("#enrollForm");
+  
+   // 등록 버튼 
+	   $("#enrollBtn").click(function(){
+		   
+	   			enrollForm.submit();
+	  			
+	   });
+  
+   /*
+		$("#enrollBtn").click(function(){
+		    
+		    let result = '<c:out value="${result}"/>';
+		    
+		    checkAlert(result);
+		    
+		    function checkAlert(result){
+		        
+		        if(result == "enroll success"){ // 
+		            alert("등록이 완료되었습니다.");
+		        }
+		        
+		    }    
+		    
+		});
+ 	*/
+ 	
+	/* 목록 버튼 */
+	$("#listBtn").click(function(){
+	    location.href="/member/customer/list"
+	});
+  
+   /*
+   //목록 버튼 
+	let moveForm = $("#moveForm");
+	
+	$(".list_btn").on("click",function(){ 
+		
+		e.preventDefault();
+		
+		$("input[name=memberId]").remove();
+		moveForm.attr("action", "/member/customer/list")
+		moveForm.submit();
+		
+	});
+	*/
 </script>
 </body>
 </html>

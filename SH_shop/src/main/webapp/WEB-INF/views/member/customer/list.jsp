@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>고객센터</title>
-<link rel="stylesheet" href="/resources/css/member/customer.css">
+<link rel="stylesheet" href="/resources/css/member/list.css">
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -145,6 +145,7 @@
     $(".move").on("click", function(e){
         e.preventDefault();
         
+        moveForm.empty();
         moveForm.append("<input type='hidden' name='postNo' value='"+ $(this).attr("href")+ "'>");
         moveForm.attr("action", "/member/customer/get");
         moveForm.submit();

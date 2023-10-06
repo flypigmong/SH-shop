@@ -27,6 +27,7 @@ a{
     line-height: 80px;
     color: white;    
     margin-bottom:60px;
+    
 }
 
 /* 화면 전체 렙 */
@@ -117,56 +118,12 @@ a{
 
 
 
-
-/* 폼 스타일링 */
+/* 폼 */
 form {
-    /* 폼의 너비를 500px로 설정 */
-    width: 500px;
-    /* 폼의 배경색을 하늘색으로 설정 */
-    background-color: skyblue;
-    /* 폼의 테두리를 회색으로 설정 */
-    border: 1px solid gray;
-    /* 폼의 패딩을 20px로 설정 */
-    padding: 20px;
-    /* 폼의 마진을 자동으로 설정하여 가운데 정렬 */
-    margin: auto;
+	margin-bottom:60px;
+	
 }
 
-/* 입력란 스타일링 */
-.input_wrap {
-    /* 입력란의 마진을 10px로 설정 */
-    margin: 10px;
-}
-
-/* 라벨 스타일링 */
-label {
-    /* 라벨의 글자색을 흰색으로 설정 */
-    color: white;
-    /* 라벨의 폰트 크기를 16px로 설정 */
-    font-size: 16px;
-}
-
-/* 입력란과 버튼 스타일링 */
-input, textarea, button {
-    /* 입력란과 버튼의 너비를 100%로 설정하여 부모 요소에 맞춤 */
-    width: 100%;
-    /* 입력란과 버튼의 테두리를 없앰 */
-    border: none;
-}
-
-/* 텍스트 입력란 스타일링 */
-input, textarea {
-    /* 텍스트 입력란의 배경색을 흰색으로 설정 */
-    background-color: white;
-}
-
-/* 버튼 스타일링 */
-button {
-    /* 버튼의 배경색을 파란색으로 설정 */
-    background-color: blue;
-    /* 버튼의 글자색을 흰색으로 설정 */
-    color: white;
-}
 
 
 
@@ -178,6 +135,58 @@ button {
     background-color: #7696fd;
 }
 
+.input_wrap{
+	padding: 5px 20px;
+}
+label{
+    display: block;
+    margin: 10px 0;
+    font-size: 20px;	
+}
+input{
+	padding: 5px;
+    font-size: 17px;
+}
+
+textarea{
+	width: 800px;
+    height: 200px;
+    font-size: 15px;
+    padding: 10px;
+}
+.btn{
+  	display: inline-block;
+    font-size: 22px;
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    font-weight: 600;
+    width: 140px;
+    height: 41px;
+    line-height: 39px;
+    text-align : center;
+    margin-left : 30px;
+    cursor : pointer;
+}
+.btn2{
+  	display: inline-block;
+    font-size: 22px;
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    font-weight: 600;
+    width: 180px;
+    height: 41px;
+    line-height: 39px;
+    text-align : center;
+    margin-left : 30px;
+    cursor : pointer;
+}
+.btn_wrap{
+	padding-left : 80px;
+	margin-top : 50px;
+	 text-align : center;
+}
 
 
 

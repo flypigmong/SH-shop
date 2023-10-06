@@ -42,15 +42,15 @@
 				<input name="postNo" readonly="readonly" value='<c:out value="${pageInfo.postNo}"/>' >
 			</div>
 			<div class="input_wrap">
-				<label>게시판 제목</label>
+				<label>제목</label>
 				<input name="postTitle" value='<c:out value="${pageInfo.postTitle}"/>' >
 			</div>
 			<div class="input_wrap">
-				<label>게시판 내용</label>
+				<label>내용</label>
 				<textarea rows="3" name="postContent"><c:out value="${pageInfo.postContent}"/></textarea>
 			</div>
 			<div class="input_wrap">
-				<label>게시판 작성자</label>
+				<label>작성자</label>
 				<input name="memberId" readonly="readonly" value='<c:out value="${pageInfo.memberId}"/>' >
 			</div>
 			<div class="input_wrap">
