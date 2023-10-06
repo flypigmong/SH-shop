@@ -6,90 +6,124 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>글 조회</title>
+<link rel="stylesheet" href="/resources/css/member/get.css">
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-  <style>
-<style type="text/css">
-.input_wrap{
-	padding: 5px 20px;
-}
-label{
-    display: block;
-    margin: 10px 0;
-    font-size: 20px;	
-}
-input{
-	padding: 5px;
-    font-size: 17px;
-}
-textarea{
-	width: 800px;
-    height: 200px;
-    font-size: 15px;
-    padding: 10px;
-}
-.btn{
-  	display: inline-block;
-    font-size: 22px;
-    padding: 6px 12px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    font-weight: 600;
-    width: 140px;
-    height: 41px;
-    line-height: 39px;
-    text-align : center;
-    margin-left : 30px;
-    cursor : pointer;
-}
-.btn_wrap{
-	padding-left : 80px;
-	margin-top : 50px;
-}
-</style>
+  crossorigin="anonymous">
+  </script>
 </head>
 <body>
-<h1>조회 페이지</h1>
-	<div class="input_wrap">
-		<label>게시판 번호</label>
-		<input name="postNo" readonly="readonly" value='<c:out value="${pageInfo.postNo}"/>' >
-	</div>
-	<div class="input_wrap">
-		<label>게시판 제목</label>
-		<input name="title" readonly="readonly" value='<c:out value="${pageInfo.postTitle}"/>' >
-	</div>
-	<div class="input_wrap">
-		<label>게시판 내용</label>
-		<textarea rows="3" name="content" readonly="readonly"><c:out value="${pageInfo.postContent}"/></textarea>
-	</div>
-	<div class="input_wrap">
-		<label>게시판 작성자</label>
-		<input name="writer" readonly="readonly" value='<c:out value="${pageInfo.memberId}"/>' >
-	</div>
-	<div class="input_wrap">
-		<label>게시판 등록일</label>
-		<input name="regdater" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.postDate}"/>' >
-	</div>
-	<div class="input_wrap">
-		<label>게시판 수정일</label>
-		<input name="updateDate" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.updateDate}"/>' >
-	</div>		
-	<div class="btn_wrap">
-		<a class="btn" id="list_btn">목록 페이지</a> 
-		<a class="btn" id="modify_btn">수정 하기</a>
-	</div>
-	<form id="infoForm" action="/member/modify" method="get">
-		<input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.postNo}"/>'>
-	</form>
+
+<div class="admin_content_wrap">
+    <div class="wrapper">
+        <div class="wrap">
+            <!-- gnv_area -->    
+            <div class="top_gnb_area">
+                <ul class="list">    
+                    <li><a href="/main">메인 페이지</a></li>
+                    <li><a href="/member/logout.do">로그아웃</a></li>
+                    <li><a href="/member/customer">고객센터</a></li>
+                    <li><a href="/member/pwUpdateForm">비밀번호변경</a></li>             
+                </ul>
+            </div>
+            <!-- top_subject_area -->
+            <div class="admin_top_wrap">
+                <div class="content_subject"><span>고객센터</span></div>
+					
+    </div>
+
+	<div class="content_area">
+		<div class="member_table_wrap">
+			<div class="input_wrap">
+				<label>게시판 번호</label>
+				<input name="postNo" readonly="readonly" value='<c:out value="${pageInfo.postNo}"/>' >
+			</div>
+			<div class="input_wrap">
+				<label>게시판 제목</label>
+				<input name="title" readonly="readonly" value='<c:out value="${pageInfo.postTitle}"/>' >
+			</div>
+			<div class="input_wrap">
+				<label>게시판 내용</label>
+				<textarea rows="3" name="content" readonly="readonly"><c:out value="${pageInfo.postContent}"/></textarea>
+			</div>
+			<div class="input_wrap">
+				<label>게시판 작성자</label>
+				<input name="writer" readonly="readonly" value='<c:out value="${pageInfo.memberId}"/>' >
+			</div>
+			<div class="input_wrap">
+				<label>게시판 등록일</label>
+				<input name="regdater" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.postDate}"/>' >
+			</div>
+			<div class="input_wrap">
+				<label>게시판 수정일</label>
+				<input name="updateDate" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.updateDate}"/>' >
+			</div>		
+			<div class="btn_wrap">
+				<a class="btn" id="list_btn">목록 페이지</a> 
+				<a class="btn" id="modify_btn">수정 하기</a>
+			</div>
+			<form id="infoForm" action="/member/modify" method="get">
+				<input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.postNo}"/>'>
+			</form>
+	
+		</div><!--  member_table_wrap -->
+	</div> <!--  "content_area" -->
+	
+	          <div class="clearfix"></div>
+            
+        
+        <!-- Footer 영역 -->
+        <div class="footer_nav">
+            <div class="footer_nav_container">
+                <ul>
+                    <li>회사소개</li>
+                    <span class="line">|</span>
+                    <li>이용약관</li>
+                    <span class="line">|</span>
+                    <li>고객센터</li>
+                    <span class="line">|</span>
+                    <li>광고문의</li>
+                    <span class="line">|</span>
+                    <li>채용정보</li>
+                    <span class="line">|</span>
+                </ul>
+            </div> 
+        </div> <!-- class="footer_nav" -->
+        
+        <div class="footer">
+            <div class="footer_container">
+                
+                <div class="footer_left">
+                    <img src="/resources/img/Logo.png">
+                </div>
+                <div class="footer_right">
+                    (주) SHBook    대표이사 : OOO
+                    <br>
+                    사업자등록번호 : ooo-oo-ooooo
+                    <br>
+                    대표전화 : oooo-oooo(발신자 부담전화)
+                    <br>
+                    <br>
+                    COPYRIGHT(C) <strong>SHbook.com</strong>    ALL RIGHTS RESERVED.
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div> <!-- class="footer" -->        
+        
+    </div>    <!-- class="wrap" -->
+</div>    <!-- class="wrapper" -->
+</div> <!--  admin_content_wrap -->
+	
+	
+	
 <script>
 	let form = $("#infoForm");
 	
 	$("#list_btn").on("click", function(e){
 		form.find("#bno").remove();
-		form.attr("action", "/member/customer");
+		form.attr("action", "/member/customer/list");
 		form.submit();
 	});
 	

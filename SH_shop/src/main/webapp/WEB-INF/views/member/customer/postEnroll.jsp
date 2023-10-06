@@ -100,7 +100,7 @@
 </div> <!--  admin_content_wrap -->
 
 <script>
-
+  
 	$(document).ready(function(){
 	    
 	    let result = '<c:out value="${result}"/>';
@@ -109,17 +109,15 @@
 	    
 	    function checkAlert(result){
 	        
-	        if(result === ''){
-	            reutrn;
-	        }
-	        
-	        if(result === "enrol success"){
+	        if(result == "enroll success"){ // 
 	            alert("등록이 완료되었습니다.");
 	        }
 	        
 	    }    
 	    
 	});
+ 
+  
 
 </script>
 </body>

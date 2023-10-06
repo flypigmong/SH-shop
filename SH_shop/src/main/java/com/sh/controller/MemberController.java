@@ -245,7 +245,6 @@ public class MemberController {
 		logger.info("고객센터 글 등록 페이지 진입");
 	}
 	
-	
 	@PostMapping("/customer/postEnroll")
 	public String boardEnrollPOST(CustomerCenterDTO board, RedirectAttributes rttr) {
 		
