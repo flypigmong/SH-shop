@@ -131,20 +131,6 @@ textarea{
     margin-left : 30px;
     cursor : pointer;
 }
-.btn2{
-  	display: inline-block;
-    font-size: 22px;
-    padding: 6px 12px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    font-weight: 600;
-    width: 140px;
-    height: 41px;
-    line-height: 39px;
-    text-align : center;
-    margin-left : 30px;
-    cursor : pointer;
-}
 .btn_wrap{
 	padding-left : 80px;
 	margin-top : 50px;

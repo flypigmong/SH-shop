@@ -176,6 +176,13 @@ public class MemberServiceImpl implements MemberService{
 		return membermapper.getPage(postNo);
 	}
 
+	//고객센터 게시글 수정
+	@Override
+	public int modify(CustomerCenterDTO board) {
+		
+		return membermapper.modify(board);
+	}
+
 
 
 	

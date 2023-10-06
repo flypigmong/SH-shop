@@ -41,4 +41,7 @@ public interface MemberService {
 	
 	//고객센터 글 조회
 	public CustomerCenterDTO getPage(int postNo);
+	
+	//고객센터 글 수정
+	public int modify(CustomerCenterDTO board);
 }

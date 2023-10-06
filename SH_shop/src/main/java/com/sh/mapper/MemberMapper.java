@@ -42,4 +42,7 @@ public interface MemberMapper {
 	
 	//고객센터 게시글 조회
 	public CustomerCenterDTO getPage(int postNo);
+	
+	//고객센터 게시글 수정
+	public int modify(CustomerCenterDTO board);
 }

@@ -94,4 +94,10 @@
     <select id="getPage" resultType="com.sh.model.CustomerCenterDTO">
     	select * from sh_customer_center where postNo=#{postNo}
     </select>
+    
+    <!-- 고객센터 글 수정 -->
+    <update id="modify">
+    	update sh_customer_center set postTitle = #{postTitle}, postContent=#{postContent}, updateDate = now() where postNo = #{postNo}
+    </update>
+    
   </mapper>
