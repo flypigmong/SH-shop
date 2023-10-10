@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sh.model.AdminAnswerDTO;
 import com.sh.model.Criteria;
 import com.sh.model.CustomerCenterDTO;
 import com.sh.model.MemberVO;
@@ -332,6 +333,29 @@ public class MemberController {
 		return "redirect:/member/customer/list";
 		
 	}
+	
+	
+	//고객게시글 답변페이지로 이동
+	@GetMapping("/customer/postEnroll")
+	public void AdminBoardEnrollGet() {
+		logger.info("고객센터 글 등록 페이지 진입");
+	}
+	
+	//고객게시글 답변 글 등록
+	@PostMapping("/customer/postEnroll")
+	public String AdminBoardEnrollPOST(AdminAnswerDTO adboard, RedirectAttributes rttr) {
+		
+		logger.info("게시판 글 등록111 : " + adboard);
+		
+		memberservice.adenroll(adboard);
+		
+		logger.info("게시판 글 등록222 : " + adboard);
+		
+		rttr.addFlashAttribute("result", "enroll success");
+		
+		return "redirect:/member/customer/list";
+	}
+	
 }
 	
 

@@ -2,6 +2,7 @@ package com.sh.service;
 
 import java.util.List;
 
+import com.sh.model.AdminAnswerDTO;
 import com.sh.model.Criteria;
 import com.sh.model.CustomerCenterDTO;
 import com.sh.model.MemberVO;
@@ -44,4 +45,7 @@ public interface MemberService {
 	
 	//고객센터 글 수정
 	public int modify(CustomerCenterDTO board);
+
+	//관리자 글 등록
+	public void adenroll(AdminAnswerDTO adboard);
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.sh.controller.MemberController;
 import com.sh.mapper.MemberMapper;
+import com.sh.model.AdminAnswerDTO;
 import com.sh.model.Criteria;
 import com.sh.model.CustomerCenterDTO;
 import com.sh.model.MemberVO;
@@ -181,6 +182,13 @@ public class MemberServiceImpl implements MemberService{
 	public int modify(CustomerCenterDTO board) {
 		
 		return membermapper.modify(board);
+	}
+
+	//관리자 글 등록
+	@Override
+	public void adenroll(AdminAnswerDTO adboard) {
+		
+		membermapper.adenroll(adboard);
 	}
 
 

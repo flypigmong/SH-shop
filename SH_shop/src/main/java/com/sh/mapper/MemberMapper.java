@@ -2,6 +2,7 @@ package com.sh.mapper;
 
 import java.util.List;
 
+import com.sh.model.AdminAnswerDTO;
 import com.sh.model.Criteria;
 import com.sh.model.CustomerCenterDTO;
 import com.sh.model.MemberVO;
@@ -45,4 +46,7 @@ public interface MemberMapper {
 	
 	//고객센터 게시글 수정
 	public int modify(CustomerCenterDTO board);
+
+	//관리자 게시글 등록
+	public void adenroll(AdminAnswerDTO adboard);
 }

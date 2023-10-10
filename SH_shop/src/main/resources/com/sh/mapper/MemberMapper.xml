@@ -100,4 +100,12 @@
     	update sh_customer_center set postTitle = #{postTitle}, postContent=#{postContent}, updateDate = now() where postNo = #{postNo}
     </update>
     
+    
+     	<!-- 고객센터 글 등록 -->
+  	<insert id="adenroll">
+        
+        insert into sh_center(adminId, adminTitle, adminContent) values (#{adminId}, #{adminTitle}, #{adminContent})
+        
+    </insert>
+    
   </mapper>

@@ -35,7 +35,7 @@
 <!--  dfdfdfd -->
 <div class="content_area">
 	<div class="member_table_wrap">
-	<a href="/member/customer/postEnroll" class="top_btn">글 등록</a>
+	<a href="/member/customer/postEnroll" class="top_btn">글 목록</a>
     <table class="member_table">
    	  <thead> 
         <tr>
