@@ -108,4 +108,13 @@
         
     </insert>
     
+    	<!--  고객센터 글 아이디 알아내기 -->
+	<select id="getPostIdName" resultType="com.sh.model.CustomerCenterDTO">
+	
+		select postNo, postTitle from sh_customer_center
+		where postNo = #{postNo}
+
+	</select>
+    
+    
   </mapper>

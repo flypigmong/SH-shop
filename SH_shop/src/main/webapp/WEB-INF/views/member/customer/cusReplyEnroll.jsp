@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>댓글&평점</title>
+<title>댓글등록</title>
+<link rel="stylesheet" href="/resources/css/member/join.css">
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
-   <style type="text/css"> /* 리뷰등록 팝업 css */
+<style type="text/css">
   	/* 창 여분 없애기 */
   	body{
   		margin : 0;
@@ -104,98 +105,79 @@
 	<div class="wrapper_div">
 		<div class="subject_div">
 			리뷰 등록
+		</div>
+
 	</div>
 
 		<div class="input_wrap">			
 			<div class="bookName_div">
-				<h2>${bookInfo.bookName}</h2>
-			</div>
-			<div class="rating_div">
-				<h4>평점</h4>
-				<select name="rating">
-					<option value="0.5">0.5</option>
-					<option value="1.0">1.0</option>
-					<option value="1.5">1.5</option>
-					<option value="2.0">2.0</option>
-					<option value="2.5">2.5</option>
-					<option value="3.0">3.0</option>
-					<option value="3.5">3.5</option>
-					<option value="4.0">4.0</option>
-				</select>
+				<h2>${postInfo.postTitle}</h2>
 			</div>
 			<div class="content_div">
-				<h4>리뷰</h4>
+				<h4>댓글</h4>
 				<textarea name="content"></textarea>
 			</div>
 		</div>
-		
+
 		<div class="btn_wrap">
-			<a class="cancel_btn">취소</a>
-			<a class="enroll_btn">등록</a>
+			<a class="cancel_btn">취소</a><a class="enroll_btn">등록</a>
 		</div>
 		
-		                	
-           	<form id="moveForm" action="/admin/goodsManage" method="get" >
-				<input type="hidden" name="pageNum" value="${cri.pageNum}">
-				<input type="hidden" name="amount" value="${cri.amount}">
-				<input type="hidden" name="keyword" value="${cri.keyword}">
-           	</form>
-	</div>
-	
-
+		
 <script>
-
+	
 	/* 취소 버튼 */
 	$(".cancel_btn").on("click", function(e){
 		window.close();
 	});	
-
 	
 	/* 등록 버튼 */
 	$(".enroll_btn").on("click", function(e){
-		
-		//console.debug("reply.socket", socket)
-		
-		const bookId = '${bookInfo.bookId}';
+
+		const postNo = '${postInfo.postNo}';
+		const writeId = '${writeId}';
 		const memberId = '${memberId}';
-		const rating = $("select").val();
+		//const rating = $("select").val();
 		const content = $("textarea").val();
 
 		const data = {
-				bookId : bookId,
+				postNo : postNo,
 				memberId : memberId,
-				rating : rating,
+				//rating : rating,
 				content : content
-		}		
+		}	
 		
 		$.ajax({
 			data : data,
 			type : 'POST',
-			url : '/reply/enroll',
+			url : '/cusReply/enroll',
 			success : function(result){
-
+				
 				/* 댓글 초기화 */
 				$(opener.location).attr("href", "javascript:replyListInit();");
-						
-				//소켓
-				//console.log(content);
-				console.debug("reply.js::::socket", content)
 				
-				if(socket){ //websocket에 연결되었을때만
-					let socketMsg = "reply," + memberId + "," bookId + "," + content;
-					socket.send(socketMsg);
-				
-				
-				//location.reload();
+				//창 닫기
 				window.close();
+				
+				//소켓
+				//if(readWriter =! writer)
+					if(socket){
+						//websocket에 보내기(reply,댓작성자,글작성자,글번호)
+						let socketMsg = "reply," + memberId + "," + writeId +"," +postNo;
+						console.log("소켓메시지 : " + socketMsg);
+						socket.send(socketMsg);
+					}
+				
 			}
 			
-		});	
+		});		
+		
+		
+		
+		
 		
 	});
-
-</script>	
-
+</script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 
 <script type="text/javascript">
@@ -218,31 +200,16 @@ function connetWs(){
 
 	ws.onmessage = function (event) {
 		console.log("ReceiveMessage:", event.data+ '\n');
-        // setTimeout을 주어 정해진 시간만 화면에 출력 
-        setTimeout(function(){ 
-           websocketQna.style.display = "none"; 
-        }, 9000); //3000 : 3초 
-     }	
-	
 	};
 
 	ws.onclose= function (event) {
 		console.log('Info: connection closed. ');
-		//setTimeout(connetWs, 300); //웹소켓 재연결
 	};
 	
 	ws.onerror = function (err) {
 		console.log('Error: ', err); 
 	};
 
-/* 	$(".enroll_btn").on("click", function(evt){
-		evt.preventDefault();
-		if (socket.readyState !== 1) 
-			return;
-		let msg = $('input#msg').val();
-		ws.send(msg);
-	}); 
-	*/
 
 };
 

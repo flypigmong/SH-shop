@@ -44,7 +44,7 @@
 	
 	<beans:bean id="myHandler" class="com.sh.handler.EchoHandler" />
 	<websocket:handlers>
-		<websocket:mapping handler="myHandler" path="/alram" />
+		<websocket:mapping handler="myHandler" path="/replyEcho" />
 		<websocket:handshake-interceptors>
 	         <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
 	      </websocket:handshake-interceptors>

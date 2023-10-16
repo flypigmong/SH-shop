@@ -18,6 +18,8 @@
     <div class="wrapper">
         <div class="wrap">
             <!-- gnv_area -->    
+            <div id="socketAlert" class="top_gnb_area2" role="alert" style="display:none;">
+     			</div>
             <div class="top_gnb_area">
                 <ul class="list">    
                     <li><a href="/main">메인 페이지</a></li>
@@ -35,7 +37,7 @@
 <!--  dfdfdfd -->
 <div class="content_area">
 	<div class="member_table_wrap">
-	<a href="/member/customer/postEnroll" class="top_btn">글 목록</a>
+	<a href="/member/customer/postEnroll" class="top_btn">글 등록</a>
     <table class="member_table">
    	  <thead> 
         <tr>
@@ -137,7 +139,7 @@
 	        
 		}	
 		
-	});
+	}); //$(document.)
 
 
     let moveForm = $("#moveForm");
@@ -153,7 +155,65 @@
     
     
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+
+<script type="text/javascript">
+
+	var socket = null;
+	$(document).ready(function(){
+		connetWs();
+	})
+
+
+function connetWs(){
+	console.log("ttttt")
+	var ws = new SockJS("/replyEcho");
+	socket = ws;
+	//var ws = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/replyEcho");
+
+	ws.onopen = function() {
+		console.log('Info: connection opened. ');
+	};
+
+	ws.onmessage = function (event) {
+		console.log("ReceiveMessage:", event.data+ '\n');
+            
+           let $socketAlert = $('div#socketAlert');
+           $socketAlert.text(event.data);
+           $socketAlert.css('display', 'block');
+           
+	   		setTimeout(function(){
+				$socketAlert.css('display','none');
+				
+			}, 5000);
+
+	};
 	
+
+	ws.onclose= function (event) {
+		console.log('Info: connection closed. ');
+	};
+	
+	ws.onerror = function (err) {
+		console.log('Error: ', err); 
+	};
+
+/* 	$(".enroll_btn").on("click", function(evt){
+		evt.preventDefault();
+		if (socket.readyState !== 1) 
+			return;
+		let msg = $('input#msg').val();
+		ws.send(msg);
+	}); 
+	*/
+
+};
+
+
+
+//소켓 끝
+</script> 		
 </body>
 
 </html>

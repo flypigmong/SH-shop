@@ -1,103 +1,132 @@
 package com.sh.handler;
 
+
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-public class EchoHandler extends TextWebSocketHandler{
-	// 로그인 중 사용자
+import com.sh.model.MemberVO;
+
+public class EchoHandler extends TextWebSocketHandler {
+	
+	private static final Logger logger = LoggerFactory.getLogger(WebSocketHandler.class);
+	
+	// 로그인 한 전체
 	List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
 	// 1대1
-	Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
+	Map<String, WebSocketSession> userSessionMap = new HashMap<String, WebSocketSession>();
 	
-	// 클라이언트가 서버로 연결시
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		String senderId = getMemberId(session);
-		if(senderId!=null) {	// 로그인 값이 있는 경우만
-			log(senderId + " 연결 됨");
-			users.put(senderId, session);
-			sessions.add(session);
+			System.out.println("afterConnectionEstablished : " + session );
+			
+			logger.info("Socket 연결");
+			sessions.add(session); //접속된 유저 담기
+			logger.info("session!!!!!!!!!! : " + session);
+			
+			String senderId = currentUserId(session);
+			logger.info("senderId!!!!!!!!!!!! : "+ senderId);
+			
+			userSessionMap.put(senderId, session);
+	}
+
+
+
+/*
+	private String getEmail(WebSocketSession session) {
+		Map<String, Object> httpSession = session.getAttributes();
+		MemberVO loginUser = (MemberVO) httpSession.get("memDTO");
+		
+		if(loginUser == null) {
+				String mid = session.getId();
+				return mid;
+		} else {
+				String mid = loginUser.getMemberId();
+				return mid;
 		}
 	}
-	
+*/
 
-	// 클라이언트가 Data 전송 시
+
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		String senderId = getMemberId(session);
-		//모든 유저에게 보낸다 - 브로드 캐스팅
-//		log(senderId+":"+ message.getPayload());
-//		for (WebSocketSession sess : sessions) {
-//			sess.sendMessage(new TextMessage(message.getPayload()));
+		System.out.println("handleTextMessage: " + session + " : " + message );
+	
+//		String senderId = getId(session);
+//		for (WebSocketSession webSocketSession : sessions) {
+//			webSocketSession.sendMessage(new TextMessage(senderId + " : " + message.getPayload()));
 //		}
+		logger.info("ssesion!!!!!!"+currentUserId(session));
 		
-		// 특정 유저에게 보내기
 		String msg = message.getPayload();
-		if(msg != null) {
+		logger.info("msg="+msg);
+		
+		if(StringUtils.isNotEmpty(msg)) {
+			logger.info("if문 들어옴?");
 			String[] strs = msg.split(",");
-			log(strs.toString());
 			if(strs != null && strs.length == 4) {
-//				String cmd = strs[0];	// 삭제 필요할 시 삭제
-				String type = strs[0];
-				String target = strs[1]; 
-				String content = strs[2];
-				String url = strs[3];
-				WebSocketSession targetSession = users.get(target);  // 타겟세션 조회
-				System.out.println("=========targetSession " + targetSession);
+				//protocol : cmd,댓글작성자,게시글작성자,bno   (ex:reply,user2,user1,글번호(ex:12)
+				String cmd = strs[0];
+				String replyWriter = strs[1]; //replyWriter  댓글작성자
+				String boardWriter = strs[2]; //boardWriter 글 작성자
+				//String receiverEmail = strs[3];
+				String bno = strs[3];
 				
-				// 실시간 접속시
-				// 어드민 메시지 받을 때 (분기처리 필요할 경우)
-//				if("adminMsg".equals(cmd) && targetSession!=null) {
-				if(targetSession!=null) {
-					// ex: [&분의일] 신청이 들어왔습니다.
-					TextMessage tmpMsg = new TextMessage("<a target='_blank' href='"+ url +"'>[<b>" + type + "</b>] " + content + "</a>" );
-					targetSession.sendMessage(tmpMsg);
+				
+				WebSocketSession replyWriterSession = userSessionMap.get(replyWriter);
+				WebSocketSession boardWriterSession = userSessionMap.get(boardWriter);
+				logger.info("boardWriterSession="+userSessionMap.get(boardWriter));
+				logger.info("boardWirterSession"+boardWriterSession);
+				
+				//작성자가 로그인해서 있다면
+				//WebSocketSession boardWriterSession = userSessionMap.get(boardWriter); 
+				if ("reply".equals(cmd) && boardWriterSession != null) {
+					TextMessage tmpMsg = new TextMessage(replyWriter+" 님이  "+bno +"  번 게시글에 댓글을 달았습니다!");
+					boardWriterSession.sendMessage(tmpMsg);
 				}
 			}
 		}
 		
 	}
-		
-	
-	// 연결 해제될 때
+
+
+
+
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		String senderId = getMemberId(session);
-		if(senderId!=null) {	// 로그인 값이 있는 경우만
-			log(senderId + " 연결 종료됨");
-			users.remove(senderId);
-			sessions.remove(session);
-		}
+		System.out.println("afterConnectionClosed:" + session + ":" + status);
 	}
 
-	// 에러 발생시
-	@Override
-	public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
-		log(session.getId() + " 익셉션 발생: " + exception.getMessage());
 
-	}
-	
-	
-	// 로그 메시지
-	private void log(String logmsg) {
-		System.out.println(new Date() + " : " + logmsg);
-	}
-	
-	
-	// 웹소켓에 id 가져오기
-	private String getMemberId(WebSocketSession session) {
+	/*
+	private String getId(WebSocketSession session) {
 		Map<String, Object> httpSession = session.getAttributes();
-		String m_id = (String) httpSession.get("m_id");
-		return m_id==null? null: m_id;
+		User loginUser = (User)httpSession.get(SessionNames.Login);
+		return null;
 	}
+	 */
 	
-	
+	private String currentUserId(WebSocketSession session) {
+		Map<String, Object> httpSession = session.getAttributes();
+		MemberVO loginUser = (MemberVO) httpSession.get("member");
+		
+		if(loginUser == null) {
+			return session.getId();
+		} else {
+			return loginUser.getMemberId();
+		}
+		
+	}
+
 }

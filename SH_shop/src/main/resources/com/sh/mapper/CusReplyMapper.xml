@@ -1,0 +1,33 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.sh.mapper.CusReplyMapper">
+ 
+     <!--  고객센터 댓글 등록 -->
+    <insert id="cusEnrollReply">
+    	insert into sh_cusReply(postNo, memberId, content) values(#{postNo}, #{memberId}, #{content})
+    </insert>
+    
+    <!-- 고객센터 댓글 체크 -->
+    <select id="checkCusReply" resultType="integer">
+   		select cusReplyId from sh_cusReply
+   		where memberId = #{memberId} and postNo = #{postNo}
+    </select>
+    
+    <!-- 고객센터 댓글 페이징 -->
+    <select id="getCusReplyList" resultType="com.sh.model.CusReplyDTO">
+   		select cusReplyId, postNo, memberId, content, regDate
+		from  sh_cusReply
+		where postNo = #{postNo}
+		order by regDate desc  		
+  		limit #{skip}, #{amount}
+    </select>
+    
+    
+    <select id="getCusReplyTotal" resultType="int">
+  		select count(*)
+  		from sh_cusReply
+  		where postNo = #{postNo}
+  	</select>
+    
+  </mapper>

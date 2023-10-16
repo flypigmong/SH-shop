@@ -28,6 +28,8 @@ public class Criteria {
     /* 상품 번호(댓글 기능에서 사용) */
     private int bookId;
     
+    /* 댓글 번호(고객센터 댓글 기능에서 사용) */
+    private int postNo;
     
     /* Criteria 생성자 */
     public Criteria(int pageNum, int amount) {
@@ -116,12 +118,22 @@ public class Criteria {
 		this.bookId = bookId;
 	}
 
+	public int getPostNo() {
+		return postNo;
+	}
+
+	public void setPostNo(int postNo) {
+		this.postNo = postNo;
+	}
+
 	@Override
 	public String toString() {
 		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", skip=" + skip + ", type=" + type
 				+ ", keyword=" + keyword + ", authorArr=" + Arrays.toString(authorArr) + ", cateCode=" + cateCode
-				+ ", bookId=" + bookId + "]";
+				+ ", bookId=" + bookId + ", postNo=" + postNo + "]";
 	}
+
+
 
 
 

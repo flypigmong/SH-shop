@@ -335,26 +335,47 @@ public class MemberController {
 	}
 	
 	
-	//고객게시글 답변페이지로 이동
-	@GetMapping("/customer/postEnroll")
-	public void AdminBoardEnrollGet() {
-		logger.info("고객센터 글 등록 페이지 진입");
+	/*
+	 * //고객게시글 답변페이지로 이동
+	 * 
+	 * @GetMapping("/customer/postEnroll") public void AdminBoardEnrollGet() {
+	 * logger.info("고객센터 글 등록 페이지 진입"); }
+	 * 
+	 * //고객게시글 답변 글 등록
+	 * 
+	 * @PostMapping("/customer/postEnroll") public String
+	 * AdminBoardEnrollPOST(AdminAnswerDTO adboard, RedirectAttributes rttr) {
+	 * 
+	 * logger.info("게시판 글 등록111 : " + adboard);
+	 * 
+	 * memberservice.adenroll(adboard);
+	 * 
+	 * logger.info("게시판 글 등록222 : " + adboard);
+	 * 
+	 * rttr.addFlashAttribute("result", "enroll success");
+	 * 
+	 * return "redirect:/member/customer/list"; }
+	 */
+	
+	/* 리뷰 쓰기 */
+	@GetMapping("/customer/cusReplyEnroll/{memberId}")
+	public String replyEnrollWindowGET(@PathVariable("memberId")String memberId, int postNo, Model model) {
+		CustomerCenterDTO post = memberservice.getPostIdName(postNo);
+		
+		//글작성자아이디가져오기
+		CustomerCenterDTO board = memberservice.getPage(postNo); // 글 정보를 가져옴 
+		String writeId = board.getMemberId(); // 글 작성자의 아이디
+		System.out.println("글작성자 : " + writeId);
+		
+		
+		model.addAttribute("postInfo", post);
+		model.addAttribute("memberId", memberId);
+		model.addAttribute("writeId", writeId);
+		logger.info("model@@@@@@@@l" + model);
+		return "/member/customer/cusReplyEnroll";
 	}
 	
-	//고객게시글 답변 글 등록
-	@PostMapping("/customer/postEnroll")
-	public String AdminBoardEnrollPOST(AdminAnswerDTO adboard, RedirectAttributes rttr) {
-		
-		logger.info("게시판 글 등록111 : " + adboard);
-		
-		memberservice.adenroll(adboard);
-		
-		logger.info("게시판 글 등록222 : " + adboard);
-		
-		rttr.addFlashAttribute("result", "enroll success");
-		
-		return "redirect:/member/customer/list";
-	}
+	
 	
 }
 	

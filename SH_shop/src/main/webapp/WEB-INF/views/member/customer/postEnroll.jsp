@@ -115,11 +115,22 @@
   
   
   	let enrollForm= $("#enrollForm");
-  
+  	
+  	 
    // 등록 버튼 
 	   $("#enrollBtn").click(function(){
 		   
-	   			enrollForm.submit();
+		   console.debug("reply.socket", socket)
+		   
+		   const content = $("textarea").val();
+		   
+		   console.log(content);
+		   
+		   
+		  	 socket.send(content);
+		  
+		   
+	   		enrollForm.submit();
 	  			
 	   });
   
@@ -160,6 +171,50 @@
 		
 	});
 	*/
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+
+<script type="text/javascript">
+
+	var socket = null;
+	$(document).ready(function(){
+		connetWs();
+	})
+
+
+function connetWs(){
+	console.log("ttttt")
+	var ws = new SockJS("/replyEcho");
+	socket = ws;
+	//var ws = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/replyEcho");
+
+	ws.onopen = function() {
+		console.log('Info: connection opened. ');
+	//setTimeout( function() { connet(); }, 1000);
+	};
+
+	ws.onmessage = function (event) {
+		console.log("ReceiveMessage:", event.data+ '\n');
+	};
+
+	ws.onclose= function (event) {
+		console.log('Info: connection closed. ');
+	};
+	
+	ws.onerror = function (err) {
+		console.log('Error: ', err); 
+	};
+
+	/*$(".enroll_btn").on("click", function(evt){
+		evt.preventDefault();
+		if (socket.readyState !== 1) 
+			return;
+		let msg = $('input#msg').val();
+		ws.send(msg);
+	}); */
+
+};
+//소켓 끝
 </script>
 </body>
 </html>

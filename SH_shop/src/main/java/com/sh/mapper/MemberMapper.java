@@ -49,4 +49,8 @@ public interface MemberMapper {
 
 	//관리자 게시글 등록
 	public void adenroll(AdminAnswerDTO adboard);
+
+	//고객센터 글 id 이름
+	public CustomerCenterDTO getPostIdName(int postNo);
+
 }

@@ -191,8 +191,16 @@ public class MemberServiceImpl implements MemberService{
 		membermapper.adenroll(adboard);
 	}
 
+	//고객센터 글아이디 알아내기
+	@Override
+	public CustomerCenterDTO getPostIdName(int postNo) {
+		
+		return membermapper.getPostIdName(postNo);
+	}
 
 
+
+	
 	
 	
 	
