@@ -376,20 +376,20 @@ function connetWs(){
 		console.log('Info: connection opened. ');
 	};
 
+	
 	ws.onmessage = function (event) {
 		console.log("ReceiveMessage:", event.data+ '\n');
-		var userId = '${memberId}';
-		var event = event.data;
-		
-		if(event != userId){
-            var websocketQna =  document.getElementById("websocketQna");
-            websocketQna.style.display = "block"; 
             
-            // setTimeout을 주어 3초만 화면에 출력 
-            setTimeout(function(){ 
-               websocketQna.style.display = "none"; 
-            }, 5000); //3000 : 3초 
-         }		
+           let $socketAlert = $('div#socketAlert');
+           $socketAlert.html(event.data);
+           $socketAlert.css('display', 'block');
+           
+	   		setTimeout(function(){
+				$socketAlert.css('display','none');
+				
+			}, 5000);
+
+	};	
 		
 		
 		

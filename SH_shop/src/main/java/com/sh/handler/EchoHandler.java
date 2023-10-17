@@ -92,7 +92,8 @@ public class EchoHandler extends TextWebSocketHandler {
 				//작성자가 로그인해서 있다면
 				//WebSocketSession boardWriterSession = userSessionMap.get(boardWriter); 
 				if ("reply".equals(cmd) && boardWriterSession != null) {
-					TextMessage tmpMsg = new TextMessage(replyWriter+" 님이  "+bno +"  번 게시글에 댓글을 달았습니다!");
+					TextMessage tmpMsg = new TextMessage(replyWriter+" 님이  "
+							+ " 고객센터 게시판의 "+"<a href='/member/customer/get?postNo=" +bno + "'>"  + bno +"</a> 번 게시글에 댓글을 달았습니다!");
 					boardWriterSession.sendMessage(tmpMsg);
 				}
 			}

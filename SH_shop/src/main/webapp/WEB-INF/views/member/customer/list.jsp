@@ -180,7 +180,7 @@ function connetWs(){
 		console.log("ReceiveMessage:", event.data+ '\n');
             
            let $socketAlert = $('div#socketAlert');
-           $socketAlert.text(event.data);
+           $socketAlert.html(event.data);
            $socketAlert.css('display', 'block');
            
 	   		setTimeout(function(){
