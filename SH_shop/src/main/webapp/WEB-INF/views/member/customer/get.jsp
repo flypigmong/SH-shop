@@ -38,27 +38,27 @@
 		<div class="member_table_wrap">
 			<div class="input_wrap">
 				<label>게시판 번호</label>
-				<input name="postNo" readonly="readonly" value='<c:out value="${pageInfo.postNo}"/>' >
+				<input name="postNo" readonly="readonly" value='<c:out value="${goodsInfo.postNo}"/>' >
 			</div>
 			<div class="input_wrap">
 				<label>게시판 제목</label>
-				<input name="title" readonly="readonly" value='<c:out value="${pageInfo.postTitle}"/>' >
+				<input name="title" readonly="readonly" value='<c:out value="${goodsInfo.postTitle}"/>' >
 			</div>
 			<div class="input_wrap">
 				<label>게시판 내용</label>
-				<textarea rows="3" name="content" readonly="readonly"><c:out value="${pageInfo.postContent}"/></textarea>
+				<textarea rows="3" name="content" readonly="readonly"><c:out value="${goodsInfo.postContent}"/></textarea>
 			</div>
 			<div class="input_wrap">
 				<label>게시판 작성자</label>
-				<input name="writer" readonly="readonly" value='<c:out value="${pageInfo.memberId}"/>' >
+				<input name="writer" readonly="readonly" value='<c:out value="${goodsInfo.memberId}"/>' >
 			</div>
 			<div class="input_wrap">
 				<label>게시판 등록일</label>
-				<input name="regdater" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.postDate}"/>' >
+				<input name="regdater" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${goodsInfo.postDate}"/>' >
 			</div>
 			<div class="input_wrap">
 				<label>게시판 수정일</label>
-				<input name="updateDate" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.updateDate}"/>' >
+				<input name="updateDate" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${goodsInfo.updateDate}"/>' >
 			</div>		
 			<div class="btn_wrap">
 				<a class="btn" id="list_btn">목록 페이지</a> 
@@ -67,7 +67,7 @@
 				</c:if>
 			</div>
 			<form id="infoForm" action="/member/modify" method="get">
-				<input type="hidden" id="postNo" name="postNo" value='<c:out value="${pageInfo.postNo}"/>'>
+				<input type="hidden" id="postNo" name="postNo" value='<c:out value="${goodsInfo.postNo}"/>'>
 			</form>
 	
 			<div class="line">
@@ -187,8 +187,8 @@
 	/* 댓글 리스트 출력*/
 	$(document).ready(function(){
 		
-	
-		const postNo = '${pageInfo.postNo}';	
+		// 리뷰 리스트 출력
+		const postNo = '${goodsInfo.postNo}';	
 	
 		$.getJSON("/cusReply/list", {postNo : postNo}, function(obj){
 		
@@ -204,7 +204,7 @@
 		e.preventDefault();		
 		
 		const memberId = '${member.memberId}';
-		const postNo = '${pageInfo.postNo}';
+		const postNo = '${goodsInfo.postNo}';
 		const writeId = '${writeId}';
 	
 		$.ajax({
@@ -338,7 +338,7 @@
 	
 		/* 댓글 페이지 정보 */
 		 const cri = {
-			postNo : '${pageInfo.postNo}',
+			postNo : '${goodsInfo.postNo}',
 			pageNum : 1,
 			amount : 10
 		}

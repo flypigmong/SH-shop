@@ -35,13 +35,14 @@ public class CusReplyServiceImpl implements CusReplyService{
 		}
 	}
 
+	//댓글 페이징
 	@Override
 	public CusReplyPageDTO cusReplyList(Criteria cri) {
-		CusReplyPageDTO dto = new CusReplyPageDTO();
+		CusReplyPageDTO dto = new CusReplyPageDTO(); //페이징 댓글정보
 		
 		dto.setList(cusReplyMapper.getCusReplyList(cri));
-		dto.setPageInfo(new PageDTO(cri, cusReplyMapper.getCusReplyTotal(cri.getBookId())));
-		
+		dto.setPageInfo(new PageDTO(cri, cusReplyMapper.getCusReplyTotal(cri.getPostNo())));
+		//페이징 총 개수
 		return dto;
 	}
 

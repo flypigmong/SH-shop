@@ -294,7 +294,7 @@ public class MemberController {
 		model.addAttribute("writeId", writeId); // 모델에 writeId 속성 추가
 		
 		
-		model.addAttribute("pageInfo", memberservice.getPage(postNo));
+		model.addAttribute("goodsInfo", memberservice.getPage(postNo));
 		logger.info("model" + model);
 		
 	}
@@ -304,7 +304,7 @@ public class MemberController {
 	@GetMapping("/customer/modify")
 	public void boardModifyGET(int postNo, Model model, HttpServletRequest request) {
 		
-		model.addAttribute("pageInfo", memberservice.getPage(postNo));
+		model.addAttribute("goodsInfo", memberservice.getPage(postNo));
 		
 	}
 	
