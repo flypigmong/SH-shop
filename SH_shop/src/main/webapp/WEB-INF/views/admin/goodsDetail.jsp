@@ -388,18 +388,8 @@ function connetWs(){
 		console.log('Error: ', err); 
 	};
 
-/* 	$(".enroll_btn").on("click", function(evt){
-		evt.preventDefault();
-		if (socket.readyState !== 1) 
-			return;
-		let msg = $('input#msg').val();
-		ws.send(msg);
-	}); 
-	*/
-
+	
 };
-
-
 
 //소켓 끝
 </script> 	

@@ -5,7 +5,6 @@ import java.util.List;
 
 public class OrderDTO {
 
-	
 	/* 주문 번호 */
 	private String orderId;
 	
