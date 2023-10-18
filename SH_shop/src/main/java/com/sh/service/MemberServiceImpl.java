@@ -158,9 +158,9 @@ public class MemberServiceImpl implements MemberService{
 
 	//고객센터 게시글 목록
 	@Override
-	public List<CustomerCenterDTO> getList() {
+	public List<CustomerCenterDTO> getList(Criteria cri) {
 		
-		return membermapper.getList();
+		return membermapper.getList(cri);
 	}
 
 	//고객센터 게시글 등록

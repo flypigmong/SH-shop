@@ -34,8 +34,8 @@ public interface MemberService {
     // 비밀번호 변경
 	public boolean memberPwUpdate(MemberVO member, String currentPw, String newPw);
     
-	// 고객센터 글 목록 
-	public List<CustomerCenterDTO> getList();
+	// 고객센터 글 목록(페이징 적용)
+	public List<CustomerCenterDTO> getList(Criteria cri);
 	
 	//고객센터 글 등록
 	public void enroll(CustomerCenterDTO board);

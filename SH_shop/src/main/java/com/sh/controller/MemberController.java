@@ -233,13 +233,13 @@ public class MemberController {
 	}
     
 	
-	/* 고객센터 페이지 */
+	/* 고객센터 페이지(페이징 적용) */
 	@GetMapping("/customer/list")
-	public void boardListGet(Model model) {
+	public void boardListGet(Model model, Criteria cri) {
 		
 		logger.info("고객센터 목록 페이지 진입");
 		
-		model.addAttribute("list", memberservice.getList());
+		model.addAttribute("list", memberservice.getList(cri));
 	}
 	
 	@GetMapping("/customer/postEnroll")
