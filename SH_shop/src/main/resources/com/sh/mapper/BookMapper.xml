@@ -83,7 +83,7 @@
 	<!-- 검색 대상 카테고리 리스트 (작가(type=A) 혹은 제목(type=T)으로 cateCode(코드번호) 가져옴 -->	
 	<select id="getCateList" resultType="String">
 	
-		select distinct cateCode from sh_book where 
+		select DISTINCT cateCode from sh_book where 
 		<foreach item="type" collection="typeArr">		
   				<choose>
   					<when test="type == 'A'.toString()">
