@@ -40,6 +40,9 @@ public interface MemberService {
 	//고객센터 글 등록
 	public void enroll(CustomerCenterDTO board);
 	
+	//고객센터 게시글 총 갯수
+	public int getTotal();
+	
 	//고객센터 글 조회
 	public CustomerCenterDTO getPage(int postNo);
 	

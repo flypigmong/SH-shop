@@ -30,6 +30,7 @@ import com.sh.model.AdminAnswerDTO;
 import com.sh.model.Criteria;
 import com.sh.model.CustomerCenterDTO;
 import com.sh.model.MemberVO;
+import com.sh.model.PageDTO;
 import com.sh.service.MemberService;
 
 @Controller
@@ -240,7 +241,43 @@ public class MemberController {
 		logger.info("고객센터 목록 페이지 진입");
 		
 		model.addAttribute("list", memberservice.getList(cri));
+		
+		int total = memberservice.getTotal();
+		PageDTO pageMake = new PageDTO(cri, total);
+		model.addAttribute("pageMaker", pageMake);
+		logger.info("pageMakeeeeeeeeeeeeeeeee"+pageMake);
+		
 	}
+	
+	// 고객센터 게시글 조회
+	@GetMapping("/customer/get")
+	public void boardGetPageGET(int postNo, Model model, HttpServletRequest request, Criteria cri) {
+				
+		HttpSession session = request.getSession(); 
+		
+		MemberVO member = (MemberVO) session.getAttribute("member"); //세션에 저장한 member 가져오기
+		System.out.println("세션객체 : " + member); // member 객체의 내용을 출력
+		
+		String memberId = member.getMemberId(); // 세션에 저장된 사용자의 id가져오기
+		System.out.println("로그인아이디 : " + memberId); //memberId 가져오기
+		
+		
+		CustomerCenterDTO board = memberservice.getPage(postNo); // 글 정보를 가져옴 
+		String writeId = board.getMemberId(); // 글 작성자의 아이디
+		System.out.println("글작성자 : " + writeId);
+		
+		model.addAttribute("memberId", memberId); // 모델에 memberId 속성 추가 
+		model.addAttribute("writeId", writeId); // 모델에 writeId 속성 추가
+		
+		model.addAttribute("goodsInfo", memberservice.getPage(postNo));
+		
+		model.addAttribute("cri", cri);
+		logger.info("criiiiiiiiiiiiiiiiiiiiiiiiiiiii" + cri);
+		
+		logger.info("model@@@@@@@@@@@" + model);
+		
+	}
+	
 	
 	@GetMapping("/customer/postEnroll")
 	public void boardEnrollGet() {
@@ -262,49 +299,14 @@ public class MemberController {
 	}
 	
 	
-	// 고객센터 게시글 조회
-	@GetMapping("/customer/get")
-	public void boardGetPageGET(int postNo, Model model, HttpServletRequest request) {
-
-		/* 세션값 알아보기 위한 코드 (주석처리)
-		HttpSession session = request.getSession (); // 세션 객체 생성 
-		Enumeration<String> keys = session.getAttributeNames (); // 세션에 저장된 모든 키를 가져옴 
-		while (keys.hasMoreElements ()) { // 키가 남아있으면 반복 
-			String key = keys.nextElement (); // 다음 키를 가져옴 
-			Object value = session.getAttribute (key); // 키에 해당하는 값을 가져옴 
-			System.out.println (key + " :  " + value); 
-		}
-		// 키와 값 출력
-		*/
-		
-		HttpSession session = request.getSession(); 
-		
-		MemberVO member = (MemberVO) session.getAttribute("member"); //세션에 저장한 member 가져오기
-		System.out.println("세션객체 : " + member); // member 객체의 내용을 출력
-		
-		String memberId = member.getMemberId(); // 세션에 저장된 사용자의 id가져오기
-		System.out.println("로그인아이디 : " + memberId); //memberId 가져오기
-		
-		
-		CustomerCenterDTO board = memberservice.getPage(postNo); // 글 정보를 가져옴 
-		String writeId = board.getMemberId(); // 글 작성자의 아이디
-		System.out.println("글작성자 : " + writeId);
-		
-		model.addAttribute("memberId", memberId); // 모델에 memberId 속성 추가 
-		model.addAttribute("writeId", writeId); // 모델에 writeId 속성 추가
-		
-		
-		model.addAttribute("goodsInfo", memberservice.getPage(postNo));
-		logger.info("model" + model);
-		
-	}
-	
 	
 	//고객센터 게시글 수정페이지 이동
 	@GetMapping("/customer/modify")
-	public void boardModifyGET(int postNo, Model model, HttpServletRequest request) {
+	public void boardModifyGET(int postNo, Model model, HttpServletRequest request, Criteria cri) {
 		
 		model.addAttribute("goodsInfo", memberservice.getPage(postNo));
+		
+		model.addAttribute("cri", cri);
 		
 	}
 	

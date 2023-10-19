@@ -1,5 +1,7 @@
 package com.sh.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sh.model.Criteria;
+import com.sh.model.Criteria2;
 import com.sh.model.CusReplyDTO;
 import com.sh.model.CusReplyPageDTO;
 import com.sh.service.CusReplyService;
@@ -16,6 +19,8 @@ import com.sh.service.CusReplyService;
 @RequestMapping("/cusReply")
 public class CusReplyController {
 
+	private static final Logger logger = LoggerFactory.getLogger(CusReplyController.class);
+	
 	@Autowired
 	private CusReplyService cusReplyService;
 	
@@ -36,8 +41,10 @@ public class CusReplyController {
 	
 	/* 고객센터 댓글 페이징 */
 	@GetMapping(value="/list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public CusReplyPageDTO replyListPOST(Criteria cri) {
-		return cusReplyService.cusReplyList(cri);
+	public CusReplyPageDTO replyListPOST(Criteria2 cri2) {
+		logger.info("cri22222222222222" + cri2);
+		return cusReplyService.cusReplyList(cri2);
+		
 	}
 	
 }

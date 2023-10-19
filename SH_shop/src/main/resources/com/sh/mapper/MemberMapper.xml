@@ -78,9 +78,19 @@
   	<!-- 고객센터 글 목록 -->
   	<select id="getList" resultType="com.sh.model.CustomerCenterDTO">
   	
-  		select * from sh_customer_center
+	  	select * from sh_customer_center 
+	    	order by postNo desc
+	   	limit #{skip}, #{amount}
   	
   	</select>
+  	
+  	<!-- 고객센터 게시글 총 갯수 -->
+  	    <select id="getTotal" resultType="int">
+    
+        select count(*) from sh_customer_center 
+    
+    </select>
+  	
   	
   	
   	<!-- 고객센터 글 등록 -->
@@ -94,8 +104,6 @@
     <select id="getPage" resultType="com.sh.model.CustomerCenterDTO">
     	select * from sh_customer_center 
     	where postNo=#{postNo}
-    	order by regDate desc
-    	limit #{skip}, #{amount}
     </select>
     
     <!-- 고객센터 글 수정 -->

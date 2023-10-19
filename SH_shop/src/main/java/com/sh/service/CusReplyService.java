@@ -1,6 +1,7 @@
 package com.sh.service;
 
 import com.sh.model.Criteria;
+import com.sh.model.Criteria2;
 import com.sh.model.CusReplyDTO;
 import com.sh.model.CusReplyPageDTO;
 
@@ -14,6 +15,6 @@ public interface CusReplyService {
 	public String checkCusReply(CusReplyDTO dto);
 	
 	/* 고객센터 댓글 페이징*/
-	public CusReplyPageDTO cusReplyList(Criteria cri);
+	public CusReplyPageDTO cusReplyList(Criteria2 cri2);
 	
 }

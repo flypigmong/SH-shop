@@ -198,6 +198,12 @@ public class MemberServiceImpl implements MemberService{
 		return membermapper.getPostIdName(postNo);
 	}
 
+	//고객센터 게시글 총 갯수
+	public int getTotal() {
+		
+		return membermapper.getTotal();
+	}
+
 
 
 	

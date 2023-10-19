@@ -38,6 +38,9 @@ public interface MemberMapper {
     //고객센터 게시글 목록(페이징 적용)
     public List<CustomerCenterDTO> getList(Criteria cri);
 
+    //고객센터 게시글 총 갯수 
+    public int getTotal();
+    
     //고객센터 게시글 등록
 	public void enroll(CustomerCenterDTO board);
 	

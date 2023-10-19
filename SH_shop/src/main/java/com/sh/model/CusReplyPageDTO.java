@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 public class CusReplyPageDTO {
 	
-	List<CusReplyDTO> list;
+	List<CusReplyDTO> list2;
 	
-	PageDTO pageInfo;
+	PageDTO2 pageInfo2;
 	
 	
 	

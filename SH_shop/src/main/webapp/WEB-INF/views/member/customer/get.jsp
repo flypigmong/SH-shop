@@ -68,6 +68,8 @@
 			</div>
 			<form id="infoForm" action="/member/modify" method="get">
 				<input type="hidden" id="postNo" name="postNo" value='<c:out value="${goodsInfo.postNo}"/>'>
+			    <input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
+        		<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>  	
 			</form>
 	
 			<div class="line">
@@ -87,44 +89,12 @@
 					
 				</div>
 				<ul class="reply_content_ul">
-					<!--  
-					<li>
-						<div class="comment_wrap">
-							<div class="reply_top">
-								<span class="id_span">sjinjin7</span>
-								<span class="date_span">2021-10-11</span>
-								<span class="rating_span">평점 : <span class="rating_value_span">4</span>점</span>
-								<a class="update_reply_btn">수정</a><a class="delete_reply_btn">삭제</a>
-							</div>
-							<div class="reply_bottom">
-								<div class="reply_bottom_txt">
-									사실 기대를 많이하고 읽기시작했는데 읽으면서 가가 쓴것이 맞는지 의심들게합니다 문체도그렇고 간결하지 않네요 제가 기대가 크던 작았던간에 책장이 사실 안넘겨집니다.
-								</div>
-							</div>
-						</div>
-					</li>
-					-->
+				
 				</ul>
 				<div class="repy_pageInfo_div">
 				 
 					<ul class="pageMaker">
-					<!--  
-						<li class="pageMaker_btn prev">
-							<a>이전</a>
-						</li>
-						<li class="pageMaker_btn">
-							<a>1</a>
-						</li>
-						<li class="pageMaker_btn">
-							<a>2</a>
-						</li>
-						<li class="pageMaker_btn active">
-							<a>3</a>
-						</li>													
-						<li class="pageMaker_btn next">
-							<a>다음</a>
-						</li>
-						-->
+		
 					</ul>
 
 				</div>
@@ -237,7 +207,7 @@
 	let form = $("#infoForm");
 	
 	$("#list_btn").on("click", function(e){
-		form.find("#bno").remove();
+		form.find("#postNo").remove();
 		form.attr("action", "/member/customer/list");
 		form.submit();
 	});
@@ -251,7 +221,7 @@
 	/* 댓글 데이터 서버 요청 및 댓글 동적 생성 메서드 */
 	let replyListInit = function(){
 		
-		$.getJSON("/cusReply/list", cri , function(obj){
+		$.getJSON("/cusReply/list", cri2 , function(obj){
 			
 				makeReplyContent(obj);
 				
@@ -262,7 +232,7 @@
 	/* 댓글(리뷰) 동적 생성 메서드 */
 	function makeReplyContent(obj){
 		
-		if(obj.list.length === 0){
+		if(obj.list2.length === 0){
 			$(".reply_not_div").html('<span>리뷰가 없습니다.</span>');
 			$(".reply_content_ul").html('');
 			$(".pageMaker").html('');
@@ -270,8 +240,8 @@
 			
 			$(".reply_not_div").html('');
 			
-			const list = obj.list;
-			const pf = obj.pageInfo;
+			const list = obj.list2;
+			const pf = obj.pageInfo2;
 			const userId = '${member.memberId}';	
 		
 			/* list */
@@ -337,7 +307,7 @@
 	
 	
 		/* 댓글 페이지 정보 */
-		 const cri = {
+		 const cri2 = {
 			postNo : '${goodsInfo.postNo}',
 			pageNum : 1,
 			amount : 10
@@ -349,7 +319,7 @@
 			e.preventDefault();
 			
 			let page = $(this).attr("href");	
-			cri.pageNum = page;		
+			cri2.pageNum = page;		
 			
 			replyListInit();
 				
@@ -392,8 +362,6 @@ function connetWs(){
 	};	
 		
 		
-		
-	};
 
 	ws.onclose= function (event) {
 		console.log('Info: connection closed. ');

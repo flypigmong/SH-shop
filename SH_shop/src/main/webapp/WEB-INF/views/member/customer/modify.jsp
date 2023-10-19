@@ -39,27 +39,27 @@
 			<form id="modifyForm" action="/member/customer/modify" method="post">
 			<div class="input_wrap">
 				<label>게시판 번호</label>
-				<input name="postNo" readonly="readonly" value='<c:out value="${pageInfo.postNo}"/>' >
+				<input name="postNo" readonly="readonly" value='<c:out value="${goodsInfo.postNo}"/>' >
 			</div>
 			<div class="input_wrap">
 				<label>제목</label>
-				<input name="postTitle" value='<c:out value="${pageInfo.postTitle}"/>' >
+				<input name="postTitle" value='<c:out value="${goodsInfo.postTitle}"/>' >
 			</div>
 			<div class="input_wrap">
 				<label>내용</label>
-				<textarea rows="3" name="postContent"><c:out value="${pageInfo.postContent}"/></textarea>
+				<textarea rows="3" name="postContent"><c:out value="${goodsInfo.postContent}"/></textarea>
 			</div>
 			<div class="input_wrap">
 				<label>작성자</label>
-				<input name="memberId" readonly="readonly" value='<c:out value="${pageInfo.memberId}"/>' >
+				<input name="memberId" readonly="readonly" value='<c:out value="${goodsInfo.memberId}"/>' >
 			</div>
 			<div class="input_wrap">
 				<label>게시판 등록일</label>
-				<input name="postDate" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.postDate}"/>' >
+				<input name="postDate" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${goodsInfo.postDate}"/>' >
 			</div>
 			<div class="input_wrap">
 				<label>게시판 수정일</label>
-				<input name="updateDate" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.updateDate}"/>' >
+				<input name="updateDate" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${goodsInfo.updateDate}"/>' >
 			</div>		
 			<div class="btn_wrap">
 		        <a class="btn" id="list_btn">목록 페이지</a> 
@@ -68,7 +68,11 @@
 			</div>
 			</form>
 			<form id="infoForm" action="/member/customer/modify" method="get">
-				<input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.postNo}"/>'>
+				<input type="hidden" id="postNo" name="postNo" value='<c:out value="${goodsInfo.postNo}"/>'>
+				<!-- 
+				<input type="hidden" name="PageNum" value='<c:out value="${cri.pageNum}"/>'>
+				 <input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
+				 -->		
 			</form>
 	
 		</div><!--  member_table_wrap -->
@@ -128,7 +132,7 @@
 		
 		/* 목록 페이지 이동 버튼 */
 		$("#list_btn").on("click", function(e){
-		    form.find("#bno").remove();
+		    form.find("#postNo").remove();
 		    form.attr("action", "/member/custmomer/list");
 		    form.submit();
 		});
