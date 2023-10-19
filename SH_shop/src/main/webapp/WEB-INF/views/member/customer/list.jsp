@@ -41,12 +41,12 @@
     <table class="member_table">
    	  <thead> 
         <tr>
-            <td class="th_column_1">postNo</td>
-            <td class="th_column_2">memberId</td>
-            <td class="th_column_3">postTitle</td>
+            <td class="th_column_1">글번호</td>
+            <td class="th_column_2">글쓴이</td>
+            <td class="th_column_3">제목</td>
             <!-- <td class="th_column_4">postContent</td> -->
-            <td class="th_column_4">postDate</td>
-            <td class="th_column_5">updateDate</td>
+            <td class="th_column_4">날짜</td>
+            <td class="th_column_5">수정일</td>
         </tr>
         </thead>
         <c:forEach items="${list}" var="list">
