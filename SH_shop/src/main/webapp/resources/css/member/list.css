@@ -1,5 +1,6 @@
 @charset "UTF-8";
 *{
+	center;
 	margin: 0;
 	padding:0;
 }
@@ -243,6 +244,18 @@ a{
 }
 
 /* 페이지 버튼 */
+
+	.pageInfo_area {
+	  text-align: center;
+	}
+	/*
+	.pageInfo {
+	  display: inline-block;
+	}
+	*/
+	.pageInfo_btn {
+	  float: none;
+	}
 
   .pageInfo{
       list-style : none;
