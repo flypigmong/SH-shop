@@ -172,11 +172,41 @@
 			
 		});		
 		
-		
-		
-		
+	/* 	const postNo = '${postInfo.postNo}';
+		const writeId = '${writeId}';
+		const memberId = '${memberId}';
+		//const rating = $("select").val();
+		const content = $("textarea").val();
+
+		const data = {
+				postNo : postNo,
+				memberId : memberId,
+				//rating : rating,
+				content : content
+		}	
+		//알람목록 만들기
+		$.ajax({
+			url : '/board/insertAlarm',
+			type : 'post',
+			data : {'toId': writeId , 'fromId': memberId , 'postNo' : postNo, 'category': "reply"},  
+			dataType : "json",
+			success : function(alarm){
+				if(alarm ==1) {
+					alert("알람입력성공")
+				} else {
+					alert("알람입력실패")
+				}
+			}
+		}); //알림목록 끝
+		*/ 
 		
 	});
+	
+		
+		
+
+	
+	
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 

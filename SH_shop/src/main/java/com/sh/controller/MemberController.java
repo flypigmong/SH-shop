@@ -236,9 +236,24 @@ public class MemberController {
 	
 	/* 고객센터 페이지(페이징 적용) */
 	@GetMapping("/customer/list")
-	public void boardListGet(Model model, Criteria cri) {
+	public void boardListGet(Model model, Criteria cri, HttpServletRequest request) {
 		
 		logger.info("고객센터 목록 페이지 진입");
+		
+		
+		
+		HttpSession session = request.getSession(); 
+		
+		MemberVO member = (MemberVO) session.getAttribute("member"); //세션에 저장한 member 가져오기
+		System.out.println("세션객체 : " + member); // member 객체의 내용을 출력
+		
+		String memberId = member.getMemberId(); // 세션에 저장된 사용자의 id가져오기
+		System.out.println("로그인아이디 : " + memberId); //memberId 가져오기
+		
+		model.addAttribute("memberId", memberId); // 모델에 memberId 속성 추가 
+		
+		
+		
 		
 		model.addAttribute("list", memberservice.getList(cri));
 		

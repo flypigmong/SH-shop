@@ -37,6 +37,22 @@ a{
     position:relative;    
 }
 
+.notification{
+	width: 100%;
+    background-color: #8EC0E4;
+    position:relative;     
+    display: flex;
+    flex-direction: column;
+}
+
+#btnNotification {
+	flex-grow: 0;
+} 
+
+
+#alarmList {
+	flex-grow: 1;
+} 
 
 .top_gnb_area2{
 	width: 100%;
@@ -213,35 +229,36 @@ a{
 }
 /* footer 영역 */
 .footer{
-	width:100%;
-	height:130px;
-	background-color:#D4DFE6;
-	padding-bottom : 50px;
+    width:100%;
+    height:130px;
+    background-color:#D4DFE6;
+    padding-bottom : 50px;
 }
 .footer_container{
-	width: 100%;
-	height: 100%;
-	margin: auto;
+    width: 100%;
+    height: 100%;
+    margin: auto;
 }
 .footer_left>img {
-	width: 150%;
+    width: 150%;
     height: 130px;
     margin-left: -20px;
     margin-top: -12px;
 }
 .footer_left{
-	float :left;
-	width: 170px;
-	margin-left: 20px;
-	margin-top : 30px;
-	
+    float :left;
+    width: 170px;
+    margin-left: 20px;
+    margin-top : 30px;
+    
 }
 .footer_right{
-	float :left;
-	width: 680px;
-	margin-left: 70px;
-	margin-top : 30px;
-}
+    float :left;
+    width: 680px;
+    margin-left: 70px;
+    margin-top : 30px;
+}    
+ 
 
 /* 페이지 버튼 */
 

@@ -17,22 +17,41 @@
 	
     <div class="wrapper">
         <div class="wrap">
+        
+ 
+
+        
             <!-- gnv_area -->    
             <div id="socketAlert" class="top_gnb_area2" role="alert" style="display:none;">
-     			</div>
+     		</div>
+
             <div class="top_gnb_area">
                 <ul class="list">    
                     <li><a href="/main">메인 페이지</a></li>
                     <li><a href="/member/logout.do">로그아웃</a></li>
-                    <li><a href="/member/customer">고객센터</a></li>
+                    <li><a href="/member/customer/list">고객센터</a></li>
                     <li><a href="/member/pwUpdateForm">비밀번호변경</a></li>             
                 </ul>
             </div>
+            
+         <!-- 알림 버튼과 알림 목록을 감싸는 div -->
+		<div class="notification">
+		  <!-- 알림 버튼 -->
+		  <button id="btnNotification" onclick="alarmList()" >
+		  	알림
+		  <span id="alarmCount"></span>
+		  </button>
+		  <!-- 알림 목록 (처음에는 숨겨져 있음) -->
+		  <ul id="alarmList" style="display:none;"></ul>
+		</div>
+            
             <!-- top_subject_area -->
             <div class="admin_top_wrap">
                 <div class="content_subject"><span>고객센터</span></div>
+			</div>     
+			
 
-    </div>     
+
 
 <!--  dfdfdfd -->
 <div class="content_area">
@@ -45,7 +64,7 @@
             <td class="th_column_2">글쓴이</td>
             <td class="th_column_3">제목</td>
             <!-- <td class="th_column_4">postContent</td> -->
-            <td class="th_column_4">날짜</td>
+            <td class="th_column_4">등록일</td>
             <td class="th_column_5">수정일</td>
         </tr>
         </thead>
@@ -172,6 +191,103 @@
 		
 	}); //$(document.)
 
+	
+
+
+	//알람목록
+	function alarmList(){
+		console.log("alarmList")
+		const memberId = '${memberId}';
+		 $.ajax({
+		        url : '/board/alarmList',
+		        type : 'get',
+		        data : {'memberId' : memberId },
+		        dataType : "json", 
+		        success : function(data){
+		        	console.log(data);
+		         	var a='';
+		         	 $.each(data, function(key, value){ 
+		         		var category = value.category ;
+		         		a += '<div>';
+						a += '<div class="small text-gray-500">'+value.alarmDate+'</div>';
+						if(category == "reply"){
+						a += '<span class="font-weight-bold"><a href="#"  onclick="alarmClick('+value.postNo+',\''+value.fromId+'\');" style="text-overflow: clip; word-wrap: break-word;">'+value.fromId+'님이 '+ '  댓글을 달았습니다</a></span>'; // text-overflow: ellipsis를 text-overflow: clip로 변경하고, word-wrap: break-word를 추가했습니다.
+						}else if(category == "questionCheck"){
+						a += '<span class="font-weight-bold"><a href="#" onclick="alarmClick('+value.postNo+',\''+value.fromId+'\');" style="text-overflow: clip; word-wrap: break-word;">'+value.toId+'님이 '+value.title+'  답변을 채택했습니다</a></span>'; // text-overflow: ellipsis를 text-overflow: clip로 변경하고, word-wrap: break-word를 추가했습니다.
+
+						}
+						a += '</div><hr/>';	
+						
+		         		 
+		         	 });
+		         	 
+		         	 $("#alarmList").html(a);
+		         	$alarmList.css('display', 'block');
+		         	 console.log("이게되네;;;;;;;;;;;");
+		        },
+				error: function(data) {
+					console.log("으아ㅏㅏㅏㅏㅏㅏㅏㅏ");
+				}
+		    
+		    });
+		 }
+	//목록끝
+
+	// 알람 버튼을 클릭하면
+	$("#btnNotification").click(function() {
+	  // 알람 목록을 토글합니다.
+	  $("#alarmList").toggle();
+	});
+	
+	
+	
+	//목록클릭
+	function alarmClick(postNo,fromId){
+		const memberId = '${memberId}';
+		
+		console.log("alarmClick")
+		 $.ajax({
+		        url : '/board/alarmClick',
+		        type : 'post',
+		        data : {'memberId' : fromId , 'postNo':postNo},
+		        dataType : "json", 
+		        success : function(){
+		        
+		        }
+		        
+		    
+		    });
+		location.href="/member/customer/get?postNo="+postNo;
+		
+	}
+
+
+
+	//알람
+	function alarmCount(){
+		console.log("alarm")
+
+		 $.ajax({
+		        url : '/board/alarmCount',
+		        type : 'get',
+		        data : {'memberId' : memberId },
+		        dataType : "json", 
+		        success : function(alarm){
+		         	console.log(alarm);
+		         	console.log("알람성공");
+		       $('#alarmCount').text(alarm);
+		        }
+		    
+		    });
+	}
+	//
+	
+	
+	
+	
+	
+	
+	
 
     let moveForm = $("#moveForm");
  
@@ -194,7 +310,8 @@
         
     });
     
-    
+   
+   
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
@@ -245,7 +362,8 @@ function connetWs(){
 
 
 //소켓 끝
-</script> 		
+</script> 	
+	
 </body>
 
 </html>

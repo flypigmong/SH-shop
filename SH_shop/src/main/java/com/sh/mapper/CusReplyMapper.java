@@ -19,4 +19,6 @@ public interface CusReplyMapper {
 	
 	//고객센터 댓글 총 갯수(페이징)
 	public int getCusReplyTotal(int postNo);
+	
+	//고객센터 댓글 수정
 }

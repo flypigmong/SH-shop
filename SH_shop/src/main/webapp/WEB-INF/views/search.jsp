@@ -42,7 +42,7 @@
 					</li>
 				</c:if>				
 				<li>
-					고객센터
+					<a href="/member/customer/list">고객센터</a>
 				</li>			
 			</ul>			
 		</div>

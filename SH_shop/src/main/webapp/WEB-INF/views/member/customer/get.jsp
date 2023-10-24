@@ -24,7 +24,7 @@
                 <ul class="list">    
                     <li><a href="/main">메인 페이지</a></li>
                     <li><a href="/member/logout.do">로그아웃</a></li>
-                    <li><a href="/member/customer">고객센터</a></li>
+                    <li><a href="/member/customer/list">고객센터</a></li>
                     <li><a href="/member/pwUpdateForm">비밀번호변경</a></li>             
                 </ul>
             </div>
