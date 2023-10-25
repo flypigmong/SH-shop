@@ -19,8 +19,12 @@
 		select * from sh_alarm where toId = #{memberId} order by alarmDate DESC LIMIT 6
 	</select>
 
-	<delete id="alarmClick">
+	<delete id="alarmClick2">
 		delete from sh_alarm where fromId = #{memberId} AND postNo = #{postNo}
 	</delete>
+  
+	  <update id="alarmClick">
+	  	update sh_alarm set read_status = 'o' where fromId = #{memberId} and postNo = #{postNo}
+	  </update>
   
     </mapper>

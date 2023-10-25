@@ -35,7 +35,7 @@ public class AlarmServiceImpl implements AlarmService{
 
 	@Override
 	public void alarmClick(String memberId, int postNo) throws Exception {
-		
+		System.out.println("service:::::::alarmClick");
 		alarmMapper.alarmClick(memberId, postNo);
 	}
 

@@ -15,6 +15,7 @@ public class AlarmVO {
 	private String category;
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date alarmDate;
+	private String read_status;
 	
 	
 	

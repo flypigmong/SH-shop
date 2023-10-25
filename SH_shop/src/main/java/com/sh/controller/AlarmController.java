@@ -64,8 +64,7 @@ public class AlarmController {
 	public String alarmClick(String memberId, int postNo) throws Exception{
 		logger.info("알람클릭");
 		alarmService.alarmClick(memberId, postNo);
-		
-		return null;
+		 return"redirect:/member/customer/list";
 	}
 	
 }

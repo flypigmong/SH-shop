@@ -207,31 +207,38 @@
 		        	console.log(data);
 		         	var a='';
 		         	 $.each(data, function(key, value){ 
-		         		var category = value.category ;
-		         		a += '<div>';
-						a += '<div class="small text-gray-500">'+value.alarmDate+'</div>';
-						if(category == "reply"){
-						a += '<span class="font-weight-bold"><a href="#"  onclick="alarmClick('+value.postNo+',\''+value.fromId+'\');" style="text-overflow: clip; word-wrap: break-word;">'+value.fromId+'님이 '+ '  댓글을 달았습니다</a></span>'; // text-overflow: ellipsis를 text-overflow: clip로 변경하고, word-wrap: break-word를 추가했습니다.
-						}else if(category == "questionCheck"){
-						a += '<span class="font-weight-bold"><a href="#" onclick="alarmClick('+value.postNo+',\''+value.fromId+'\');" style="text-overflow: clip; word-wrap: break-word;">'+value.toId+'님이 '+value.title+'  답변을 채택했습니다</a></span>'; // text-overflow: ellipsis를 text-overflow: clip로 변경하고, word-wrap: break-word를 추가했습니다.
-
-						}
-						a += '</div><hr/>';	
-						
+			         		 
+			         	if(value.read_status == 'x') {	  
+					         		var category = value.category ;
+					         		a += '<div>';
+									a += '<div class="small text-gray-500">'+value.alarmDate+'</div>';
+									if(category == "reply"){
+									a += '<span class="font-weight-bold"><a href="#"  onclick="alarmClick('+value.postNo+',\''+value.fromId+'\');" style="text-overflow: clip; word-wrap: break-word;">'+value.fromId+'님이 '+ '  댓글을 달았습니다</a></span>'; // text-overflow: ellipsis를 text-overflow: clip로 변경하고, word-wrap: break-word를 추가했습니다.
+									}else if(category == "questionCheck"){
+									a += '<span class="font-weight-bold"><a href="#" onclick="alarmClick('+value.postNo+',\''+value.fromId+'\');" style="text-overflow: clip; word-wrap: break-word;">'+value.toId+'님이 '+value.title+'  답변을 채택했습니다</a></span>'; // text-overflow: ellipsis를 text-overflow: clip로 변경하고, word-wrap: break-word를 추가했습니다.
+			
+									}
+									a += '</div><hr/>';	
+									
+			         		}
+			         	//else if(value.read_status =='o'){
+			         			// a += '<div>read_status == \'o\' 이면 표시할 내용이 없습니다</div>';
+			         			//	}
 		         		 
-		         	 });
+		            	 });
+		         	     var $alarmList = $("#alarmList");
 		         	 
-		         	 $("#alarmList").html(a);
-		         	$alarmList.css('display', 'block');
-		         	 console.log("이게되네;;;;;;;;;;;");
-		        },
-				error: function(data) {
-					console.log("으아ㅏㅏㅏㅏㅏㅏㅏㅏ");
-				}
+		         	    $("#alarmList").html(a);
+		             	$alarmList.css('display', 'block');
+		         	    console.log("이게되네;;;;;;;;;;;");
+		             },
+						error: function(data) {
+				     	console.log("으아ㅏㅏㅏㅏㅏㅏㅏㅏ");
+				     }
 		    
-		    });
-		 }
-	//목록끝
+		        });
+		     }
+	     //목록끝
 
 	// 알람 버튼을 클릭하면
 	$("#btnNotification").click(function() {

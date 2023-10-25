@@ -92,6 +92,9 @@ public class EchoHandler extends TextWebSocketHandler {
 					alarm.setFromId(replyWriter); //댓쓴이
 					alarm.setPostNo(Integer.parseInt(bno));
 					alarm.setCategory("reply");
+					// read_status라는 변수에 'x'라는 값을 할당
+					String read_status = "x";
+					alarm.setRead_status(read_status );
 					
 					//알람 데이터 db에 저장
 					int result = alarmservice.insertAlarm(alarm);
