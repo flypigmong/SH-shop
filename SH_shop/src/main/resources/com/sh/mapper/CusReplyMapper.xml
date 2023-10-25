@@ -30,4 +30,8 @@
   		where postNo = #{postNo}
   	</select>
     
+    <delete id="deleteCusReply">
+    	delete from sh_cusReply
+    	where cusReplyId = #{cusReplyId}
+    </delete>
   </mapper>

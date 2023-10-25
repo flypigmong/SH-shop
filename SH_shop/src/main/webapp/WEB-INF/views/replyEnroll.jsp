@@ -176,18 +176,19 @@
 
 				/* 댓글 초기화 */
 				$(opener.location).attr("href", "javascript:replyListInit();");
+				
+				//location.reload();
+				window.close();
 						
 				//소켓
 				//console.log(content);
 				console.debug("reply.js::::socket", content)
 				
 				if(socket){ //websocket에 연결되었을때만
-					let socketMsg = "reply," + memberId + "," bookId + "," + content;
+					let socketMsg = "reply," + memberId + "," +  bookId + "," + content;
 					socket.send(socketMsg);
+				}
 				
-				
-				//location.reload();
-				window.close();
 			}
 			
 		});	

@@ -17,4 +17,7 @@ public interface CusReplyService {
 	/* 고객센터 댓글 페이징*/
 	public CusReplyPageDTO cusReplyList(Criteria2 cri2);
 	
+	// 고객센터 댓글 삭제
+	public int deleteCusReply(CusReplyDTO dto);
+	
 }

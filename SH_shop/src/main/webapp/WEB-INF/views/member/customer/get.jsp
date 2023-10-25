@@ -249,6 +249,7 @@
 			let reply_list = '';
 			
 			$(list).each(function(i,obj){
+					console.log(obj);
 					reply_list += '<li>';
 					reply_list += '<div class="comment_wrap">';
 					reply_list += '<div class="reply_top">';
@@ -260,7 +261,7 @@
 					//reply_list += '<span class="rating_span">평점 : <span class="rating_value_span">'+ obj.rating +'</span>점</span>';
 					
 					if(obj.memberId === userId){
-						reply_list += '<a class="update_reply_btn" href="'+ obj.replyId +'">수정</a><a class="delete_reply_btn" href="'+ obj.replyId +'">삭제</a>';
+						reply_list += '<a class="update_reply_btn" href="'+ obj.cusReplyId +'">수정</a><a class="delete_reply_btn" href="'+ obj.cusReplyId +'">삭제</a>';
 					}
 					reply_list += '</div>'; //<div class="reply_top">
 					reply_list += '<div class="reply_bottom">';
@@ -324,6 +325,29 @@
 			replyListInit();
 				
 		 });
+		
+		
+			/* 리뷰 삭제 버튼 */
+			$(document).on('click', '.delete_reply_btn', function(e){
+				
+				e.preventDefault();
+				let cusReplyId = $(this).attr("href");
+				
+				$.ajax({
+					data : {
+						cusReplyId : cusReplyId,
+						postNo : '${goodsInfo.postNo}'
+					},
+					url : '/cusReply/delete',
+					type : 'POST',
+					success : function(result){
+						replyListInit();
+						alert('삭제가 완료되었습니다.');
+					}
+				});	
+				
+				
+			});
 	
 </script>	
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>

@@ -21,4 +21,7 @@ public interface CusReplyMapper {
 	public int getCusReplyTotal(int postNo);
 	
 	//고객센터 댓글 수정
+	
+	//고객센터 댓글 삭제
+	public int deleteCusReply(int cusReplyId);
 }

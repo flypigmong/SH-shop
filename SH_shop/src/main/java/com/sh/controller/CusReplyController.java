@@ -47,4 +47,9 @@ public class CusReplyController {
 		
 	}
 	
+	//댓글 삭제
+	@PostMapping("/delete")
+	public void CusReplyDeletePOST(CusReplyDTO dto) {
+		cusReplyService.deleteCusReply(dto);
+	}
 }

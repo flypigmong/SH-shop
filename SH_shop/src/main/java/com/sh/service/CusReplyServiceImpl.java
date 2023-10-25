@@ -48,6 +48,15 @@ public class CusReplyServiceImpl implements CusReplyService{
 		return dto;
 	}
 
+	//댓글 삭제
+	@Override
+	public int deleteCusReply(CusReplyDTO dto) {
+		
+		int result = cusReplyMapper.deleteCusReply(dto.getCusReplyId());
+		return result;
+		
+	}
+
 	
 
 }
