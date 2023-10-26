@@ -229,11 +229,13 @@
 		         	     var $alarmList = $("#alarmList");
 		         	 
 		         	    $("#alarmList").html(a);
-		             	$alarmList.css('display', 'block');
-		         	    console.log("이게되네;;;;;;;;;;;");
+		         	    
+		             	//$alarmList.css('display', 'block');
+		     			   
+		             	console.log("여기까지넘어옴");
 		             },
 						error: function(data) {
-				     	console.log("으아ㅏㅏㅏㅏㅏㅏㅏㅏ");
+	
 				     }
 		    
 		        });
