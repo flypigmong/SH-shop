@@ -7,7 +7,7 @@
 OS : Window 10
 Language : (Back-end) Oracle JDK 17.0.8.1 (Front-end) JavaScript, jquery3.4.1, CSS3, HTML5
 Library : Spring 3, Tomcat 9.0, mybatis 3.4.6
-DataBase : MySQL 8.0, MySQL Workbench </p>
+DataBase : MySQL 8.0, MySQL Workbench
 IDE : STS 3.9.14
 ---------------------------------------
 서비스 환경
