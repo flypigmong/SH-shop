@@ -12,7 +12,7 @@ IDE : STS 3.9.14
 ---------------------------------------
 서비스 환경
 OS : Ubuntu 18.04
-Paltform: Amazon Ligthsail, Ubuntu 18.0.4 LTS 2 GB RAM, 2 vCPUs, 60 GB SSD Tomcat9, MySQL(8.0) FTP client(FilZilla 이용) 
+Paltform: Amazon Ligthsail, Ubuntu 18.0.4 LTS 2 GB RAM, 2 vCPUs, 60 GB SSD Tomcat9, MySQL(8.0) FTP client(FilZilla 이용) 
 ------------------------------------------
 
 
