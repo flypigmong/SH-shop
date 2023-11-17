@@ -18,3 +18,8 @@ Paltform: Amazon Ligthsail, Ubuntu 18.0.4 LTS 2 GB RAM, 2 vCPUs, 60 GB SS
 
 
 ![SHbook](https://github.com/flypigmong/SH-shop/assets/107020951/a2cac704-2ffe-417b-9876-b8b847854994)
+
+----------------------------------
+ERD
+![SH-book-ERD](https://github.com/flypigmong/SH-shop/assets/107020951/e1be13d5-b5bf-40a8-932c-6eb67592ceb8)
+----------------------------------
